@@ -15,6 +15,11 @@ import _value
 font = pygame.font.SysFont("hg正楷書体pro", 30)
 
 def step2():
+        image = cv2.imread(r"C:\python\kirby\buki.png")
+        if _value.flip==0:
+            image = cv2.imread(r"C:\python\kirby\buki.png")
+        if _value.flip==1:
+            image = cv2.imread(r"C:\python\kirby\buki2.png")
         pygame.display.update()
         _value.screen.fill((200,200,255))
         mouseX, mouseY = pygame.mouse.get_pos()
@@ -61,15 +66,23 @@ def step2():
                 text_rect = text.get_rect(center=(400, 300))
                 _value.screen.blit(text, text_rect)
         elif _value.step2==1:
-            x=300
+            x=250
             y=50
+            text=font.render("裏", False, (0,0,0))
+            text_rect = text.get_rect(center=(400, 550))
+            _value.screen.blit(text, text_rect)
             for i in range(45):
                 for i2 in range(32):
+                    if _value.flip==0:
+                        i3=i2
+                    else:
+                        i3=31-i2
                     fill=_func.bgr_to_rgb(image[i,i2])
+
                     if fill==(255,255,255):fill=_value.back
-                    pygame.draw.rect(_value.screen,fill,(i2*10+x,i*10+y,10,10))
+                    pygame.draw.rect(_value.screen,fill,(i3*10+x,i*10+y,10,10))
                     if i2*10+x<mouseX<i2*10+x+10 and i*10+y<mouseY<i*10+y+10:
-                        _value.mx=i2
+                        _value.mx=i3
                         _value.my=i
             if mouseX<x or 320+x<mouseX or mouseY<y or 450+y<mouseY:
                 _value.mx=-1
@@ -132,6 +145,8 @@ def step2():
                     else:
                         _value.step2=0
             elif event.type == MOUSEBUTTONDOWN:
+                if 350<mouseX<450 and 500<mouseY<600:
+                    _value.flip=1-_value.flip
                 if event.button == 1 and _value.step2==1:  # 左クリック
                     _value.drag = 1
                 if event.button == 3 and _value.step2==1:  # 左クリック
@@ -155,7 +170,11 @@ def step2():
                     _value.cg2=_value.cg
                     _value.cb2=_value.cb
                 image[_value.my,_value.mx]=[_value.cb2,_value.cg2,_value.cr2]
-                cv2.imwrite("buki.png", image)
+                if _value.flip==0:
+                    cv2.imwrite("buki.png", image)
+                    cv2.imwrite("buki2.png", image)
+                if _value.flip==1:
+                    cv2.imwrite("buki2.png", image)
             if 650<mouseX<750 and 140<mouseY<160:
                 _value.cr=(mouseX-650)*2.55
             if 650<mouseX<750 and 190<mouseY<210:
@@ -165,4 +184,7 @@ def step2():
         if _value.drag==3:
             if _value.my>=0:
                 image[_value.my,_value.mx]=[255,255,255]
-                cv2.imwrite("buki.png", image)
+                if _value.flip==0:
+                    cv2.imwrite("buki.png", image)
+                if _value.flip==1:
+                    cv2.imwrite("buki2.png", image)

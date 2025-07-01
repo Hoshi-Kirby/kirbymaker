@@ -173,6 +173,7 @@ def step7():
                     img1 = pygame.image.load("ノーマルhボム.png")
                 if _value.bosi==2:
                     img1 = pygame.image.load("ノーマルhファイター.png")
+            bxh=-2
         if _value.shagam==1:
             if _value.buki==0:
                 if _value.bosi==0:
@@ -190,6 +191,8 @@ def step7():
                     img1 = pygame.image.load("しゃがみhファイター.png")
             _value.kxh=-8
             _value.kyh=22
+            bxh=-2
+
         if _value.hob==0:
             if _value.pose==1:
                 if _value.bosi==0:
@@ -421,7 +424,10 @@ def step7():
         _value.screen.blit(img1, (_value.kxtest+_value.kxh, _value.kytest+_value.kyh))
 
         if _value.buki==1:
-            img2 = pygame.image.load("buki.png")
+            if _value.flip==1:
+                img2 = pygame.image.load("buki2.png")
+            else:
+                img2 = pygame.image.load("buki.png")
             img2 = pygame.transform.scale_by(img2, 1.8)
             img2.set_colorkey((255, 255, 255))
             img2 = img2.convert_alpha()

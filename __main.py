@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 image = cv2.imread(r"C:\python\kirby\h.png")
 cv2.imwrite("buki.png", image)
+cv2.imwrite("buki2.png", image)
 from pygame.locals import *
 pygame.init()
 pygame.mixer.init()
