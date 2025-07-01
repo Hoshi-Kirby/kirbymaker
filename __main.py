@@ -121,15 +121,19 @@ while True:
 
     # 攻撃範囲、軌道
     if _value.step==5:
-        _value.box_rects = [pygame.Rect(371+i*100, 185, 40, 30) for i in range(13)]
-        for i in range(4):
-            _value.box_rects[i+3]=pygame.Rect(371+i*100, 385, 40, 30)
-        for i in range(2):
-            _value.box_rects[i+7]=pygame.Rect(371+i*100, 235, 40, 30)
-        for i in range(2):
-            _value.box_rects[i+9]=pygame.Rect(371+i*100, 435, 40, 30)
-        for i in range(2):
-            _value.box_rects[i+11]=pygame.Rect(401+i*200, 85, 40, 30)
+        if _value.wazatype[_value.ka3]==0:
+            _value.box_rects = [pygame.Rect(371+i*95, 185, 40, 30) for i in range(5)]
+            _value.box_rects[4]=pygame.Rect(485, 385, 40, 30)
+        else:
+            _value.box_rects = [pygame.Rect(371+i*100, 185, 40, 30) for i in range(13)]
+            for i in range(4):
+                _value.box_rects[i+3]=pygame.Rect(371+i*100, 385, 40, 30)
+            for i in range(2):
+                _value.box_rects[i+7]=pygame.Rect(371+i*100, 235, 40, 30)
+            for i in range(2):
+                _value.box_rects[i+9]=pygame.Rect(371+i*100, 435, 40, 30)
+            for i in range(2):
+                _value.box_rects[i+11]=pygame.Rect(401+i*200, 85, 40, 30)
             
         active=[False]*13
         _value.input_text=["0"]*13
@@ -160,7 +164,7 @@ while True:
         if _value.wazatype[_value.ka3]==2:
             _value.tab5=11
         if _value.wazatype[_value.ka3]==0:
-            _value.tab5=4
+            _value.tab5=5
     while _value.step==5:
         _orbit.step5()
 

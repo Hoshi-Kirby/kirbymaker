@@ -151,6 +151,10 @@ def step2():
                     _value.drag = 1
                 if event.button == 3 and _value.step2==1:  # 左クリック
                     _value.drag = 3
+                    if _value.my>=0:
+                        bgr = tuple(int(c) for c in image[_value.my, _value.mx])
+                        fill = _func.bgr_to_rgb(bgr)
+                        _value.cr,_value.cg,_value.cb=fill
                 if event.button == 2 and _value.step2==1:
                     if _value.back==(255,255,255):_value.back=(0,0,0)
                     elif _value.back==(0,0,0):_value.back=(255,255,255)

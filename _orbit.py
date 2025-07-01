@@ -25,6 +25,20 @@ def step5():
             _func.settingkirby(100,298)
         if _value.wazatype[_value.ka3]==0:
             fill=0,0,0
+            text = font.render("rect        ,         ,         ,        ", False, (fill))
+            text_rect = text.get_rect(center=(500, 200))
+            _value.screen.blit(text, text_rect)
+            text = font.render("(t<        )", False, (fill))
+            text_rect = text.get_rect(center=(500, 400))
+            _value.screen.blit(text, text_rect)
+            # rect = pygame.Rect(int(_value.kx2[_value.ka3] + 125),int(_value.kx1[_value.ka3] + 315),int(_value.kx0[_value.ka3]),int(_value.ky2[_value.ka3]))
+            rect_surface = pygame.Surface((abs(_value.kx0[_value.ka3]),abs( _value.ky2[_value.ka3])), pygame.SRCALPHA)
+
+            rect_surface.fill((255, 0, 0, 128))  # ← A=128で半透明
+
+            _value.screen.blit(rect_surface, (_value.kx2[_value.ka3] + 125,_value.kx1[_value.ka3] + 315))
+
+            # pygame.draw.rect(_value.screen,(255,0,0),rect)
         else:
             if _value.ka5<7:
                 fill=0,0,0
