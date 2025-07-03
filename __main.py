@@ -19,6 +19,7 @@ import _deta
 import _orbit
 import _reco
 import _test
+import _desi
 
 pygame.display.set_caption("k")
 
@@ -214,3 +215,10 @@ while True:
         
     while _value.step==7:
         _test.step7()
+
+    # デザイン
+    if _value.step==8:
+        a=0
+        
+    while _value.step==8:
+        _desi.step8()

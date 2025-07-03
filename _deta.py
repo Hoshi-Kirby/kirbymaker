@@ -66,6 +66,8 @@ def step4():
                         _value.step=5
                     elif _value.ka4==7:
                         _value.step=6
+                    elif _value.ka4==9:
+                        _value.step=8
                     else:
                         _value.ka4+=1
                         if _value.ka4>_value.tab4:

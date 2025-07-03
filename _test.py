@@ -189,7 +189,9 @@ def step7():
                     img1 = pygame.image.load("しゃがみhボム.png")
                 if _value.bosi==2:
                     img1 = pygame.image.load("しゃがみhファイター.png")
-            _value.kxh=-8
+            if _value.bosi==0:_value.kxh=-4
+            if _value.bosi==1:_value.kxh=1
+            if _value.bosi==2:_value.kxh=-2
             _value.kyh=22
             bxh=-2
 
@@ -370,7 +372,7 @@ def step7():
                         img1 = pygame.image.load("ホバリングh1ファイター.png")
                     if _value.hobc==0:
                         img1 = pygame.image.load("ホバリングh1ファイター.png")
-            _value.kxh=-3
+            _value.kxh=-4
             _value.kyh=-1
             byh=-2
         
@@ -432,9 +434,12 @@ def step7():
             img2.set_colorkey((255, 255, 255))
             img2 = img2.convert_alpha()
             bxh-=20
+            if _value.bosi==1:
+                bxh+=6
+                byh+=6
             if _value.flip==1:
                 bxh=-bxh
-                bxh-=16
+                bxh-=10
                 img2=pygame.transform.flip(img2, True, False)
             _value.screen.blit(img2, (_value.kxtest+_value.kxh+bxh, _value.kytest-37+_value.kyh+byh))
 
