@@ -2,9 +2,6 @@ import sys, random
 import pygame, time
 import cv2
 import numpy as np
-image = cv2.imread(r"C:\python\kirby\h.png")
-cv2.imwrite("buki.png", image)
-cv2.imwrite("buki2.png", image)
 from pygame.locals import *
 pygame.init()
 pygame.mixer.init()
@@ -65,6 +62,11 @@ while True:
         _value.wazatame=[0]*(_value.tab+20)
         _value.buki=0
         _value.bosi=0
+        image = cv2.imread(r"C:\python\kirby\h.png")
+        cv2.imwrite("buki.png", image)
+        cv2.imwrite("buki2.png", image)
+
+        _value.ka8=0
     while _value.step==1:
 
         _title.step1()
@@ -219,6 +221,7 @@ while True:
     # デザイン
     if _value.step==8:
         a=0
+        ka8=0
         
     while _value.step==8:
         _desi.step8()
