@@ -17,9 +17,9 @@ def step4():
         pygame.display.update()
         _value.screen.fill((200,200,255))
         if _value.wazatype[_value.ka3]==2:
-            _func.settingkirby(_value.kx+100,_value.ky+298)
+            _func.settingkirby(_value.kx+100,_value.ky+298,0)
         else:
-            _func.settingkirby(100,298)
+            _func.settingkirby(100,298,0)
 
         if _value.wazatype[_value.ka3]==1:#kx2[ka3]*0.1*t*t+(kx1[ka3]+kad2[ka3]*0.02*ad)*t*1.5+kx0[ka3]*50+125+kad1[ka3]*ad*1.5,ky2[ka3]*0.1*t*t+(ky1[ka3]+kws2[ka3]*0.02*ws)*1.5*t+ky0[ka3]*50+315+kws1[ka3]*ws*1.5
             pygame.draw.circle(_value.screen,(0,0,0),(_value.kx+125,_value.ky+315),5)

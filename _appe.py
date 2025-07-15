@@ -23,7 +23,7 @@ def step2():
         pygame.display.update()
         _value.screen.fill((200,200,255))
         mouseX, mouseY = pygame.mouse.get_pos()
-        _func.settingkirby(100,298)
+        _func.settingkirby(100,298,0)
 
         if _value.step2==0:
             if _value.ka==0:

@@ -20,7 +20,7 @@ def step6():
         pygame.draw.line(_value.screen,(0,0,0),(25,315),(225,315),1)
         pygame.draw.line(_value.screen,(0,0,0),(125,215),(125,415),1)
         
-        _func.settingkirby(_value.kx+100,_value.ky+298)
+        _func.settingkirby(_value.kx+100,_value.ky+298,0)
         if _value.ka6<7:
             fill=0,0,0
             fill2=(100,100,100)

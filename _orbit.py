@@ -20,9 +20,9 @@ def step5():
         pygame.draw.line(_value.screen,(0,0,0),(25,315),(225,315),1)
         pygame.draw.line(_value.screen,(0,0,0),(125,215),(125,415),1)
         if _value.wazatype[_value.ka3]==2:
-            _func.settingkirby(_value.kx+100,_value.ky+298)
+            _func.settingkirby(_value.kx+100,_value.ky+298,0)
         else:
-            _func.settingkirby(100,298)
+            _func.settingkirby(100,298,0)
         if _value.wazatype[_value.ka3]==0:
             fill=0,0,0
             text = font.render("rect        ,         ,         ,        ", False, (fill))

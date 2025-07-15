@@ -31,13 +31,16 @@ def step8():
             fill3=0,0,0
         if _value.wazatype[_value.ka3]==0:
             tab=1
-            _func.settingkirby(100,298)
+            _func.settingkirby(100,298,0)
             
         if _value.wazatype[_value.ka3]==1:
             tab=2
-            _func.settingkirby(100,298)
+            _func.settingkirby(100,298,0)
             text = font.render("カービィ", False, fill)
             text_rect = text.get_rect(center=(500, 200))
+            _value.screen.blit(text, text_rect)
+            text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
+            text_rect = text.get_rect(center=(550, 230))
             _value.screen.blit(text, text_rect)
             text = font.render("飛び道具→", False, fill2)
             text_rect = text.get_rect(center=(500, 300))
@@ -48,7 +51,9 @@ def step8():
                 text = font.render("武器を描く→", False, fill3)
             text_rect = text.get_rect(center=(500, 400))
             _value.screen.blit(text, text_rect)
-        # if _value.wazatype[_value.ka3]==2:
+        if _value.wazatype[_value.ka3]==2:
+            tab=1
+            _func.settingkirby(100,298,0)
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
