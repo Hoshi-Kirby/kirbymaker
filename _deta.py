@@ -17,9 +17,23 @@ def step4():
         pygame.display.update()
         _value.screen.fill((200,200,255))
         if _value.wazatype[_value.ka3]==2:
-            _func.settingkirby(_value.kx+100,_value.ky+298,0)
+            if(_value.t2<10):
+                _func.settingkirby(_value.kx+100,_value.ky+298,1)
+            if(10<=_value.t2<15):
+                _func.settingkirby(_value.kx+100,_value.ky+298,2)
+            if(15<=_value.t2<20):
+                _func.settingkirby(_value.kx+100,_value.ky+298,3)
+            if(20<=_value.t2):
+                _func.settingkirby(_value.kx+100,_value.ky+298,4)
         else:
-            _func.settingkirby(100,298,0)
+            if(_value.t2<10):
+                _func.settingkirby(100,298,1)
+            if(10<=_value.t2<15):
+                _func.settingkirby(100,298,2)
+            if(15<=_value.t2<20):
+                _func.settingkirby(100,298,3)
+            if(20<=_value.t2):
+                _func.settingkirby(100,298,4)
 
         if _value.wazatype[_value.ka3]==1:#kx2[ka3]*0.1*t*t+(kx1[ka3]+kad2[ka3]*0.02*ad)*t*1.5+kx0[ka3]*50+125+kad1[ka3]*ad*1.5,ky2[ka3]*0.1*t*t+(ky1[ka3]+kws2[ka3]*0.02*ws)*1.5*t+ky0[ka3]*50+315+kws1[ka3]*ws*1.5
             pygame.draw.circle(_value.screen,(0,0,0),(_value.kx+125,_value.ky+315),5)
@@ -284,8 +298,10 @@ def step4():
 
         # all station
         _value.t+=1
+        _value.t2+=1
         if _value.t>_value.kzi[_value.ka3]*100:
             _value.t=0
+            _value.t2=0
             _value.ws=0
             _value.ad=0
             _value.kx=_value.kx0[_value.ka3]*50
@@ -298,10 +314,12 @@ def step4():
         _value.kx+=_value.kxv+_value.kad1[_value.ka3]*_value.ad*0.5
         _value.ky+=_value.kyv+_value.kws1[_value.ka3]*_value.ws*0.5
 
-        if _value.wazapene[0]==0:
+        if _value.wazapene[_value.ka3]==0:
             if _value.ky>0:_value.t=_value.kzi[_value.ka3]*100
-        if _value.wazapene[0]==1:
+        if _value.wazapene[_value.ka3]==1:
             if _value.ky>0 and _value.kyv>0:_value.kyv=-_value.kyv
 
+        if _value.wazapene[_value.ka3]==0:
+            if _value.ky>0:_value.t2=_value.kzi[_value.ka3]*100
         # pygame.display.flip()
         time.sleep(0.01)

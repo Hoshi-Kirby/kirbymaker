@@ -20,9 +20,23 @@ def step5():
         pygame.draw.line(_value.screen,(0,0,0),(25,315),(225,315),1)
         pygame.draw.line(_value.screen,(0,0,0),(125,215),(125,415),1)
         if _value.wazatype[_value.ka3]==2:
-            _func.settingkirby(_value.kx+100,_value.ky+298,0)
+            if(_value.t2<10):
+                _func.settingkirby(_value.kx+100,_value.ky+298,1)
+            if(10<=_value.t2<15):
+                _func.settingkirby(_value.kx+100,_value.ky+298,2)
+            if(15<=_value.t2<20):
+                _func.settingkirby(_value.kx+100,_value.ky+298,3)
+            if(20<=_value.t2):
+                _func.settingkirby(_value.kx+100,_value.ky+298,4)
         else:
-            _func.settingkirby(100,298,0)
+            if(_value.t2<10):
+                _func.settingkirby(100,298,1)
+            if(10<=_value.t2<15):
+                _func.settingkirby(100,298,2)
+            if(15<=_value.t2<20):
+                _func.settingkirby(100,298,3)
+            if(20<=_value.t2):
+                _func.settingkirby(100,298,4)
         if _value.wazatype[_value.ka3]==0:
             fill=0,0,0
             text = font.render("rect        ,         ,         ,        ", False, (fill))
@@ -166,8 +180,10 @@ def step5():
         # if wazatype[_value.ka3]==0:
         # else:
         _value.t+=1
+        _value.t2+=1
         if _value.t>_value.kzi[_value.ka3]*100:
             _value.t=0
+            _value.t2=0
             _value.ws=0
             _value.ad=0
             _value.kx=_value.kx0[_value.ka3]*50
@@ -180,9 +196,11 @@ def step5():
         _value.kx+=_value.kxv+_value.kad1[_value.ka3]*_value.ad*0.5
         _value.ky+=_value.kyv+_value.kws1[_value.ka3]*_value.ws*0.5
 
-        if _value.wazapene[0]==0:
+        if _value.wazapene[_value.ka3]==0:
             if _value.ky>0:_value.t=_value.kzi[_value.ka3]*100
-        if _value.wazapene[0]==1:
+        if _value.wazapene[_value.ka3]==1:
             if _value.ky>0 and _value.kyv>0:_value.kyv=-_value.kyv
         
+        if _value.wazapene[_value.ka3]==0:
+            if _value.ky>0:_value.t2=_value.kzi[_value.ka3]*100
         time.sleep(0.01)

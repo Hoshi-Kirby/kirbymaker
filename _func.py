@@ -8,7 +8,7 @@ def bgr_to_rgb(color_bgr):
     b, g, r = color_bgr
     return (r, g, b)
 def settingkirby(x,y,st):
-    if _value.ka8_2==0 or st==0 :
+    if _value.ka8_2[_value.ka3]==0 or st==0 :
         if _value.buki==0:
             if _value.bosi==0:
                 img1 = pygame.image.load("ノーマル1.png")
@@ -53,5 +53,15 @@ def settingkirby(x,y,st):
             img2.set_colorkey((255, 255, 255))
             img2 = img2.convert_alpha()
             _value.screen.blit(img2, (x-25, y-38))
-        elif st==1:
-            st=0
+    elif 0<st<=4:
+        img1 = pygame.image.load(f"{_value.ka8_2[_value.ka3]}_{st}.png")
+        img1.set_colorkey((255, 255, 255))
+        img1 = img1.convert_alpha()
+        img1 = pygame.transform.scale_by(img1, 2.5)
+        _value.screen.blit(img1, (x,y))
+        if _value.buki==1:
+            img2 = pygame.image.load("buki.png")
+            img2 = pygame.transform.scale_by(img2, 1.8)
+            img2.set_colorkey((255, 255, 255))
+            img2 = img2.convert_alpha()
+            _value.screen.blit(img2, (x-25, y-38))

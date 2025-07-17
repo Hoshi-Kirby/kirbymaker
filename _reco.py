@@ -155,7 +155,6 @@ def step6():
         _value.kx+=_value.kxv+_value.kad1h[_value.ka3]*_value.ad*0.5
         _value.ky+=_value.kyv+_value.kws1h[_value.ka3]*_value.ws*0.5
 
-        if _value.wazapene[0]==1:
-            if _value.ky>0 and _value.kyv>0:_value.kyv=-_value.kyv
+        if _value.ky>0 and _value.kyv>0:_value.kyv=-_value.kyv
         
         time.sleep(0.01)

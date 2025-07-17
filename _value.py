@@ -100,6 +100,7 @@ title = title_list[ka3]
 
 ws=0
 t=0
+t2=0
 ad=0
 kx=kx0[ka3]*50
 ky=ky0[ka3]*50
