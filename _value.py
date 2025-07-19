@@ -146,7 +146,7 @@ ka8=0
 ka8_2=[0]*40
 erabuki=[0]*40
 
-
+skillnum=0
 
 
 
