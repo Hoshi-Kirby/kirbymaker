@@ -56,9 +56,9 @@ def step8():
 
             elif _value.step2==1:
                 if _value.flip==0:
-                    image = cv2.imread(fr"C:\python\kirby\buki - コピー ({_value.ka3}).png")
+                    image = cv2.imread(fr"C:\python\kirby\buki ({_value.ka3}).png")
                 if _value.flip==1:
-                    image = cv2.imread(fr"C:\python\kirby\buki2 - コピー ({_value.ka3}).png")
+                    image = cv2.imread(fr"C:\python\kirby\buki2 ({_value.ka3}).png")
                 x=250
                 y=50
                 text=font.render("裏", False, (0,0,0))
@@ -207,10 +207,10 @@ def step8():
                 image[_value.my,_value.mx]=[_value.cb2,_value.cg2,_value.cr2]
                 if _value.step2==1:
                     if _value.flip==0:
-                        cv2.imwrite(f"buki - コピー ({_value.ka3}).png", image)
-                        cv2.imwrite(f"buki2 - コピー ({_value.ka3}).png", image)
+                        cv2.imwrite(f"buki ({_value.ka3}).png", image)
+                        cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
                     if _value.flip==1:
-                        cv2.imwrite(f"buki2 - コピー ({_value.ka3}).png", image)
+                        cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
             if 650<mouseX<750 and 140<mouseY<160:
                 _value.cr=(mouseX-650)*2.55
             if 650<mouseX<750 and 190<mouseY<210:
@@ -222,9 +222,9 @@ def step8():
                 image[_value.my,_value.mx]=[255,255,255]
                 if _value.step2==1:
                     if _value.flip==0:
-                        cv2.imwrite(f"buki - コピー ({_value.ka3}).png", image)
+                        cv2.imwrite(f"buki ({_value.ka3}).png", image)
                     if _value.flip==1:
-                        cv2.imwrite(f"buki2 - コピー ({_value.ka3}).png", image)
+                        cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
         _value.t+=1
         _value.t2+=1
         if _value.t>_value.kzi[_value.ka3]*100:
