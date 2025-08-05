@@ -124,7 +124,8 @@ def step5():
                         _value.input_text[i] += event.unicode
                     elif event.key == pygame.K_MINUS:
                         _value.input_text[i] += event.unicode
-                    if _value.input_text[i] != "" and _value.input_text[i] != "-" and "-" not in _value.input_text[i][1:]:
+                    if _value.input_text[i] != "" and _value.input_text[i] != "-" and "-" not in _value.input_text[i][1:] and not _value.input_text[i].startswith("."):
+
                         match i:
                             case 0:_value.kx2[_value.ka3]=float(_value.input_text[i])
                             case 1:_value.kx1[_value.ka3]=float(_value.input_text[i])

@@ -65,6 +65,9 @@ while True:
         image = cv2.imread(r"C:\python\kirby\h.png")
         cv2.imwrite("buki.png", image)
         cv2.imwrite("buki2.png", image)
+        for i in range(30):
+            cv2.imwrite(f"buki - コピー ({i}).png", image)
+            cv2.imwrite(f"buki2 - コピー ({i}).png", image)
         image = cv2.imread(r"C:\python\kirby\s.png")
         cv2.imwrite("hado.png", image)
 

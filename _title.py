@@ -69,7 +69,7 @@ def step1():
                 if _value.posetime==6:
                     _value.posetime=0
                     _value.pose+=1
-                    if _value.pose==8:
+                    if _value.pose==9:
                         _value.pose=1
                 if pressed_keys[K_d]:
                     if _value.hob==1:
@@ -156,93 +156,91 @@ def step1():
         _value.kxh=0
         _value.kyh=0
         if _value.pose==0:
-            img1 = pygame.image.load("ノーマル_1.gif")
+            img1 = pygame.image.load("ノーマルf.png")
         if _value.shagam==1:
-            img1 = pygame.image.load("しゃがみ.png").convert_alpha()
-            img1.set_colorkey((255, 255, 255))
-            img1 = pygame.transform.scale_by(img1, 0.4)
-            img1 = img1.convert_alpha()
+            img1 = pygame.image.load("しゃがみf.png").convert_alpha()
             _value.kxh=-8
             _value.kyh=22
 
         if _value.pose==1:
-            img1 = pygame.image.load("ダッシュ.gif")
+            img1 = pygame.image.load("ダッシュ1.png")
             _value.kxh=0
             _value.kyh=0
         if _value.pose==2:
-            img1 = pygame.image.load("ダッシュ：静止.gif")
+            img1 = pygame.image.load("ダッシュ2.png")
             _value.kxh=0
             _value.kyh=0
         if _value.pose==3:
-            img1 = pygame.image.load("ダッシュ2.gif")
+            img1 = pygame.image.load("ダッシュ3.png")
             _value.kxh=0
             _value.kyh=0
         if _value.pose==4:
-            img1 = pygame.image.load("ダッシュ3.gif")
+            img1 = pygame.image.load("ダッシュ4.png")
             _value.kxh=0
             _value.kyh=0
         if _value.pose==5:
-            img1 = pygame.image.load("ダッシュ4.gif")
+            img1 = pygame.image.load("ダッシュ5.png")
             _value.kxh=0
             _value.kyh=0
         if _value.pose==6:
-            img1 = pygame.image.load("ダッシュ5.gif")
+            img1 = pygame.image.load("ダッシュ6.png")
             _value.kxh=0
             _value.kyh=0
         if _value.pose==7:
-            img1 = pygame.image.load("ダッシュ6.gif")
+            img1 = pygame.image.load("ダッシュ7.png")
+            _value.kxh=0
+            _value.kyh=0
+        if _value.pose==8:
+            img1 = pygame.image.load("ダッシュ8.png")
             _value.kxh=0
             _value.kyh=0
         
         if _value.guard==1:
             img1 = pygame.image.load("静止ガード.gif")
+        img1.set_colorkey((255, 255, 255))
 
+        if _value.kyv<0:
+            img1 = pygame.image.load("ジャンプ上.png")
         if _value.kyv>0:
-            img1 = pygame.image.load("ジャンプ.gif")
+            img1 = pygame.image.load("ジャンプ下.png")
         if _value.hob==1:
             if _value.hobc>0:
-                img1 = pygame.image.load("ホバリング5.png")
+                img1 = pygame.image.load("ホバリングf5.png")
             if _value.hobc>2:
-                img1 = pygame.image.load("ホバリング4.png")
+                img1 = pygame.image.load("ホバリングf4.png")
             if _value.hobc>4:
-                img1 = pygame.image.load("ホバリング3.png")
+                img1 = pygame.image.load("ホバリングf3.png")
             if _value.hobc>8:
-                img1 = pygame.image.load("ホバリング2.png")
+                img1 = pygame.image.load("ホバリングf2.png")
             if _value.hobc>16:
-                img1 = pygame.image.load("ホバリング1.png")
+                img1 = pygame.image.load("ホバリングf1.png")
             if _value.hobc==0:
-                img1 = pygame.image.load("ホバリング.gif")
+                img1 = pygame.image.load("ホバリングf1.png")
             if _value.hobc>0:
                 img1.set_colorkey((255, 255, 255))
-                img1 = pygame.transform.scale_by(img1, 0.42)
                 img1 = img1.convert_alpha()
             _value.kxh=-3
             _value.kyh=-1
         
         
-        if _value.kaih>0 or _value.skaih>0:
-            img1 = pygame.image.load("潰れカービィ.gif")
-            if _value.kaih==10 or _value.kaih==20 or _value.kaih==1 or _value.skaih==10 or _value.skaih==20 or _value.skaih==1:
-                _value.flip=1-_value.flip
-            _value.kxh=14
+
 
         if 6>_value.sura>0:
             img1 = pygame.image.load("スライディング3.png")
             img1.set_colorkey((255, 255, 255))
-            img1 = pygame.transform.scale_by(img1, 1)
             img1 = img1.convert_alpha()
             _value.kxh=-8
             _value.kyh=10
         if _value.sura>=6:
-            img1 = pygame.image.load("スライディング.png")
+            img1 = pygame.image.load("スライディング2.png")
             img1.set_colorkey((255, 255, 255))
-            img1 = pygame.transform.scale_by(img1, 1)
             img1 = img1.convert_alpha()
             _value.kxh=-8
             _value.kyh=10
 
 
-        
+        img1.set_colorkey((255, 255, 255))
+        img1 = img1.convert_alpha()
         if _value.flip==1:
             img1=pygame.transform.flip(img1, True, False)
         img1 = pygame.transform.scale_by(img1, 2)

@@ -11,38 +11,38 @@ def settingkirby(x,y,st):
     if _value.ka8_2[_value.ka3]==0 or st==0 :
         if _value.buki==0:
             if _value.bosi==0:
-                img1 = pygame.image.load("ノーマル1.png")
+                img1 = pygame.image.load("ノーマルf.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2.5)
                 _value.screen.blit(img1, (x,y))
             if _value.bosi==1:
-                img1 = pygame.image.load("ノーマル1ボム.png")
+                img1 = pygame.image.load("ノーマルfボム.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2.5)
                 _value.screen.blit(img1, (x-10, y-10))
             if _value.bosi==2:
-                img1 = pygame.image.load("ノーマル1ファイター.png")
+                img1 = pygame.image.load("ノーマルfファイター.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2.5)
                 _value.screen.blit(img1, (x-5, y))
         if _value.buki==1:
             if _value.bosi==0:
-                img1 = pygame.image.load("ノーマル2.png")
+                img1 = pygame.image.load("ノーマルh.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2.55)
                 _value.screen.blit(img1, (x-2.3, y))
             if _value.bosi==1:
-                img1 = pygame.image.load("ノーマル2ボム.png")
+                img1 = pygame.image.load("ノーマルhボム.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2.5)
                 _value.screen.blit(img1, (x-10, y-10))
             if _value.bosi==2:
-                img1 = pygame.image.load("ノーマル2ファイター.png")
+                img1 = pygame.image.load("ノーマルhファイター.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2.5)
@@ -84,7 +84,7 @@ def skillkirby(x,y,st):
     if _value.ka8_2[_value.skillnum]==0 or st==0 :
         if _value.buki==0:
             if _value.bosi==0:
-                img1 = pygame.image.load("ノーマル1.png")
+                img1 = pygame.image.load("ノーマルf.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2)
@@ -92,7 +92,7 @@ def skillkirby(x,y,st):
                     img1=pygame.transform.flip(img1, True, False)
                 _value.screen.blit(img1, (x,y))
             if _value.bosi==1:
-                img1 = pygame.image.load("ノーマル1ボム.png")
+                img1 = pygame.image.load("ノーマルfボム.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2)
@@ -100,7 +100,7 @@ def skillkirby(x,y,st):
                     img1=pygame.transform.flip(img1, True, False)
                 _value.screen.blit(img1, (x-10, y-10))
             if _value.bosi==2:
-                img1 = pygame.image.load("ノーマル1ファイター.png")
+                img1 = pygame.image.load("ノーマルfファイター.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2)
@@ -109,7 +109,7 @@ def skillkirby(x,y,st):
                 _value.screen.blit(img1, (x-5, y))
         if _value.buki==1:
             if _value.bosi==0:
-                img1 = pygame.image.load("ノーマル2.png")
+                img1 = pygame.image.load("ノーマルh.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2)
@@ -117,7 +117,7 @@ def skillkirby(x,y,st):
                     img1=pygame.transform.flip(img1, True, False)
                 _value.screen.blit(img1, (x-2.3, y))
             if _value.bosi==1:
-                img1 = pygame.image.load("ノーマル2ボム.png")
+                img1 = pygame.image.load("ノーマルhボム.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2)
@@ -125,7 +125,7 @@ def skillkirby(x,y,st):
                     img1=pygame.transform.flip(img1, True, False)
                 _value.screen.blit(img1, (x-10, y-10))
             if _value.bosi==2:
-                img1 = pygame.image.load("ノーマル2ファイター.png")
+                img1 = pygame.image.load("ノーマルhファイター.png")
                 img1.set_colorkey((255, 255, 255))
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2)
