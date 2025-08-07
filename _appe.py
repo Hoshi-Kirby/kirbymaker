@@ -15,15 +15,14 @@ import _value
 font = pygame.font.SysFont("hg正楷書体pro", 30)
 
 def step2():
-        image = cv2.imread(r"C:\python\kirby\buki.png")
         if _value.flip==0:
-            image = cv2.imread(r"C:\python\kirby\buki.png")
+            image=_value.image1
         if _value.flip==1:
-            image = cv2.imread(r"C:\python\kirby\buki2.png")
+            image=_value.image2
         pygame.display.update()
         _value.screen.fill((200,200,255))
         mouseX, mouseY = pygame.mouse.get_pos()
-        _func.settingkirby(100,298,0)
+        _func.standingkirby(100,298,0)
 
         if _value.step2==0:
             if _value.ka==0:
@@ -111,12 +110,14 @@ def step2():
                         if _value.bosi<0:_value.bosi=0
                     if _value.ka==1:
                         _value.buki=0
+                        _value.erabuki=[0]*(_value.tab+20)
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     if _value.ka==0:
                         _value.bosi+=1
                         if _value.bosi>2:_value.bosi=2
                     if _value.ka==1:
                         _value.buki=1
+                        _value.erabuki=[1]*(_value.tab+20)
                 if event.key == pygame.K_UP or event.key == pygame.K_w:
                     if _value.step2==0:
                         _value.ka-=1
@@ -177,8 +178,16 @@ def step2():
                 if _value.flip==0:
                     cv2.imwrite("buki.png", image)
                     cv2.imwrite("buki2.png", image)
+                    for i in range(30):
+                        cv2.imwrite(f"buki ({i}).png", image)
+                        cv2.imwrite(f"buki2 ({i}).png", image)
+                    _value.image1 = image
+                    _value.image2 = image
                 if _value.flip==1:
                     cv2.imwrite("buki2.png", image)
+                    for i in range(30):
+                        cv2.imwrite(f"buki2 ({i}).png", image)
+                    _value.image2 = image
             if 650<mouseX<750 and 140<mouseY<160:
                 _value.cr=(mouseX-650)*2.55
             if 650<mouseX<750 and 190<mouseY<210:
@@ -190,5 +199,9 @@ def step2():
                 image[_value.my,_value.mx]=[255,255,255]
                 if _value.flip==0:
                     cv2.imwrite("buki.png", image)
+                    cv2.imwrite("buki2.png", image)
+                    _value.image1 = image
+                    _value.image2 = image
                 if _value.flip==1:
                     cv2.imwrite("buki2.png", image)
+                    _value.image2 = image

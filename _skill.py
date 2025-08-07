@@ -18,7 +18,36 @@ def step3():
         pygame.display.update()
         mouseX, mouseY = pygame.mouse.get_pos()
         _value.screen.fill((200,200,255))
-        _func.settingkirby(100,298,0)
+        if _value.wazatype[_value.ka3]==2:
+            if(_value.t2<10):
+                _func.settingkirby(_value.kx+100,_value.ky+298,1)
+            if(10<=_value.t2<15):
+                _func.settingkirby(_value.kx+100,_value.ky+298,2)
+            if(15<=_value.t2<20):
+                _func.settingkirby(_value.kx+100,_value.ky+298,3)
+            if(20<=_value.t2):
+                _func.settingkirby(_value.kx+100,_value.ky+298,4)
+        else:
+            if(_value.t2<10):
+                _func.settingkirby(100,298,1)
+            if(10<=_value.t2<15):
+                _func.settingkirby(100,298,2)
+            if(15<=_value.t2<20):
+                _func.settingkirby(100,298,3)
+            if(20<=_value.t2):
+                _func.settingkirby(100,298,4)
+
+        if _value.wazatype[_value.ka3]==1:#kx2[ka3]*0.1*t*t+(kx1[ka3]+kad2[ka3]*0.02*ad)*t*1.5+kx0[ka3]*50+125+kad1[ka3]*ad*1.5,ky2[ka3]*0.1*t*t+(ky1[ka3]+kws2[ka3]*0.02*ws)*1.5*t+ky0[ka3]*50+315+kws1[ka3]*ws*1.5
+            img1 = pygame.image.load(f"hado ({_value.ka3}).png")
+            img1.set_colorkey((255, 255, 255))
+            img1 = img1.convert_alpha()
+            img1 = pygame.transform.scale_by(img1, 1.5)
+            _value.screen.blit(img1, (_value.kx+105,_value.ky+282))
+
+        if _value.wazatype[_value.ka3]==0:
+            rect_surface = pygame.Surface((abs(_value.kx0[_value.ka3]), abs(_value.ky2[_value.ka3])), pygame.SRCALPHA)
+            rect_surface.fill((255, 0, 0, 128))  # ← A=128で半透明
+            _value.screen.blit(rect_surface, (_value.kx2[_value.ka3] + 125,_value.kx1[_value.ka3] + 315))
         if _value.ka3<10:
             fill=(0,0,0)
         elif _value.ka3<20:
@@ -121,8 +150,31 @@ def step3():
             _value.sctime-=1
             _value.sc+=5
             if _value.sc>0:_value.sc=0
-        # if _value.ka3%10==1:_value.sc=-50*_value.tab+50
-        # if _value.ka3%10==_value.tab:_value.sc=0
+        
+        # all station
+        _value.t+=1
+        _value.t2+=1
+        if _value.t>_value.kzi[_value.ka3]*100:
+            _value.t=0
+            _value.t2=0
+            _value.ws=0
+            _value.ad=0
+            _value.kx=_value.kx0[_value.ka3]*50
+            _value.ky=_value.ky0[_value.ka3]*50
+            _value.kxv=_value.kx1[_value.ka3]
+            _value.kyv=_value.ky1[_value.ka3]
+        
+        _value.kxv+=_value.kx2[_value.ka3]*0.05+_value.kad2[_value.ka3]*_value.ad*0.01
+        _value.kyv+=_value.ky2[_value.ka3]*0.05+_value.kws2[_value.ka3]*_value.ws*0.01
+        _value.kx+=_value.kxv+_value.kad1[_value.ka3]*_value.ad*0.5
+        _value.ky+=_value.kyv+_value.kws1[_value.ka3]*_value.ws*0.5
 
+        if _value.wazapene[_value.ka3]==0:
+            if _value.ky>0:_value.t=_value.kzi[_value.ka3]*100
+        if _value.wazapene[_value.ka3]==1:
+            if _value.ky>0 and _value.kyv>0:_value.kyv=-_value.kyv
 
-        # time.sleep(0.01)
+        if _value.wazapene[_value.ka3]==0:
+            if _value.ky>0:_value.t2=_value.kzi[_value.ka3]*100
+        # pygame.display.flip()
+        time.sleep(0.01)

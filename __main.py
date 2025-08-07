@@ -62,6 +62,9 @@ while True:
         _value.wazatame=[0]*(_value.tab+20)
         _value.buki=0
         _value.bosi=0
+        _value.bukix=[-34.7]*(_value.tab+20)
+        _value.bukiy=[-52.8]*(_value.tab+20)
+        _value.erabuki=[0]*(_value.tab+20)
         image = cv2.imread(r"C:\python\kirby\h.png")
         cv2.imwrite("buki.png", image)
         cv2.imwrite("buki2.png", image)
@@ -69,7 +72,9 @@ while True:
             cv2.imwrite(f"buki ({i}).png", image)
             cv2.imwrite(f"buki2 ({i}).png", image)
         image = cv2.imread(r"C:\python\kirby\s.png")
-        cv2.imwrite("hado.png", image)
+        for i in range(30):
+            cv2.imwrite(f"hado ({i}).png", image)
+            cv2.imwrite(f"hado2 ({i}).png", image) 
 
         _value.ka8=0
     while _value.step==1:
@@ -89,6 +94,9 @@ while True:
         _value.my=-1
         _value.back=(255,255,255)
         _value.drag=0
+        _value.flip=0
+        _value.image1=cv2.imread(r"C:\python\kirby\buki.png")
+        _value.image2=cv2.imread(r"C:\python\kirby\buki2.png")
     while _value.step==2:
 
         _appe.step2()
@@ -214,9 +222,11 @@ while True:
         
     #テストプレイ
     if _value.step==7:
+
         _value.kxtest=225
         _value.kytest=_value.ground
-        
+        _value.t=-1
+        _value.t2=-1
         _value.kxtestv=0
         _value.kytestv=0
         _value.skillnum=0
@@ -228,6 +238,11 @@ while True:
     if _value.step==8:
         a=0
         ka8=0
+        _value.flip=0
+        _value.image1=cv2.imread(rf"C:\python\kirby\buki ({_value.ka3}).png")
+        _value.image2=cv2.imread(rf"C:\python\kirby\buki2 ({_value.ka3}).png")
+        _value.image3=cv2.imread(rf"C:\python\kirby\hado ({_value.ka3}).png")
+        _value.image4=cv2.imread(rf"C:\python\kirby\hado2 ({_value.ka3}).png")
         
     while _value.step==8:
         _desi.step8()

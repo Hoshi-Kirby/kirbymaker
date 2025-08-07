@@ -30,8 +30,9 @@ def step8():
             fill=(100,100,100)
             fill2=(100,100,100)
             fill3=0,0,0
-        if _value.wazatype[_value.ka3]==0:
-            if _value.step2==0:
+        
+        if _value.step2==0:
+            if _value.wazatype[_value.ka3]==0:
                 tab=1
                 if(_value.t2<10):
                     _func.settingkirby(100,298,1)
@@ -53,47 +54,99 @@ def step8():
                     text = font.render("武器を描く→", False, fill2)
                 text_rect = text.get_rect(center=(500, 300))
                 _value.screen.blit(text, text_rect)
-
-            elif _value.step2==1:
-                if _value.flip==0:
-                    image = cv2.imread(fr"C:\python\kirby\buki ({_value.ka3}).png")
-                if _value.flip==1:
-                    image = cv2.imread(fr"C:\python\kirby\buki2 ({_value.ka3}).png")
-                x=250
-                y=50
-                text=font.render("裏", False, (0,0,0))
-                text_rect = text.get_rect(center=(400, 550))
-                _value.screen.blit(text, text_rect)
-                for i in range(45):
-                    for i2 in range(32):
-                        if _value.flip==0:
-                            i3=i2
-                        else:
-                            i3=31-i2
-                        fill=_func.bgr_to_rgb(image[i,i2])
-
-                        if fill==(255,255,255):fill=_value.back
-                        pygame.draw.rect(_value.screen,fill,(i3*10+x,i*10+y,10,10))
-                        if i2*10+x<mouseX<i2*10+x+10 and i*10+y<mouseY<i*10+y+10:
-                            _value.mx=i3
-                            _value.my=i
-                if mouseX<x or 320+x<mouseX or mouseY<y or 450+y<mouseY:
-                    _value.mx=-1
-                    _value.my=-1
-                if _value.cr==255 and _value.cg==255 and _value.cb==255:
-                    fill=(254,254,254)
-                else:
-                    fill=(_value.cr,_value.cg,_value.cb)
-                pygame.draw.rect(_value.screen,fill,(700,100,20,20))
-                pygame.draw.line(_value.screen,(255,0,0),(650,150),(750,150),3)
-                pygame.draw.line(_value.screen,(0,255,0),(650,200),(750,200),3)
-                pygame.draw.line(_value.screen,(0,0,255),(650,250),(750,250),3)
-                pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cr*100/255,150),5)
-                pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cg*100/255,200),5)
-                pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cb*100/255,250),5)
             
-        if _value.wazatype[_value.ka3]==1:
-            tab=2
+            if _value.wazatype[_value.ka3]==1:
+                tab=2
+                if(_value.t2<25):
+                    _func.settingkirby(100,298,1)
+                if(25<=_value.t2<50):
+                    _func.settingkirby(100,298,2)
+                if(50<=_value.t2<75):
+                    _func.settingkirby(100,298,3)
+                if(75<=_value.t2):
+                    _func.settingkirby(100,298,4)
+                text = font.render("カービィ", False, fill)
+                text_rect = text.get_rect(center=(500, 200))
+                _value.screen.blit(text, text_rect)
+                text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
+                text_rect = text.get_rect(center=(550, 230))
+                _value.screen.blit(text, text_rect)
+                text = font.render("飛び道具→", False, fill2)
+                text_rect = text.get_rect(center=(500, 300))
+                _value.screen.blit(text, text_rect)
+                if _value.erabuki[_value.ka3]==0:
+                    text = font.render("武器を消す", False, fill3)
+                if _value.erabuki[_value.ka3]==1:
+                    text = font.render("武器を描く→", False, fill3)
+                text_rect = text.get_rect(center=(500, 400))
+                _value.screen.blit(text, text_rect)
+            if _value.wazatype[_value.ka3]==2:
+                tab=1
+                if(_value.t2<25):
+                    _func.settingkirby(100,298,1)
+                if(25<=_value.t2<50):
+                    _func.settingkirby(100,298,2)
+                if(50<=_value.t2<75):
+                    _func.settingkirby(100,298,3)
+                if(75<=_value.t2):
+                    _func.settingkirby(100,298,4)
+                text = font.render("カービィ", False, fill)
+                text_rect = text.get_rect(center=(500, 200))
+                _value.screen.blit(text, text_rect)
+                text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
+                text_rect = text.get_rect(center=(550, 230))
+                _value.screen.blit(text, text_rect)
+                if _value.erabuki[_value.ka3]==0:
+                    text = font.render("武器を消す", False, fill2)
+                if _value.erabuki[_value.ka3]==1:
+                    text = font.render("武器を描く→", False, fill2)
+                text_rect = text.get_rect(center=(500, 300))
+                _value.screen.blit(text, text_rect)
+        
+        if _value.step2==1:
+            _func.settingkirby(100,298,3)
+            if _value.flip==0:
+                image=_value.image1
+            if _value.flip==1:
+                image=_value.image2
+            x=250
+            y=50
+            text=font.render("裏", False, (0,0,0))
+            text_rect = text.get_rect(center=(400, 550))
+            _value.screen.blit(text, text_rect)
+            for i in range(45):
+                for i2 in range(32):
+                    if _value.flip==0:
+                        i3=i2
+                    else:
+                        i3=31-i2
+                    fill=_func.bgr_to_rgb(image[i,i2])
+
+                    if fill==(255,255,255):fill=_value.back
+                    pygame.draw.rect(_value.screen,fill,(i3*10+x,i*10+y,10,10))
+                    if i2*10+x<mouseX<i2*10+x+10 and i*10+y<mouseY<i*10+y+10:
+                        _value.mx=i3
+                        _value.my=i
+            if mouseX<x or 320+x<mouseX or mouseY<y or 450+y<mouseY:
+                _value.mx=-1
+                _value.my=-1
+            if _value.cr==255 and _value.cg==255 and _value.cb==255:
+                fill=(254,254,254)
+            else:
+                fill=(_value.cr,_value.cg,_value.cb)
+            pygame.draw.rect(_value.screen,fill,(700,100,20,20))
+            pygame.draw.line(_value.screen,(255,0,0),(650,150),(750,150),3)
+            pygame.draw.line(_value.screen,(0,255,0),(650,200),(750,200),3)
+            pygame.draw.line(_value.screen,(0,0,255),(650,250),(750,250),3)
+            pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cr*100/255,150),5)
+            pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cg*100/255,200),5)
+            pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cb*100/255,250),5)
+
+            pygame.draw.line(_value.screen,fill,(700+_value.bukix[_value.ka3]/1.5,400),(700+_value.bukix[_value.ka3]/1.5,500),3)
+            pygame.draw.line(_value.screen,fill,(650,450+_value.bukiy[_value.ka3]/1.5),(750,450+_value.bukiy[_value.ka3]/1.5),3)
+            pygame.draw.circle(_value.screen,(255,255,255),(700+_value.bukix[_value.ka3]/1.5,450+_value.bukiy[_value.ka3]/1.5),5)
+        
+        if _value.step2==2:
             if(_value.t2<25):
                 _func.settingkirby(100,298,1)
             if(25<=_value.t2<50):
@@ -102,62 +155,63 @@ def step8():
                 _func.settingkirby(100,298,3)
             if(75<=_value.t2):
                 _func.settingkirby(100,298,4)
-            text = font.render("カービィ", False, fill)
-            text_rect = text.get_rect(center=(500, 200))
+            if _value.flip==0:
+                image=_value.image3
+            if _value.flip==1:
+                image=_value.image4
+            x=180
+            y=50
+            text=font.render("裏", False, (0,0,0))
+            text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
-            text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
-            text_rect = text.get_rect(center=(550, 230))
-            _value.screen.blit(text, text_rect)
-            text = font.render("飛び道具→", False, fill2)
-            text_rect = text.get_rect(center=(500, 300))
-            _value.screen.blit(text, text_rect)
-            if _value.erabuki[_value.ka3]==0:
-                text = font.render("武器を消す", False, fill3)
-            if _value.erabuki[_value.ka3]==1:
-                text = font.render("武器を描く→", False, fill3)
-            text_rect = text.get_rect(center=(500, 400))
-            _value.screen.blit(text, text_rect)
-        if _value.wazatype[_value.ka3]==2:
-            tab=1
-            if(_value.t2<25):
-                _func.settingkirby(100,298,1)
-            if(25<=_value.t2<50):
-                _func.settingkirby(100,298,2)
-            if(50<=_value.t2<75):
-                _func.settingkirby(100,298,3)
-            if(75<=_value.t2):
-                _func.settingkirby(100,298,4)
-            text = font.render("カービィ", False, fill)
-            text_rect = text.get_rect(center=(500, 200))
-            _value.screen.blit(text, text_rect)
-            text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
-            text_rect = text.get_rect(center=(550, 230))
-            _value.screen.blit(text, text_rect)
-            if _value.erabuki[_value.ka3]==0:
-                text = font.render("武器を消す", False, fill2)
-            if _value.erabuki[_value.ka3]==1:
-                text = font.render("武器を描く→", False, fill2)
-            text_rect = text.get_rect(center=(500, 300))
-            _value.screen.blit(text, text_rect)
+            for i in range(46):
+                for i2 in range(45):
+                    if _value.flip==0:
+                        i3=i2
+                    else:
+                        i3=44-i2
+                    fill=_func.bgr_to_rgb(image[i,i2])
+
+                    if fill==(255,255,255):fill=_value.back
+                    pygame.draw.rect(_value.screen,fill,(i3*10+x,i*10+y,10,10))
+                    if i2*10+x<mouseX<i2*10+x+10 and i*10+y<mouseY<i*10+y+10:
+                        _value.mx=i3
+                        _value.my=i
+            if mouseX<x or 320+x<mouseX or mouseY<y or 450+y<mouseY:
+                _value.mx=-1
+                _value.my=-1
+            if _value.cr==255 and _value.cg==255 and _value.cb==255:
+                fill=(254,254,254)
+            else:
+                fill=(_value.cr,_value.cg,_value.cb)
+            pygame.draw.rect(_value.screen,fill,(700,100,20,20))
+            pygame.draw.line(_value.screen,(255,0,0),(650,150),(750,150),3)
+            pygame.draw.line(_value.screen,(0,255,0),(650,200),(750,200),3)
+            pygame.draw.line(_value.screen,(0,0,255),(650,250),(750,250),3)
+            pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cr*100/255,150),5)
+            pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cg*100/255,200),5)
+            pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cb*100/255,250),5)
+
+
+
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key==pygame.K_RIGHT:
-                    if _value.ka8==0:
-                        _value.ka8_2[_value.ka3]+=1
-                        if _value.ka8_2[_value.ka3]>17:_value.ka8_2[_value.ka3]=17
-                    if (_value.wazatype[_value.ka3]==1 and _value.ka8==2)or(_value.wazatype[_value.ka3]!=1 and _value.ka8==1):
-                        _value.erabuki[_value.ka3]=1
-
-                if event.key==pygame.K_LEFT:
-                    if _value.ka8==0:
-                        _value.ka8_2[_value.ka3]-=1
-                        if _value.ka8_2[_value.ka3]<0:_value.ka8_2[_value.ka3]=0
-                    if (_value.wazatype[_value.ka3]==1 and _value.ka8==2)or(_value.wazatype[_value.ka3]!=1 and _value.ka8==1):
-                        _value.erabuki[_value.ka3]=0
                 if _value.step2==0:
+                    if event.key==pygame.K_RIGHT:
+                        if _value.ka8==0:
+                            _value.ka8_2[_value.ka3]+=1
+                            if _value.ka8_2[_value.ka3]>17:_value.ka8_2[_value.ka3]=17
+                        if (_value.wazatype[_value.ka3]==1 and _value.ka8==2)or(_value.wazatype[_value.ka3]!=1 and _value.ka8==1):
+                            _value.erabuki[_value.ka3]=1
+                    if event.key==pygame.K_LEFT:
+                        if _value.ka8==0:
+                            _value.ka8_2[_value.ka3]-=1
+                            if _value.ka8_2[_value.ka3]<0:_value.ka8_2[_value.ka3]=0
+                        if (_value.wazatype[_value.ka3]==1 and _value.ka8==2)or(_value.wazatype[_value.ka3]!=1 and _value.ka8==1):
+                            _value.erabuki[_value.ka3]=0
                     if event.key==pygame.K_UP:
                         _value.ka8-=1
                         if _value.ka8<0:_value.ka8=0
@@ -168,6 +222,8 @@ def step8():
                         if _value.ka8==0:_value.ka8+=1
                         if (_value.wazatype[_value.ka3]==1 and _value.ka8==2)or(_value.wazatype[_value.ka3]!=1 and _value.ka8==1):
                             if _value.erabuki[_value.ka3]==1:_value.step2=1
+                        if _value.wazatype[_value.ka3]==1 and _value.ka8==1:
+                            _value.step2=2
                     if event.key==pygame.K_ESCAPE:
                         _value.step=4
                 else:
@@ -178,15 +234,15 @@ def step8():
             elif event.type == MOUSEBUTTONDOWN:
                 if 350<mouseX<450 and 500<mouseY<600:
                     _value.flip=1-_value.flip
-                if event.button == 1 and _value.step2==1:  # 左クリック
+                if event.button == 1 and _value.step2>=1:  # 左クリック
                     _value.drag = 1
-                if event.button == 3 and _value.step2==1:  # 左クリック
+                if event.button == 3 and _value.step2>=1:  # 左クリック
                     _value.drag = 3
                     if _value.my>=0:
                         bgr = tuple(int(c) for c in image[_value.my, _value.mx])
                         fill = _func.bgr_to_rgb(bgr)
                         _value.cr,_value.cg,_value.cb=fill
-                if event.button == 2 and _value.step2==1:
+                if event.button == 2 and _value.step2>=1:
                     if _value.back==(255,255,255):_value.back=(0,0,0)
                     elif _value.back==(0,0,0):_value.back=(255,255,255)
             elif event.type == MOUSEBUTTONUP:
@@ -209,22 +265,52 @@ def step8():
                     if _value.flip==0:
                         cv2.imwrite(f"buki ({_value.ka3}).png", image)
                         cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
+                        _value.image1 = image
+                        _value.image2 = image
                     if _value.flip==1:
                         cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
+                        _value.image2 = image
+                if _value.step2==2:
+                    if _value.flip==0:
+                        cv2.imwrite(f"hado ({_value.ka3}).png", image)
+                        cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
+                        _value.image3 = image
+                        _value.image4 = image
+                    if _value.flip==1:
+                        cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
+                        _value.image4 = image
             if 650<mouseX<750 and 140<mouseY<160:
                 _value.cr=(mouseX-650)*2.55
             if 650<mouseX<750 and 190<mouseY<210:
                 _value.cg=(mouseX-650)*2.55
             if 650<mouseX<750 and 240<mouseY<260:
                 _value.cb=(mouseX-650)*2.55
+
+            if _value.step2==1:
+                if 650<mouseX<750 and 400<mouseY<500:
+                    _value.bukix[_value.ka3]=(mouseX-700)*1.5
+                    _value.bukiy[_value.ka3]=(mouseY-450)*1.5
         if _value.drag==3:
             if _value.my>=0:
                 image[_value.my,_value.mx]=[255,255,255]
                 if _value.step2==1:
                     if _value.flip==0:
                         cv2.imwrite(f"buki ({_value.ka3}).png", image)
+                        cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
+                        _value.image1 = image
+                        _value.image2 = image
                     if _value.flip==1:
                         cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
+                        _value.image2 = image
+                if _value.step2==2:
+                    if _value.flip==0:
+                        cv2.imwrite(f"hado ({_value.ka3}).png", image)
+                        cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
+                        _value.image3 = image
+                        _value.image4 = image
+                    if _value.flip==1:
+                        cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
+                        _value.image4 = image
         _value.t+=1
         _value.t2+=1
         if _value.t>_value.kzi[_value.ka3]*100:

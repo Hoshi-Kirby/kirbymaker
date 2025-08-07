@@ -36,7 +36,7 @@ def step4():
                 _func.settingkirby(100,298,4)
 
         if _value.wazatype[_value.ka3]==1:#kx2[ka3]*0.1*t*t+(kx1[ka3]+kad2[ka3]*0.02*ad)*t*1.5+kx0[ka3]*50+125+kad1[ka3]*ad*1.5,ky2[ka3]*0.1*t*t+(ky1[ka3]+kws2[ka3]*0.02*ws)*1.5*t+ky0[ka3]*50+315+kws1[ka3]*ws*1.5
-            img1 = pygame.image.load("hado.png")
+            img1 = pygame.image.load(f"hado ({_value.ka3}).png")
             img1.set_colorkey((255, 255, 255))
             img1 = img1.convert_alpha()
             img1 = pygame.transform.scale_by(img1, 1.5)

@@ -2,8 +2,11 @@ import sys, random
 import pygame, time
 import cv2
 import numpy as np
-image = cv2.imread(r"C:\python\kirby\h.png")
-cv2.imwrite("buki.png", image)
+image1 = cv2.imread(r"C:\python\kirby\h.png")
+image2 = cv2.imread(r"C:\python\kirby\h.png")
+image3 = cv2.imread(r"C:\python\kirby\s.png")
+image4 = cv2.imread(r"C:\python\kirby\s.png")
+cv2.imwrite("buki.png", image1)
 from pygame.locals import *
 pygame.init()
 pygame.mixer.init()
@@ -18,12 +21,14 @@ posetime=0
 flip=0
 ground=400
 kx=225
+kxv=0
 ky=ground
 kyv=0
 kxh=0
 kyh=0
 hob=0
 hobc=0
+hobfc=0
 kaih=0
 skaih=0
 shagam=0
@@ -145,6 +150,8 @@ kytestv=0
 ka8=0
 ka8_2=[0]*40
 erabuki=[0]*40
+bukix=[0]*40
+bukiy=[0]*40
 
 skillnum=0
 

@@ -36,15 +36,16 @@ def step7():
                 if _value.t==-1:
                     if event.key == K_RETURN:
                         if _value.kytest<_value.ground:
-                            _value.hob=1
-                            _value.hobc=18
-                            _value.kytestv=-5
+                            if _value.hobfc==0:
+                                _value.hob=1
+                                _value.hobc=18
+                                _value.kytestv=-2.7
                         else:
                             if _value.shagam==1:
                                 if _value.sura==0:
-                                    _value.sura=30
+                                    _value.sura=50
                             else:
-                                _value.kytestv=-17
+                                _value.kytestv=-6
                         if 620<_value.kxtest<730 and -10<_value.kytest<40:
                             _value.step=3
                     if event.key==K_RSHIFT and _value.t==-1:
@@ -84,7 +85,7 @@ def step7():
             #
         # 
         if _value.kaih==0 and _value.skaih==0 and _value.sura==0:
-            if (pressed_keys[K_d] or pressed_keys[K_a]) :
+            if (pressed_keys[K_d] or pressed_keys[K_a]) and _value.hobfc==0:
                 _value.posetime+=1
                 if _value.posetime==6:
                     _value.posetime=0
@@ -93,31 +94,39 @@ def step7():
                         _value.pose=1
                 if pressed_keys[K_d]:
                     if _value.hob==1:
-                        _value.kxtest+=1
+                        _value.kxtestv=1.5
+                        if _value.kxtestv>1.5:
+                            _value.kxtestv=1.5
                     else:
                         if _value.t>0:
                             _value.ad=1
                         else:
-                            _value.kxtest+=4
+                            _value.kxtestv+=2
+                            if _value.kxtestv>2:
+                                _value.kxtestv=2
                     if _value.kxtest>750:
                         _value.kxtest=750
                 if pressed_keys[K_a]:
                     if _value.hob==1:
-                        _value.kxtest-=1
+                        _value.kxtestv-=1.5
+                        if _value.kxtestv<-1.5:
+                            _value.kxtestv=-1.5
                     else:
                         if _value.t>0:
                             _value.ad=-1
                         else:
-                            _value.kxtest-=4
+                            _value.kxtestv-=2
+                            if _value.kxtestv<-2:
+                                _value.kxtestv=-2
                     if _value.kxtest<0:
                         _value.kxtest=0
             else:
                 _value.pose=0
 
-            if pressed_keys[K_RSHIFT] and _value.hobc==0:
+            if pressed_keys[K_RSHIFT] and _value.hobfc==0:
                 if _value.hob==1:
                     _value.hob=0
-                    _value.kytestv=-6
+                    _value.hobfc=10
             
             if pressed_keys[K_q] and _value.kytest==_value.ground:
                 _value.guard=1
@@ -143,16 +152,42 @@ def step7():
                 _value.kxtest+=_value.kaih/3    
                 if _value.kxtest>750:
                     _value.kxtest=750
-        if _value.sura>0 and _value.kytest==_value.ground:
+        if _value.sura>6 and _value.kytest==_value.ground:
             if _value.flip==1:
-                _value.kxtest-=_value.sura/3
+                _value.kxtestv=-2
+                if _value.kxtest<0:
+
+                    _value.kxtest=0
+            else:
+                _value.kxtestv=2   
+                if _value.kxtest>750:
+                    _value.kxtest=750
+        if 0<_value.sura<=6 and _value.kytest==_value.ground:
+            if _value.flip==1:
+                _value.kxtestv=-0.5
                 if _value.kxtest<0:
                     _value.kxtest=0
             else:
-                _value.kxtest+=_value.sura/3    
+                _value.kxtestv=0.5
                 if _value.kxtest>750:
                     _value.kxtest=750
-
+    
+        _value.kxtest+=_value.kxtestv
+        if _value.kytestv>0 and _value.hob==0:_value.kxtestv=0
+        if _value.kytestv==0:
+            if _value.kxtestv>0.1:
+                _value.kxtestv-=0.1
+            elif _value.kxtestv<-0.1:
+                _value.kxtestv+=0.1
+            else:
+                _value.kxtestv=0
+        if _value.kytestv>=0 and _value.hob==1:
+            if _value.kxtestv>0.05:
+                _value.kxtestv-=0.05
+            elif _value.kxtestv<-0.05:
+                _value.kxtestv+=0.05
+            else:
+                _value.kxtestv=0
         
         if _value.kytest>=_value.ground and _value.kytestv>=0:
             _value.kytestv=0
@@ -160,10 +195,12 @@ def step7():
             # 落下の加速度
             if _value.t==-1 or _value.wazatype[_value.skillnum]!=2:
                 if _value.hob==1:
-                    _value.kytestv+=0.2
-                    if _value.kytestv>1.6:_value.kytestv=1.6
+                    _value.kytestv+=0.08
+                    if _value.kytestv>1.4:_value.kytestv=1.4
                 else:
-                    _value.kytestv+=1
+                    if _value.hobfc<5:
+                        _value.kytestv+=0.2
+                        if _value.kytestv>6:_value.kytestv=6
             else:
                 _value.kytestv=0
         _value.kytest+=_value.kytestv
@@ -173,6 +210,10 @@ def step7():
             _value.hobc-=1
         else:
             _value.hobc=0
+        if _value.hobfc>0:
+            _value.hobfc-=1
+        else:
+            _value.hobfc=0
         if _value.kaih>0:
             _value.kaih-=1
         else:
@@ -184,7 +225,6 @@ def step7():
             _value.skaih=0
         if _value.sura>0:
             _value.sura-=1
-            _value.kytestv=-1
         else:
             _value.sura=0
 
@@ -472,11 +512,17 @@ def step7():
             img1 = pygame.transform.scale_by(img1, 2)
             _value.screen.blit(img1, (_value.kxtest+_value.kxh, _value.kytest+_value.kyh))
 
-        if _value.buki==1:
-            if _value.flip==1:
-                img2 = pygame.image.load("buki2.png")
+        if (_value.buki==1 and _value.t<10)or(_value.erabuki[_value.skillnum]==1 and _value.t2>=10):
+            if _value.t2<10:
+                if _value.flip==1:
+                    img2 = pygame.image.load("buki2.png")
+                else:
+                    img2 = pygame.image.load("buki.png")
             else:
-                img2 = pygame.image.load("buki.png")
+                if _value.flip==1:
+                    img2 = pygame.image.load(f"buki2 ({_value.skillnum}).png")
+                else:
+                    img2 = pygame.image.load(f"buki ({_value.skillnum}).png")
             img2 = pygame.transform.scale_by(img2, 1.8)
             img2.set_colorkey((255, 255, 255))
             img2 = img2.convert_alpha()
@@ -484,10 +530,14 @@ def step7():
             if _value.bosi==1:
                 bxh+=6
                 byh+=6
+            if _value.t>=10:
+                bxh+=(_value.bukix[_value.skillnum]+25)*0.72
+                byh+=(_value.bukiy[_value.skillnum]+38)*0.72
             if _value.flip==1:
                 bxh=-bxh
                 bxh-=10
                 img2=pygame.transform.flip(img2, True, False)
+            
             _value.screen.blit(img2, (_value.kxtest+_value.kxh+bxh, _value.kytest-37+_value.kyh+byh))
 
         if _value.t>=0:_value.t+=1
@@ -501,7 +551,10 @@ def step7():
                 _value.kyv+=_value.ky2[_value.skillnum]*0.05+_value.kws2[_value.skillnum]*_value.ws*0.01
                 # 遠距離
                 if _value.wazatype[_value.skillnum]==1:
-                    img1 = pygame.image.load("hado.png")
+                    if _value.flip==0:
+                        img1 = pygame.image.load(f"hado ({_value.skillnum}).png")
+                    else:
+                        img1 = pygame.image.load(f"hado2 ({_value.skillnum}).png")
                     img1.set_colorkey((255, 255, 255))
                     img1 = img1.convert_alpha()
                     img1 = pygame.transform.scale_by(img1, 1.5)
@@ -531,8 +584,8 @@ def step7():
                     if _value.wazapene[_value.skillnum]==1:
                         if _value.kytest>_value.ground and _value.kyv>0:_value.kyv=-_value.kyv
                 
-                    if _value.wazapene[_value.skillnum]==0:
-                        if _value.kytest>_value.ground:_value.t2=_value.kzi[_value.skillnum]*100
+                    # if _value.wazapene[_value.skillnum]==0:
+                    #     if _value.kytest>_value.ground:_value.t2=_value.kzi[_value.skillnum]*100
         if _value.kxtest>750:_value.kxtest=750
         if _value.kxtest<0:_value.kxtest=0
         time.sleep(0.01)

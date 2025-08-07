@@ -36,15 +36,16 @@ def step1():
                 if _value.kaih==0:
                     if event.key == K_RETURN:
                         if _value.ky<_value.ground:
-                            _value.hob=1
-                            _value.hobc=18
-                            _value.kyv=-5
+                            if _value.hobfc==0:
+                                _value.hob=1
+                                _value.hobc=18
+                                _value.kyv=-2.7
                         else:
                             if _value.shagam==1:
                                 if _value.sura==0:
-                                    _value.sura=30
+                                    _value.sura=50
                             else:
-                                _value.kyv=-17
+                                _value.kyv=-6
                         if 620<_value.kx<730 and -10<_value.ky<40:
                             _value.step=2
                     if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
@@ -64,7 +65,7 @@ def step1():
             #
         pressed_keys = pygame.key.get_pressed()
         if _value.kaih==0 and _value.skaih==0 and _value.sura==0:
-            if (pressed_keys[K_d] or pressed_keys[K_a]) and _value.guard==0:
+            if (pressed_keys[K_d] or pressed_keys[K_a]) and _value.guard==0 and _value.hobfc==0:
                 _value.posetime+=1
                 if _value.posetime==6:
                     _value.posetime=0
@@ -73,25 +74,25 @@ def step1():
                         _value.pose=1
                 if pressed_keys[K_d]:
                     if _value.hob==1:
-                        _value.kx+=1
+                        _value.kxv=1.5
                     else:
-                        _value.kx+=4
+                        _value.kxv=2
                     if _value.kx>750:
                         _value.kx=750
                 if pressed_keys[K_a]:
                     if _value.hob==1:
-                        _value.kx-=1
+                        _value.kxv=-1.5
                     else:
-                        _value.kx-=4
+                        _value.kxv=-2
                     if _value.kx<0:
                         _value.kx=0
             else:
                 _value.pose=0
 
-            if pressed_keys[K_RSHIFT] and _value.hobc==0:
+            if pressed_keys[K_RSHIFT] and _value.hobfc==0:
                 if _value.hob==1:
                     _value.hob=0
-                    _value.kyv=-6
+                    _value.hobfc=10
             
             if pressed_keys[K_q] and _value.ky==_value.ground:
                 _value.guard=1
@@ -112,25 +113,52 @@ def step1():
                 _value.kx+=_value.kaih/3    
                 if _value.kx>750:
                     _value.kx=750
-        if _value.sura>0 and _value.ky==_value.ground:
+        if _value.sura>6 and _value.ky==_value.ground:
             if _value.flip==1:
-                _value.kx-=_value.sura/3
+                _value.kxv=-2
                 if _value.kx<0:
                     _value.kx=0
             else:
-                _value.kx+=_value.sura/3    
+                _value.kxv=2 
                 if _value.kx>750:
                     _value.kx=750
-
+        if 0<_value.sura<=6 and _value.ky==_value.ground:
+            if _value.flip==1:
+                _value.kxv=-0.5
+                if _value.kx<0:
+                    _value.kx=0
+            else:
+                _value.kxv=0.5
+                if _value.kx>750:
+                    _value.kx=750
+        
+        _value.kx+=_value.kxv
+        if _value.kyv>0 and _value.hob==0:_value.kxv=0
+        if _value.kyv==0:
+            if _value.kxv>0.1:
+                _value.kxv-=0.1
+            elif _value.kxv<-0.1:
+                _value.kxv+=0.1
+            else:
+                _value.kxv=0
+        if _value.kyv>=0 and _value.hob==1:
+            if _value.kxv>0.05:
+                _value.kxv-=0.05
+            elif _value.kxv<-0.05:
+                _value.kxv+=0.05
+            else:
+                _value.kxv=0
         
         if _value.ky>=_value.ground and _value.kyv>=0:
             _value.kyv=0
         else:     
             if _value.hob==1:
-                _value.kyv+=0.2
-                if _value.kyv>1.6:_value.kyv=1.6
+                _value.kyv+=0.08
+                if _value.kyv>1.4:_value.kyv=1.4
             else:
-                _value.kyv+=1
+                if _value.hobfc<5:
+                    _value.kyv+=0.2
+                    if _value.kyv>6:_value.kyv=6
         _value.ky+=_value.kyv
         if _value.ky>_value.ground:
             _value.ky=_value.ground
@@ -138,6 +166,10 @@ def step1():
             _value.hobc-=1
         else:
             _value.hobc=0
+        if _value.hobfc>0:
+            _value.hobfc-=1
+        else:
+            _value.hobfc=0
         if _value.kaih>0:
             _value.kaih-=1
         else:
@@ -149,7 +181,6 @@ def step1():
             _value.skaih=0
         if _value.sura>0:
             _value.sura-=1
-            _value.kyv=-1
         else:
             _value.sura=0
 
