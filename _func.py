@@ -124,14 +124,14 @@ def skill(a):
     _value.t2=0
     _value.ws=0
     _value.ad=0
-    _value.kx=_value.kx0[a]*50+_value.kxtest
-    _value.ky=_value.ky0[a]*50+_value.kytest
+    _value.kx=(-2)*(_value.flip-0.5)*_value.kx0[a]*50+_value.kxtest
+    _value.ky=(-2)*(_value.flip-0.5)*_value.ky0[a]*50+_value.kytest
     _value.kxv=_value.kx1[a]
     _value.kyv=_value.ky1[a]
     _value.skillnum=a
     if _value.wazatype[a]==2:
-        _value.kxtest+=(-1)*_value.flip*_value.kx0[a]
-        _value.kytest+=_value.ky0[a]
+        _value.kxtest+=(-2)*(_value.flip-0.5)*_value.kx0[a]*50
+        _value.kytest+=_value.ky0[a]*50
 
 def skillkirby(x,y,st):
     if _value.ka8_2[_value.skillnum]==0 or st==0 :

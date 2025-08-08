@@ -32,8 +32,8 @@ def step7():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == KEYDOWN: 
-                if _value.t==-1:
+            if event.type == KEYDOWN:
+                if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
                     if event.key == K_RETURN:
                         if _value.kytest<_value.ground:
                             if _value.hobfc==0:
@@ -47,7 +47,8 @@ def step7():
                             else:
                                 _value.kytestv=-6
                         if 620<_value.kxtest<730 and -10<_value.kytest<40:
-                            _value.step=3
+                            _value.step=3 
+                if _value.t==-1:
                     if event.key==K_RSHIFT and _value.t==-1:
                         if _value.hob==0:
                             if (pressed_keys[K_a] or pressed_keys[K_d])and _value.title_list[7]!="" and _value.kytest>_value.ground:
@@ -100,10 +101,11 @@ def step7():
                     else:
                         if _value.t>0:
                             _value.ad=1
-                        else:
+                        #反動ないなら
+                        if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
                             _value.kxtestv+=2
-                            if _value.kxtestv>2:
-                                _value.kxtestv=2
+                        if _value.kxtestv>2:
+                            _value.kxtestv=2
                     if _value.kxtest>750:
                         _value.kxtest=750
                 if pressed_keys[K_a]:
@@ -114,10 +116,11 @@ def step7():
                     else:
                         if _value.t>0:
                             _value.ad=-1
-                        else:
+                        #反動ないなら
+                        if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
                             _value.kxtestv-=2
-                            if _value.kxtestv<-2:
-                                _value.kxtestv=-2
+                        if _value.kxtestv<-2:
+                            _value.kxtestv=-2
                     if _value.kxtest<0:
                         _value.kxtest=0
             else:
@@ -128,17 +131,14 @@ def step7():
                     _value.hob=0
                     _value.hobfc=10
             
-            if pressed_keys[K_q] and _value.kytest==_value.ground:
-                _value.guard=1
-            else:
-                _value.guard=0
+            
             if pressed_keys[K_w]:
                 if _value.t>0:_value.ws=-1
 
             if pressed_keys[K_s] and _value.kytest==_value.ground and _value.guard==0:
                 if _value.t>0:
                     _value.ws=1
-                else:
+                if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
                     _value.shagam=1
             else:
                 _value.shagam=0
@@ -172,6 +172,11 @@ def step7():
                 if _value.kxtest>750:
                     _value.kxtest=750
     
+        #慣性
+        if _value.t>=0 and _value.wazatuka[_value.skillnum]==0:
+            _value.kxtestv=0
+            _value.kytestv=0
+
         _value.kxtest+=_value.kxtestv
         if _value.kytestv>0 and _value.hob==0:_value.kxtestv=0
         if _value.kytestv==0:
@@ -193,7 +198,7 @@ def step7():
             _value.kytestv=0
         else:     
             # 落下の加速度
-            if _value.t==-1 or _value.wazatype[_value.skillnum]!=2:
+            if _value.t==-1 or _value.wazatuka[_value.skillnum]==1:
                 if _value.hob==1:
                     _value.kytestv+=0.08
                     if _value.kytestv>1.4:_value.kytestv=1.4
@@ -201,8 +206,6 @@ def step7():
                     if _value.hobfc<5:
                         _value.kytestv+=0.2
                         if _value.kytestv>6:_value.kytestv=6
-            else:
-                _value.kytestv=0
         _value.kytest+=_value.kytestv
         if _value.kytest>_value.ground:
             _value.kytest=_value.ground
@@ -232,7 +235,7 @@ def step7():
         _value.kyh=0
         bxh=0
         byh=0
-        if _value.t>0:
+        if 0<_value.t2<25:
             if(0<=_value.t2<10):
                 _func.skillkirby(_value.kxtest,_value.kytest,1)
             if(10<=_value.t2<15):
@@ -557,14 +560,14 @@ def step7():
                         img1 = pygame.image.load(f"hado2 ({_value.skillnum}).png")
                     img1.set_colorkey((255, 255, 255))
                     img1 = img1.convert_alpha()
-                    img1 = pygame.transform.scale_by(img1, 1.5)
+                    img1 = pygame.transform.scale_by(img1, 1.8*(1.02**(-_value.hados[_value.skillnum])))
                     if _value.flip==0:
                         _value.kx+=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
                     else:
                         img1=pygame.transform.flip(img1, True, False)
                         _value.kx-=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
                     _value.ky+=_value.kyv+_value.kws1[_value.skillnum]*_value.ws*0.5
-                    _value.screen.blit(img1, (_value.kx-7,_value.ky-16))
+                    _value.screen.blit(img1, (_value.kx-7+21.6-43.2*(1.02**(-_value.hados[_value.skillnum])),_value.ky-16+21.6-43.2*(1.02**(-_value.hados[_value.skillnum]))))
                     if _value.wazapene[_value.skillnum]==0:
                         if _value.ky-16>_value.ground:_value.t=_value.kzi[_value.skillnum]*100
                     if _value.wazapene[_value.skillnum]==1:
@@ -572,7 +575,7 @@ def step7():
 
                     if _value.wazapene[_value.skillnum]==0:
                         if _value.ky-16>_value.ground:_value.t2=_value.kzi[_value.skillnum]*100
-                # 近距離
+                # 突進
                 if _value.wazatype[_value.skillnum]==2:
                     if _value.flip==0:
                         _value.kxtest+=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
@@ -582,6 +585,8 @@ def step7():
                     if _value.wazapene[_value.skillnum]==0:
                         if _value.kytest>_value.ground:_value.t=_value.kzi[_value.skillnum]*100
                     if _value.wazapene[_value.skillnum]==1:
+
+
                         if _value.kytest>_value.ground and _value.kyv>0:_value.kyv=-_value.kyv
                 
                     # if _value.wazapene[_value.skillnum]==0:

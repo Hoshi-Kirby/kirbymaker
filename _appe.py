@@ -145,6 +145,11 @@ def step2():
                         _value.esch=1
                     else:
                         _value.step2=0
+                if _value.step2==1:
+                    if event.key == pygame.K_c:
+                        for i in range(45):
+                            for i2 in range(32):
+                                image[i,i2]=(255,255,255)
             elif event.type == MOUSEBUTTONDOWN:
                 if 350<mouseX<450 and 500<mouseY<600:
                     _value.flip=1-_value.flip

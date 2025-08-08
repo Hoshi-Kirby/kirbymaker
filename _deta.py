@@ -39,8 +39,8 @@ def step4():
             img1 = pygame.image.load(f"hado ({_value.ka3}).png")
             img1.set_colorkey((255, 255, 255))
             img1 = img1.convert_alpha()
-            img1 = pygame.transform.scale_by(img1, 1.5)
-            _value.screen.blit(img1, (_value.kx+105,_value.ky+282))
+            img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
+            _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
 
         if _value.wazatype[_value.ka3]==0:
             rect_surface = pygame.Surface((abs(_value.kx0[_value.ka3]), abs(_value.ky2[_value.ka3])), pygame.SRCALPHA)
@@ -256,20 +256,20 @@ def step4():
                 _value.screen.blit(text, text_rect)
 
 
-        text = _value.font.render("掴み", False, (0,0,0))
+        text = _value.font.render("慣性", False, (0,0,0))
         text_rect = text.get_rect(center=(450, 300))
         _value.screen.blit(text, text_rect)
         if _value.wazatuka[_value.ka3]==0:
-            text = _value.font.render("なし", False, (0,0,0))
+            text = _value.font.render("無視", False, (0,0,0))
         else:
-            text = _value.font.render("なし", False, (100,100,100))
+            text = _value.font.render("無視", False, (100,100,100))
         text_rect = text.get_rect(center=(550, 300))
         _value.screen.blit(text, text_rect)
 
         if _value.wazatuka[_value.ka3]==1:
-            text = _value.font.render("あり→", False, (0,0,0))
+            text = _value.font.render("受ける", False, (0,0,0))
         else:
-            text = _value.font.render("あり", False, (100,100,100))
+            text = _value.font.render("受ける", False, (100,100,100))
         text_rect = text.get_rect(center=(650, 300))
         _value.screen.blit(text, text_rect)
 

@@ -147,20 +147,13 @@ def step8():
             pygame.draw.circle(_value.screen,(255,255,255),(700+_value.bukix[_value.ka3]/1.5,450+_value.bukiy[_value.ka3]/1.5),5)
         
         if _value.step2==2:
-            if(_value.t2<25):
-                _func.settingkirby(100,298,1)
-            if(25<=_value.t2<50):
-                _func.settingkirby(100,298,2)
-            if(50<=_value.t2<75):
-                _func.settingkirby(100,298,3)
-            if(75<=_value.t2):
-                _func.settingkirby(100,298,4)
+            _func.settingkirby(100,298,3)
             if _value.flip==0:
                 image=_value.image3
             if _value.flip==1:
                 image=_value.image4
             x=180
-            y=50
+            y=40
             text=font.render("裏", False, (0,0,0))
             text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
@@ -177,13 +170,20 @@ def step8():
                     if i2*10+x<mouseX<i2*10+x+10 and i*10+y<mouseY<i*10+y+10:
                         _value.mx=i3
                         _value.my=i
-            if mouseX<x or 320+x<mouseX or mouseY<y or 450+y<mouseY:
+            if mouseX<x or 450+x<mouseX or mouseY<y or 460+y<mouseY:
                 _value.mx=-1
                 _value.my=-1
             if _value.cr==255 and _value.cg==255 and _value.cb==255:
                 fill=(254,254,254)
             else:
                 fill=(_value.cr,_value.cg,_value.cb)
+            
+            img1 = pygame.image.load(f"hado ({_value.ka3}).png")
+            img1.set_colorkey((255, 255, 255))
+            img1 = img1.convert_alpha()
+            img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
+            _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
+
             pygame.draw.rect(_value.screen,fill,(700,100,20,20))
             pygame.draw.line(_value.screen,(255,0,0),(650,150),(750,150),3)
             pygame.draw.line(_value.screen,(0,255,0),(650,200),(750,200),3)
@@ -191,6 +191,9 @@ def step8():
             pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cr*100/255,150),5)
             pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cg*100/255,200),5)
             pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cb*100/255,250),5)
+
+            pygame.draw.line(_value.screen,fill,(700,400),(700,500),3)
+            pygame.draw.circle(_value.screen,(255,255,255),(700,450+_value.hados[_value.ka3]),5)
 
 
 
@@ -226,6 +229,16 @@ def step8():
                             _value.step2=2
                     if event.key==pygame.K_ESCAPE:
                         _value.step=4
+                    if _value.step2==1:
+                        if event.key == pygame.K_c:
+                            for i in range(45):
+                                for i2 in range(32):
+                                    image[i,i2]=(255,255,255)
+                    if _value.step2==2:
+                        if event.key == pygame.K_c:
+                            for i in range(46):
+                                for i2 in range(45):
+                                    image[i,i2]=(255,255,255)
                 else:
                     if event.key==pygame.K_RETURN:
                         _value.step2=0
@@ -290,6 +303,10 @@ def step8():
                 if 650<mouseX<750 and 400<mouseY<500:
                     _value.bukix[_value.ka3]=(mouseX-700)*1.5
                     _value.bukiy[_value.ka3]=(mouseY-450)*1.5
+            if _value.step2==2:
+                if 680<mouseX<720 and 400<mouseY<500:
+                    _value.hados[_value.ka3]=(mouseX-700)
+                    _value.hados[_value.ka3]=(mouseY-450)
         if _value.drag==3:
             if _value.my>=0:
                 image[_value.my,_value.mx]=[255,255,255]

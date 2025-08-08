@@ -41,8 +41,8 @@ def step3():
             img1 = pygame.image.load(f"hado ({_value.ka3}).png")
             img1.set_colorkey((255, 255, 255))
             img1 = img1.convert_alpha()
-            img1 = pygame.transform.scale_by(img1, 1.5)
-            _value.screen.blit(img1, (_value.kx+105,_value.ky+282))
+            img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
+            _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
 
         if _value.wazatype[_value.ka3]==0:
             rect_surface = pygame.Surface((abs(_value.kx0[_value.ka3]), abs(_value.ky2[_value.ka3])), pygame.SRCALPHA)
