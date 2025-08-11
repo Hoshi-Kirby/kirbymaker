@@ -193,3 +193,25 @@ def skillkirby(x,y,st):
         if _value.flip==1:
             img1=pygame.transform.flip(img1, True, False)
         _value.screen.blit(img1, (x,y))
+
+
+def tamekirby(x,y,t,step):
+    img1 = pygame.image.load(f"{_value.ka8_2[_value.skillnum+step*10]}_1.png")
+
+    if (step==1 and (t-t%10)%30==0)or(step==2 and (t-t%10)%20==0):
+        arr = pygame.surfarray.array3d(img1)
+        arr = np.transpose(arr, (1, 0, 2))  # 転置して (height, width, 3)
+        # 白画像作成
+        white = np.full_like(arr, 255)
+        # OpenCVで白をブレンド
+        blended = cv2.addWeighted(arr, 0.6, white, 0.4, 0)
+        # NumPy配列 → Surfaceに戻す
+        blended = np.transpose(blended, (1, 0, 2))  # 転置戻す
+        img1 = pygame.surfarray.make_surface(blended)
+
+    img1.set_colorkey((255, 255, 255))
+    img1 = img1.convert_alpha()
+    img1 = pygame.transform.scale_by(img1, 2)
+    if _value.flip==1:
+        img1=pygame.transform.flip(img1, True, False)
+    _value.screen.blit(img1, (x,y))

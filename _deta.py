@@ -69,7 +69,7 @@ def step4():
                     if event.key==pygame.K_RETURN:
                         _value.active=False
                         _value.color = _value.color_active if _value.active else _value.color_inactive
-                        _value.title_list[_value.ka3] = _value.title
+                        _value.title_list[_value.ka3%10] = _value.title
                 if event.key == pygame.K_ESCAPE:
                     _value.step=3
                 if event.key == pygame.K_UP:
@@ -109,6 +109,7 @@ def step4():
                         _value.wazahuto[_value.ka3]+=1
                     if _value.ka4==9:
                         _value.wazatame[_value.ka3]+=1
+                        if _value.wazatame[_value.ka3]>1 and _value.ka3<10:_value.wazatame[_value.ka3]=1
                 if event.key==pygame.K_LEFT:
                     if _value.ka4==1:
                         _value.wazatype[_value.ka3]-=1
@@ -129,7 +130,7 @@ def step4():
                     if _value.ka4==9:
                         _value.wazatame[_value.ka3]-=1
                         if _value.wazatame[_value.ka3]<0:_value.wazatame[_value.ka3]=0
-                        if _value.ka3>=20:
+                        if _value.ka3>=30:
                             if _value.wazatame[_value.ka3]<_value.wazatame[_value.ka3-10]:_value.wazatame[_value.ka3]=_value.wazatame[_value.ka3-10]
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[K_w]:
@@ -292,11 +293,29 @@ def step4():
         text = _value.font.render("デザイン→", False, (0,0,0))
         text_rect = text.get_rect(center=(470, 500))
         _value.screen.blit(text, text_rect)
+        if _value.ka3<10:
+            text = _value.font.render("発動", False, (0,0,0))
+            text_rect = text.get_rect(center=(430, 550))
+            _value.screen.blit(text, text_rect)
+            if _value.wazatame[_value.ka3]==0:
+                text = _value.font.render("押した時", False, (0,0,0))
+            else:
+                text = _value.font.render("押した時", False, (100,100,100))
+            text_rect = text.get_rect(center=(550, 550))
+            _value.screen.blit(text, text_rect)
+
+            if _value.wazatame[_value.ka3]==1:
+                text = _value.font.render("離した時", False, (0,0,0))
+            else:
+                text = _value.font.render("離した時", False, (100,100,100))
+            text_rect = text.get_rect(center=(690, 550))
+            _value.screen.blit(text, text_rect)
+
         if _value.ka3>=10:
             text = _value.font.render("溜め時間", False, (0,0,0))
             text_rect = text.get_rect(center=(470, 550))
             _value.screen.blit(text, text_rect)
-            text = _value.font.render(str(_value.wazatame[_value.ka3]), False, (0,0,0))
+            text = _value.font.render(str(_value.wazatame[_value.ka3])+"00ms", False, (0,0,0))
             text_rect = text.get_rect(center=(670, 550))
             _value.screen.blit(text, text_rect)
 

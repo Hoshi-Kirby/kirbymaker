@@ -133,6 +133,8 @@ def step1():
                     _value.kx=750
         
         _value.kx+=_value.kxv
+        if _value.kx>750:_value.kx=750
+        if _value.kx<0:_value.kx=0
         if _value.kyv>0 and _value.hob==0:_value.kxv=0
         if _value.kyv==0:
             if _value.kxv>0.1:

@@ -19,6 +19,7 @@ blue=(0,0,255)
 pose=0
 posetime=0
 flip=0
+flip2=0
 ground=400
 kx=225
 kxv=0
@@ -146,6 +147,7 @@ kxtest=225
 kytest=ground
 kxtestv=0
 kytestv=0
+ttest=0
 
 ka8=0
 ka8_2=[0]*40
@@ -155,6 +157,7 @@ bukiy=[0]*40
 hados=[0]*40
 
 skillnum=0
+skilltime=-1
 
 
 

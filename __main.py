@@ -28,6 +28,7 @@ while True:
     if _value.step==1:
         _value.ka=0
         _value.ka3=0
+        _value.t=0
         _value.title_list = [""]*(_value.tab+20)
         _value.wazatype=[0]*(_value.tab+20)
         _value.kx2=[0]*(_value.tab+20)
@@ -114,7 +115,7 @@ while True:
         _value.color_active = pygame.Color(150,50,50)
         _value.color = _value.color_inactive
         _value.active = False
-        _value.title = _value.title_list[_value.ka3]
+        _value.title = _value.title_list[_value.ka3%10]
         
         _value.ws=0
         _value.t=0
@@ -125,10 +126,8 @@ while True:
         _value.kyv=_value.ky1[_value.ka3]
 
         _value.running = True
-        if _value.ka3<10:
-            _value.tab4=8
-        else:
-            _value.tab4=9
+        
+        _value.tab4=9
 
 
     while _value.step==4:
@@ -230,6 +229,7 @@ while True:
         _value.kxtestv=0
         _value.kytestv=0
         _value.skillnum=0
+        _value.ttest=0
         
     while _value.step==7:
         _test.step7()

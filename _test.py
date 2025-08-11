@@ -34,7 +34,7 @@ def step7():
                 sys.exit()
             if event.type == KEYDOWN:
                 if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
-                    if event.key == K_RETURN:
+                    if event.key == K_RETURN and _value.skilltime==-1:
                         if _value.kytest<_value.ground:
                             if _value.hobfc==0:
                                 _value.hob=1
@@ -47,26 +47,7 @@ def step7():
                             else:
                                 _value.kytestv=-6
                         if 620<_value.kxtest<730 and -10<_value.kytest<40:
-                            _value.step=3 
-                if _value.t==-1:
-                    if event.key==K_RSHIFT and _value.t==-1:
-                        if _value.hob==0:
-                            if (pressed_keys[K_a] or pressed_keys[K_d])and _value.title_list[7]!="" and _value.kytest>_value.ground:
-                                _func.skill(7)
-                            elif (pressed_keys[K_a] or pressed_keys[K_d])and _value.title_list[3]!="":
-                                _func.skill(3)
-                            elif pressed_keys[K_s]and _value.title_list[6]!="" and _value.kytest<_value.ground:
-                                _func.skill(6)
-                            elif pressed_keys[K_s]and _value.title_list[2]!="":
-                                _func.skill(2)
-                            elif pressed_keys[K_w]and _value.title_list[5]!="" and _value.kytest<_value.ground:
-                                _func.skill(5)
-                            elif pressed_keys[K_w]and _value.title_list[1]!="":
-                                _func.skill(1)
-                            elif _value.title_list[4]!="" and _value.kytest<_value.ground:
-                                _func.skill(4)
-                            elif _value.title_list[0]!="":
-                                _func.skill(0)
+                            _value.step=3
                     if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
                         _value.flip=1
                         if _value.guard==1:
@@ -81,12 +62,48 @@ def step7():
                     if event.key == K_q:
                         if _value.kytest<_value.ground and _value.hob==0 and _value.skaih==0 and _value.sura==0:
                             _value.skaih=20
+                if _value.t==-1:
+                    if event.key==K_RSHIFT and _value.t==-1:
+                        if _value.hob==0:
+                            if (pressed_keys[K_a] or pressed_keys[K_d])and _value.title_list[7]!="" and _value.kytest>_value.ground:
+                                _value.skillnum=7
+                            elif (pressed_keys[K_a] or pressed_keys[K_d])and _value.title_list[3]!="":
+                                _value.skillnum=3
+                            elif pressed_keys[K_s]and _value.title_list[6]!="" and _value.kytest<_value.ground:
+                                _value.skillnum=6
+                            elif pressed_keys[K_s]and _value.title_list[2]!="":
+                                _value.skillnum=2
+                            elif pressed_keys[K_w]and _value.title_list[5]!="" and _value.kytest<_value.ground:
+                                _value.skillnum=5
+                            elif pressed_keys[K_w]and _value.title_list[1]!="":
+                                _value.skillnum=1
+                            elif _value.title_list[4]!="" and _value.kytest<_value.ground:
+                                _value.skillnum=4
+                            elif _value.title_list[0]!="":
+                                _value.skillnum=0
+                            else:
+                                _value.skillnum=-1
+                            if _value.skillnum>=0:
+                                if _value.wazatame[_value.skillnum]==0:
+                                    _func.skill(_value.skillnum)
+                                _value.skilltime=0
                 if event.key == pygame.K_ESCAPE:
                     _value.step=3
+            if event.type == KEYUP:
+                if event.key == K_RSHIFT:
+                    if 0<=_value.skillnum<9 and _value.skilltime>=0:
+                        if _value.wazatame[_value.skillnum+20]<=_value.skilltime and _value.wazatame[_value.skillnum+20]>0:
+                            _func.skill(_value.skillnum+20)
+                        elif _value.wazatame[_value.skillnum+10]<=_value.skilltime and _value.wazatame[_value.skillnum+10]>0:
+                            _func.skill(_value.skillnum+10)
+                        elif _value.wazatame[_value.skillnum]==1:
+                            _func.skill(_value.skillnum)
+                    _value.skilltime=-1
             #
+            
         # 
         if _value.kaih==0 and _value.skaih==0 and _value.sura==0:
-            if (pressed_keys[K_d] or pressed_keys[K_a]) and _value.hobfc==0:
+            if (pressed_keys[K_d] or pressed_keys[K_a]) and _value.hobfc==0 and _value.skilltime==-1:
                 _value.posetime+=1
                 if _value.posetime==6:
                     _value.posetime=0
@@ -178,6 +195,8 @@ def step7():
             _value.kytestv=0
 
         _value.kxtest+=_value.kxtestv
+        if _value.kxtest>750:_value.kxtest=750
+        if _value.kxtest<0:_value.kxtest=0
         if _value.kytestv>0 and _value.hob==0:_value.kxtestv=0
         if _value.kytestv==0:
             if _value.kxtestv>0.1:
@@ -230,7 +249,10 @@ def step7():
             _value.sura-=1
         else:
             _value.sura=0
-
+        if _value.skilltime>=0:
+            _value.skilltime+=0.1
+        else:
+            _value.skilltime=-1
         _value.kxh=0
         _value.kyh=0
         bxh=0
@@ -244,6 +266,19 @@ def step7():
                 _func.skillkirby(_value.kxtest,_value.kytest,3)
             if(20<=_value.t2):
                 _func.skillkirby(_value.kxtest,_value.kytest,4)
+        elif _value.skilltime>=0:
+            if _value.skillnum>=0:
+                if _value.ka8_2[_value.skillnum]>0:
+                    if _value.wazatame[_value.skillnum+20]<=_value.skilltime and _value.wazatame[_value.skillnum+20]>0:
+                        _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,2)
+                    elif _value.wazatame[_value.skillnum+10]<=_value.skilltime and _value.wazatame[_value.skillnum+10]>0:
+                        _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,1)
+                    else:
+                        _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,0)
+                else:
+                    _func.skillkirby(_value.kxtest,_value.kytest,1)
+            else:
+                _func.skillkirby(_value.kxtest,_value.kytest,1)
         else:
 
             if _value.pose==0:
@@ -548,20 +583,21 @@ def step7():
         if _value.t>_value.kzi[_value.skillnum]*100:
             _value.t=-1
             _value.t2=-1
+        if _value.t==-1:_value.flip2=_value.flip
         if _value.wazatype[_value.skillnum]>0:
             if _value.t>=0:
                 _value.kxv+=_value.kx2[_value.skillnum]*0.05+_value.kad2[_value.skillnum]*_value.ad*0.01
                 _value.kyv+=_value.ky2[_value.skillnum]*0.05+_value.kws2[_value.skillnum]*_value.ws*0.01
                 # 遠距離
                 if _value.wazatype[_value.skillnum]==1:
-                    if _value.flip==0:
+                    if _value.flip2==0:
                         img1 = pygame.image.load(f"hado ({_value.skillnum}).png")
                     else:
                         img1 = pygame.image.load(f"hado2 ({_value.skillnum}).png")
                     img1.set_colorkey((255, 255, 255))
                     img1 = img1.convert_alpha()
                     img1 = pygame.transform.scale_by(img1, 1.8*(1.02**(-_value.hados[_value.skillnum])))
-                    if _value.flip==0:
+                    if _value.flip2==0:
                         _value.kx+=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
                     else:
                         img1=pygame.transform.flip(img1, True, False)
@@ -577,7 +613,7 @@ def step7():
                         if _value.ky-16>_value.ground:_value.t2=_value.kzi[_value.skillnum]*100
                 # 突進
                 if _value.wazatype[_value.skillnum]==2:
-                    if _value.flip==0:
+                    if _value.flip2==0:
                         _value.kxtest+=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
                     else:
                         _value.kxtest-=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
@@ -593,4 +629,6 @@ def step7():
                     #     if _value.kytest>_value.ground:_value.t2=_value.kzi[_value.skillnum]*100
         if _value.kxtest>750:_value.kxtest=750
         if _value.kxtest<0:_value.kxtest=0
+        _value.ttest+=1
+        if _value.ttest==120:_value.ttest=0
         time.sleep(0.01)
