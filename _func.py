@@ -125,7 +125,7 @@ def skill(a):
     _value.ws=0
     _value.ad=0
     _value.kx=(-2)*(_value.flip-0.5)*_value.kx0[a]*50+_value.kxtest
-    _value.ky=(-2)*(_value.flip-0.5)*_value.ky0[a]*50+_value.kytest
+    _value.ky=_value.ky0[a]*50+_value.kytest
     _value.kxv=_value.kx1[a]
     _value.kyv=_value.ky1[a]
     _value.skillnum=a
