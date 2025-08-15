@@ -46,6 +46,7 @@ screen = pygame.display.set_mode((800, 600))
 ka=0
 ka3=0
 title_list = [""]*(tab+20)
+title_len = [0]*(tab+20)
 wazatype=[0]*(tab+20)
 kx2=[0]*(tab+20)
 kx1=[0]*(tab+20)
@@ -148,6 +149,8 @@ kytest=ground
 kxtestv=0
 kytestv=0
 ttest=0
+comt=0
+comtr=0
 
 ka8=0
 ka8_2=[0]*40

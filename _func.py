@@ -52,6 +52,60 @@ def settingkirby(x,y,st):
         img1.set_colorkey((255, 255, 255))
         img1 = img1.convert_alpha()
         img1 = pygame.transform.scale_by(img1, 2.5)
+        s=3.2
+        match _value.ka8_2[_value.ka3]:
+            case 1:
+                x-=6*s
+                y-=4*s
+            case 2:
+                x-=5*s
+                y-=5*s
+            case 3:
+                x-=1*s
+                y-=0*s
+            case 4:
+                x-=3*s
+                y-=1*s
+            case 5:
+                x-=4*s
+                y-=3*s
+            case 6:
+                x-=8*s
+                y-=10*s
+            case 7:
+                x-=9*s
+                y-=4*s
+            case 8:
+                x-=0*s
+                y-=1*s
+            case 9:
+                x-=4*s
+                y-=1*s
+            case 10:
+                x-=4*s
+                y-=7*s
+            case 11:
+                x-=1*s
+                y-=11*s
+            case 12:
+                x-=3*s
+                y-=12*s
+            case 13:
+                x-=6*s
+                y-=7*s
+            case 14:
+                x-=3*s
+                y-=11*s
+            case 15:
+                x-=3*s
+                y-=8*s
+            case 16:
+                x-=4*s
+                y-=8*s
+            case 17:
+                x-=7*s
+                y-=15*s
+
         _value.screen.blit(img1, (x,y))
     if _value.erabuki[_value.ka3]==1:
         img2 = pygame.image.load(f"buki ({_value.ka3}).png")
@@ -111,6 +165,60 @@ def standingkirby(x,y,st):
         img1.set_colorkey((255, 255, 255))
         img1 = img1.convert_alpha()
         img1 = pygame.transform.scale_by(img1, 2.5)
+        s=3.2
+        match _value.ka8_2[_value.ka3]:
+            case 1:
+                x-=6*s
+                y-=4*s
+            case 2:
+                x-=5*s
+                y-=5*s
+            case 3:
+                x-=1*s
+                y-=0*s
+            case 4:
+                x-=3*s
+                y-=1*s
+            case 5:
+                x-=4*s
+                y-=3*s
+            case 6:
+                x-=8*s
+                y-=10*s
+            case 7:
+                x-=9*s
+                y-=4*s
+            case 8:
+                x-=0*s
+                y-=1*s
+            case 9:
+                x-=4*s
+                y-=1*s
+            case 10:
+                x-=4*s
+                y-=7*s
+            case 11:
+                x-=1*s
+                y-=11*s
+            case 12:
+                x-=3*s
+                y-=12*s
+            case 13:
+                x-=6*s
+                y-=7*s
+            case 14:
+                x-=3*s
+                y-=11*s
+            case 15:
+                x-=3*s
+                y-=8*s
+            case 16:
+                x-=4*s
+                y-=8*s
+            case 17:
+                x-=7*s
+                y-=15*s
+
         _value.screen.blit(img1, (x,y))
         if _value.buki==1:
             img2 = pygame.image.load("buki.png")
@@ -190,6 +298,60 @@ def skillkirby(x,y,st):
         img1.set_colorkey((255, 255, 255))
         img1 = img1.convert_alpha()
         img1 = pygame.transform.scale_by(img1, 2)
+        s=2.3
+        match _value.ka8_2[_value.ka3]:
+            case 1:
+                x-=6*s
+                y-=4*s
+            case 2:
+                x-=5*s
+                y-=5*s
+            case 3:
+                x-=1*s
+                y-=0*s
+            case 4:
+                x-=3*s
+                y-=1*s
+            case 5:
+                x-=4*s
+                y-=3*s
+            case 6:
+                x-=8*s
+                y-=10*s
+            case 7:
+                x-=9*s
+                y-=4*s
+            case 8:
+                x-=0*s
+                y-=1*s
+            case 9:
+                x-=4*s
+                y-=1*s
+            case 10:
+                x-=4*s
+                y-=7*s
+            case 11:
+                x-=1*s
+                y-=11*s
+            case 12:
+                x-=3*s
+                y-=12*s
+            case 13:
+                x-=6*s
+                y-=7*s
+            case 14:
+                x-=3*s
+                y-=11*s
+            case 15:
+                x-=3*s
+                y-=8*s
+            case 16:
+                x-=4*s
+                y-=8*s
+            case 17:
+                x-=7*s
+                y-=15*s
+
         if _value.flip==1:
             img1=pygame.transform.flip(img1, True, False)
         _value.screen.blit(img1, (x,y))

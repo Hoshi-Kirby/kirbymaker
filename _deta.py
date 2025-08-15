@@ -64,8 +64,24 @@ def step4():
                     if event.key == pygame.K_BACKSPACE:
                         _value.title = _value.title[:-1]
                     else:
-                        if event.key!=pygame.K_RETURN:
-                            _value.title += event.unicode
+                        if event.key!=pygame.K_RETURN and _value.title_len[_value.ka3]<14:
+                            if _value.ka3%10==8:
+                                if event.key == pygame.K_w:
+                                    _value.title += "↑"
+                                if event.key == pygame.K_a:
+                                    _value.title += "←"
+                                if event.key == pygame.K_s:
+                                    _value.title += "↓"
+                                if event.key == pygame.K_d:
+                                    _value.title += "→"
+                                if event.key == pygame.K_RSHIFT:
+                                    _value.title += "B"
+                                if event.key == pygame.K_RIGHTBRACKET:
+                                    _value.title += "Y"
+                            else:
+                                _value.title += event.unicode
+                    
+                    _value.title_len[_value.ka3]=len(_value.title)
                     if event.key==pygame.K_RETURN:
                         _value.active=False
                         _value.color = _value.color_active if _value.active else _value.color_inactive

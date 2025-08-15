@@ -88,13 +88,19 @@ def step3():
         _value.screen.blit(text, text_rect)
 
 
-        for i in range(_value.tab):
+        for i in range(_value.tab-1):
             if _value.title_list[i]=="":
                 text = font.render("設定なし", False, (fill))
             else:
                 text = font.render(_value.title_list[i], False, (fill))
             text_rect = text.get_rect(center=(550, 300+50*i+_value.sc))
             _value.screen.blit(text, text_rect)
+        if _value.title_list[_value.tab-1]=="":
+            text = font.render("設定なし", False, (fill))
+        else:
+            text = font.render(_value.title_list[_value.tab-1], False, (fill))
+        text_rect = text.get_rect(center=(550, 300+50*_value.tab+_value.sc))
+        _value.screen.blit(text, text_rect)
         
         x=50
         y=460

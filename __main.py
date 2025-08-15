@@ -30,6 +30,7 @@ while True:
         _value.ka3=0
         _value.t=0
         _value.title_list = [""]*(_value.tab+20)
+        _value.title_len = [0]*(_value.tab+20)
         _value.wazatype=[0]*(_value.tab+20)
         _value.kx2=[0]*(_value.tab+20)
         _value.kx1=[0]*(_value.tab+20)
@@ -228,7 +229,7 @@ while True:
         _value.t2=-1
         _value.kxtestv=0
         _value.kytestv=0
-        _value.skillnum=0
+        _value.skillnum=-1.
         _value.ttest=0
         
     while _value.step==7:

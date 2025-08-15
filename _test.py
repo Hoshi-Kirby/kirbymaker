@@ -34,6 +34,8 @@ def step7():
                 sys.exit()
             if event.type == KEYDOWN:
                 if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
+                    command=""
+                    command2=""
                     if event.key == K_RETURN and _value.skilltime==-1:
                         if _value.kytest<_value.ground:
                             if _value.hobfc==0:
@@ -50,20 +52,46 @@ def step7():
                             _value.step=3
                     if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
                         _value.flip=1
+                        command="←"
+                        command2="→"
                         if _value.guard==1:
                             _value.kaih=30
                     if event.key == K_d and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
                         _value.flip=0
+                        command="→"
+                        command2="←"
                         if _value.guard==1:
                             _value.kaih=30
-                    if event.key == K_s:
+                    if event.key == K_w and _value.sura==0:
+                        command=command2="↑"
+                    if event.key == K_s and _value.sura==0:
+                        command=command2="↓"
                         if _value.guard==1 and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
                             _value.skaih=30
-                    if event.key == K_q:
-                        if _value.kytest<_value.ground and _value.hob==0 and _value.skaih==0 and _value.sura==0:
-                            _value.skaih=20
+                    if event.key == K_RSHIFT and _value.sura==0:
+                        command=command2="B"
+                    if event.key == K_RIGHTBRACKET and _value.sura==0:
+                        command = command2 = "Y"
+                    
+                    if _value.comt<_value.title_len[8]:
+                        if _value.title_list[8][int(_value.comt)]==command:
+                            if _value.comt<_value.title_len[8]-1:
+                                _value.comt=_value.comt//1+2
+                            else:
+                                _value.comt=0
+                                _value.skillnum=8
+                                _func.skill(8)
+                    if _value.comtr<_value.title_len[8]:
+                        if _value.title_list[8][int(_value.comtr)]==command2:
+                            if _value.comtr<_value.title_len[8]-1:
+                                _value.comtr=_value.comtr//1+2
+                            else:
+                                _value.comtr=0
+                                _value.skillnum=8
+                                _func.skill(8)
+
                 if _value.t==-1:
-                    if event.key==K_RSHIFT and _value.t==-1:
+                    if event.key==K_RSHIFT and _value.t==-1 and _value.skillnum==-1:
                         if _value.hob==0:
                             if (pressed_keys[K_a] or pressed_keys[K_d])and _value.title_list[7]!="" and _value.kytest>_value.ground:
                                 _value.skillnum=7
@@ -111,6 +139,7 @@ def step7():
                     if _value.pose==9:
                         _value.pose=1
                 if pressed_keys[K_d]:
+                    _value.flip=0
                     if _value.hob==1:
                         _value.kxtestv=1.5
                         if _value.kxtestv>1.5:
@@ -126,6 +155,7 @@ def step7():
                     if _value.kxtest>750:
                         _value.kxtest=750
                 if pressed_keys[K_a]:
+                    _value.flip=1
                     if _value.hob==1:
                         _value.kxtestv-=1.5
                         if _value.kxtestv<-1.5:
@@ -253,6 +283,10 @@ def step7():
             _value.skilltime+=0.1
         else:
             _value.skilltime=-1
+        if _value.comt>0:
+            _value.comt-=0.01
+        else:
+            _value.comt=0
         _value.kxh=0
         _value.kyh=0
         bxh=0
@@ -550,7 +584,7 @@ def step7():
             img1 = pygame.transform.scale_by(img1, 2)
             _value.screen.blit(img1, (_value.kxtest+_value.kxh, _value.kytest+_value.kyh))
 
-        if (_value.buki==1 and _value.t<10)or(_value.erabuki[_value.skillnum]==1 and _value.t2>=10):
+        if (_value.buki==1 and _value.t<10)or(_value.skillnum>=0 and _value.erabuki[_value.skillnum]==1 and _value.t2>=10):
             if _value.t2<10:
                 if _value.flip==1:
                     img2 = pygame.image.load("buki2.png")
@@ -580,11 +614,12 @@ def step7():
 
         if _value.t>=0:_value.t+=1
         if _value.t2>=0:_value.t2+=1
-        if _value.t>_value.kzi[_value.skillnum]*100:
+        if _value.skillnum>=0 and _value.t>_value.kzi[_value.skillnum]*100:
             _value.t=-1
             _value.t2=-1
+            _value.skillnum=-1
         if _value.t==-1:_value.flip2=_value.flip
-        if _value.wazatype[_value.skillnum]>0:
+        if _value.skillnum>=0 and _value.wazatype[_value.skillnum]>0:
             if _value.t>=0:
                 _value.kxv+=_value.kx2[_value.skillnum]*0.05+_value.kad2[_value.skillnum]*_value.ad*0.01
                 _value.kyv+=_value.ky2[_value.skillnum]*0.05+_value.kws2[_value.skillnum]*_value.ws*0.01
