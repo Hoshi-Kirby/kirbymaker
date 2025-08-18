@@ -12,8 +12,6 @@ pygame.mixer.init()
 import _func
 import _value
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
-
 def step5():
         pygame.display.update()
         _value.screen.fill((200,200,255))
@@ -39,10 +37,10 @@ def step5():
                 _func.settingkirby(100,298,4)
         if _value.wazatype[_value.ka3]==0:
             fill=0,0,0
-            text = font.render("rect        ,         ,         ,        ", False, (fill))
+            text = _value.font.render("rect        ,         ,         ,        ", False, (fill))
             text_rect = text.get_rect(center=(500, 200))
             _value.screen.blit(text, text_rect)
-            text = font.render("(t<        )", False, (fill))
+            text = _value.font.render("(t<        )", False, (fill))
             text_rect = text.get_rect(center=(500, 400))
             _value.screen.blit(text, text_rect)
             # rect = pygame.Rect(int(_value.kx2[_value.ka3] + 125),int(_value.kx1[_value.ka3] + 315),int(_value.kx0[_value.ka3]),int(_value.ky2[_value.ka3]))
@@ -66,16 +64,16 @@ def step5():
                 fill=(100,100,100)
                 fill2=(100,100,100)
                 fill3=0,0,0
-            text = font.render("x方向     t^2+      t+                ", False, (fill))
+            text = _value.font.render("x方向     t^2+      t+                ", False, (fill))
             text_rect = text.get_rect(center=(500, 200))
             _value.screen.blit(text, text_rect)
-            text = font.render("ad入力     t^2+      t+                 ", False, (fill2))
+            text = _value.font.render("ad入力     t^2+      t+                 ", False, (fill2))
             text_rect = text.get_rect(center=(500,250))
             _value.screen.blit(text, text_rect)
-            text = font.render("    y方向     t^2+      t+        (t<        )", False, (fill))
+            text = _value.font.render("    y方向     t^2+      t+        (t<        )", False, (fill))
             text_rect = text.get_rect(center=(500, 400))
             _value.screen.blit(text, text_rect)
-            text = font.render("ws入力     t^2+      t+                 ", False, (fill2))
+            text = _value.font.render("ws入力     t^2+      t+                 ", False, (fill2))
             text_rect = text.get_rect(center=(500, 450))
             _value.screen.blit(text, text_rect)
             # 遠距離の弾
@@ -85,7 +83,7 @@ def step5():
                 img1 = img1.convert_alpha()
                 img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
                 _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
-                text = font.render("弾数      個　間隔       秒", False, (fill3))
+                text = _value.font.render("弾数      個　間隔       秒", False, (fill3))
                 text_rect = text.get_rect(center=(500, 100))
                 _value.screen.blit(text, text_rect)
         for event in pygame.event.get():
@@ -164,7 +162,7 @@ def step5():
                 _value.active2[i]=False
 
 
-            text_surface = font.render(_value.input_text[i], True, (0,0,0))
+            text_surface = _value.font.render(_value.input_text[i], True, (0,0,0))
             _value.screen.blit(text_surface, (_value.box_rects[i].x + 5, _value.box_rects[i].y))
             pygame.draw.line(_value.screen, (0,0,0),
                         (_value.box_rects[i].x, _value.box_rects[i].bottom),

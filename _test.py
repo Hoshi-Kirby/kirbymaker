@@ -12,15 +12,13 @@ pygame.mixer.init()
 import _func
 import _value
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
-
 def step7():
         pygame.display.update()
         
         _value.screen.fill((200,200,255))
 
         
-        text = font.render("編集", False, (0,0,0))
+        text = _value.font.render("編集", False, (0,0,0))
         text_rect = text.get_rect(center=(700, 30))
         _value.screen.blit(text, text_rect)
 
@@ -287,6 +285,14 @@ def step7():
             _value.comt-=0.01
         else:
             _value.comt=0
+        if _value.comtr>0:
+            _value.comtr-=0.01
+        else:
+            _value.comtr=0
+        if _value.comt%1<0.9:
+            _value.comt=0
+        if _value.comtr%1<0.9:
+            _value.comtr=0
         _value.kxh=0
         _value.kyh=0
         bxh=0
@@ -302,15 +308,12 @@ def step7():
                 _func.skillkirby(_value.kxtest,_value.kytest,4)
         elif _value.skilltime>=0:
             if _value.skillnum>=0:
-                if _value.ka8_2[_value.skillnum]>0:
-                    if _value.wazatame[_value.skillnum+20]<=_value.skilltime and _value.wazatame[_value.skillnum+20]>0:
-                        _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,2)
-                    elif _value.wazatame[_value.skillnum+10]<=_value.skilltime and _value.wazatame[_value.skillnum+10]>0:
-                        _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,1)
-                    else:
-                        _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,0)
+                if _value.wazatame[_value.skillnum+20]<=_value.skilltime and _value.wazatame[_value.skillnum+20]>0:
+                    _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,2)
+                elif _value.wazatame[_value.skillnum+10]<=_value.skilltime and _value.wazatame[_value.skillnum+10]>0:
+                    _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,1)
                 else:
-                    _func.skillkirby(_value.kxtest,_value.kytest,1)
+                    _func.tamekirby(_value.kxtest,_value.kytest,_value.ttest,0)
             else:
                 _func.skillkirby(_value.kxtest,_value.kytest,1)
         else:

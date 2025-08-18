@@ -20,12 +20,10 @@ import _desi
 
 pygame.display.set_caption("k")
 
-_value.kx=225
-_value.ky=_value.ground
-
-font = pygame.font.SysFont("hg正楷書体pro", 30)
 while True:
     if _value.step==1:
+        _value.kx=225
+        _value.ky=_value.ground
         _value.ka=0
         _value.ka3=0
         _value.t=0

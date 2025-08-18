@@ -12,8 +12,6 @@ pygame.mixer.init()
 import _func
 import _value
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
-
 def step2():
         if _value.flip==0:
             image=_value.image1
@@ -26,48 +24,48 @@ def step2():
 
         if _value.step2==0:
             if _value.ka==0:
-                text = font.render("帽子　←　　　　　→", False, (150,50,50))
+                text = _value.font.render("帽子　←　　　　　→", False, (150,50,50))
             else:
-                text = font.render("帽子　←　　　　　→", False, (0,0,0))
+                text = _value.font.render("帽子　←　　　　　→", False, (0,0,0))
             text_rect = text.get_rect(center=(440, 200))
             _value.screen.blit(text, text_rect)
             if _value.bosi==0:
-                text = font.render("なし", False, (0,0,0))
+                text = _value.font.render("なし", False, (0,0,0))
             if _value.bosi==1:
-                text = font.render("ボム", False, (0,0,0))
+                text = _value.font.render("ボム", False, (0,0,0))
             if _value.bosi==2:
-                text = font.render("ファイター", False, (0,0,0))
+                text = _value.font.render("ファイター", False, (0,0,0))
             text_rect = text.get_rect(center=(480, 200))
             _value.screen.blit(text, text_rect)
 
             if _value.ka==1:
-                text = font.render("武器　←　　→", False, (150,50,50))
+                text = _value.font.render("武器　←　　→", False, (150,50,50))
             else:
-                text = font.render("武器　←　　→", False, (0,0,0))
+                text = _value.font.render("武器　←　　→", False, (0,0,0))
             text_rect = text.get_rect(center=(400, 400))
             _value.screen.blit(text, text_rect)
             if _value.buki==0:
-                text = font.render("なし", False, (0,0,0))
+                text = _value.font.render("なし", False, (0,0,0))
             if _value.buki==1:
-                text = font.render("あり", False, (0,0,0))
+                text = _value.font.render("あり", False, (0,0,0))
             text_rect = text.get_rect(center=(450, 400))
             _value.screen.blit(text, text_rect)
             if _value.buki==1:
                 if _value.ka==2:
-                    text = font.render("武器を変更する", False, (150,50,50))
+                    text = _value.font.render("武器を変更する", False, (150,50,50))
                 else:
-                    text = font.render("武器を変更する", False, (0,0,0))
+                    text = _value.font.render("武器を変更する", False, (0,0,0))
                 text_rect = text.get_rect(center=(500, 450))
                 _value.screen.blit(text, text_rect)
             if _value.esch==1:
                 pygame.draw.rect(_value.screen, (140,140,180),(100,80,600,440))
-                text=font.render("本当に戻ってよろしいですか？", False, (0,0,0))
+                text=_value.font.render("本当に戻ってよろしいですか？", False, (0,0,0))
                 text_rect = text.get_rect(center=(400, 300))
                 _value.screen.blit(text, text_rect)
         elif _value.step2==1:
             x=250
             y=50
-            text=font.render("裏", False, (0,0,0))
+            text=_value.font.render("裏", False, (0,0,0))
             text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
             for i in range(45):

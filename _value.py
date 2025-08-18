@@ -20,7 +20,7 @@ pose=0
 posetime=0
 flip=0
 flip2=0
-ground=400
+ground=430
 kx=225
 kxv=0
 ky=ground
@@ -164,4 +164,8 @@ skilltime=-1
 
 
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
+# font = pygame.font.SysFont("HG創英角ﾎﾟｯﾌﾟ体", 30)
+font = pygame.font.SysFont("HG丸ｺﾞｼｯｸM-PRO", 30)
+pekin = pygame.image.load("壁紙.png").convert()
+original_width, original_height = pekin.get_size()
+pekin = pygame.transform.scale_by(pekin,600/original_height)

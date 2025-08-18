@@ -12,8 +12,6 @@ pygame.mixer.init()
 import _func
 import _value
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
-
 def step8():
         pygame.display.update()
         _value.screen.fill((200,200,255))
@@ -42,16 +40,16 @@ def step8():
                     _func.settingkirby(100,298,3)
                 if(20<=_value.t2):
                     _func.settingkirby(100,298,4)
-                text = font.render("カービィ", False, fill)
+                text = _value.font.render("カービィ", False, fill)
                 text_rect = text.get_rect(center=(500, 200))
                 _value.screen.blit(text, text_rect)
-                text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
+                text = _value.font.render(str(_value.ka8_2[_value.ka3]), False, fill)
                 text_rect = text.get_rect(center=(550, 230))
                 _value.screen.blit(text, text_rect)
                 if _value.erabuki[_value.ka3]==0:
-                    text = font.render("武器を消す", False, fill2)
+                    text = _value.font.render("武器を消す", False, fill2)
                 if _value.erabuki[_value.ka3]==1:
-                    text = font.render("武器を描く→", False, fill2)
+                    text = _value.font.render("武器を描く→", False, fill2)
                 text_rect = text.get_rect(center=(500, 300))
                 _value.screen.blit(text, text_rect)
             
@@ -65,19 +63,19 @@ def step8():
                     _func.settingkirby(100,298,3)
                 if(75<=_value.t2):
                     _func.settingkirby(100,298,4)
-                text = font.render("カービィ", False, fill)
+                text = _value.font.render("カービィ", False, fill)
                 text_rect = text.get_rect(center=(500, 200))
                 _value.screen.blit(text, text_rect)
-                text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
+                text = _value.font.render(str(_value.ka8_2[_value.ka3]), False, fill)
                 text_rect = text.get_rect(center=(550, 230))
                 _value.screen.blit(text, text_rect)
-                text = font.render("飛び道具→", False, fill2)
+                text = _value.font.render("飛び道具→", False, fill2)
                 text_rect = text.get_rect(center=(500, 300))
                 _value.screen.blit(text, text_rect)
                 if _value.erabuki[_value.ka3]==0:
-                    text = font.render("武器を消す", False, fill3)
+                    text = _value.font.render("武器を消す", False, fill3)
                 if _value.erabuki[_value.ka3]==1:
-                    text = font.render("武器を描く→", False, fill3)
+                    text = _value.font.render("武器を描く→", False, fill3)
                 text_rect = text.get_rect(center=(500, 400))
                 _value.screen.blit(text, text_rect)
             if _value.wazatype[_value.ka3]==2:
@@ -90,16 +88,16 @@ def step8():
                     _func.settingkirby(100,298,3)
                 if(75<=_value.t2):
                     _func.settingkirby(100,298,4)
-                text = font.render("カービィ", False, fill)
+                text = _value.font.render("カービィ", False, fill)
                 text_rect = text.get_rect(center=(500, 200))
                 _value.screen.blit(text, text_rect)
-                text = font.render(str(_value.ka8_2[_value.ka3]), False, fill)
+                text = _value.font.render(str(_value.ka8_2[_value.ka3]), False, fill)
                 text_rect = text.get_rect(center=(550, 230))
                 _value.screen.blit(text, text_rect)
                 if _value.erabuki[_value.ka3]==0:
-                    text = font.render("武器を消す", False, fill2)
+                    text = _value.font.render("武器を消す", False, fill2)
                 if _value.erabuki[_value.ka3]==1:
-                    text = font.render("武器を描く→", False, fill2)
+                    text = _value.font.render("武器を描く→", False, fill2)
                 text_rect = text.get_rect(center=(500, 300))
                 _value.screen.blit(text, text_rect)
         
@@ -111,7 +109,7 @@ def step8():
                 image=_value.image2
             x=250
             y=50
-            text=font.render("裏", False, (0,0,0))
+            text=_value.font.render("裏", False, (0,0,0))
             text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
             for i in range(45):
@@ -154,7 +152,7 @@ def step8():
                 image=_value.image4
             x=180
             y=40
-            text=font.render("裏", False, (0,0,0))
+            text=_value.font.render("裏", False, (0,0,0))
             text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
             for i in range(46):

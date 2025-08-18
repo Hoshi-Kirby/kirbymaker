@@ -12,8 +12,6 @@ pygame.mixer.init()
 import _func
 import _value
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
-
 def step3():
         pygame.display.update()
         mouseX, mouseY = pygame.mouse.get_pos()
@@ -55,50 +53,50 @@ def step3():
         else:
             fill=(255,0,0)
 
-        text = font.render("→", False, (fill))
+        text = _value.font.render("→", False, (fill))
         text_rect = text.get_rect(center=(300, 300))
         _value.screen.blit(text, text_rect)
 
-        text = font.render("B", False, (fill))
+        text = _value.font.render("B", False, (fill))
         text_rect = text.get_rect(center=(400, 300+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("上B", False, (fill))
+        text = _value.font.render("上B", False, (fill))
         text_rect = text.get_rect(center=(400, 350+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("下B", False, (fill))
+        text = _value.font.render("下B", False, (fill))
         text_rect = text.get_rect(center=(400, 400+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("DB", False, (fill))
+        text = _value.font.render("DB", False, (fill))
         text_rect = text.get_rect(center=(400, 450+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("空B", False, (fill))
+        text = _value.font.render("空B", False, (fill))
         text_rect = text.get_rect(center=(400, 500+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("空上B", False, (fill))
+        text = _value.font.render("空上B", False, (fill))
         text_rect = text.get_rect(center=(400, 550+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("空下B", False, (fill))
+        text = _value.font.render("空下B", False, (fill))
         text_rect = text.get_rect(center=(400, 600+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("空DB", False, (fill))
+        text = _value.font.render("空DB", False, (fill))
         text_rect = text.get_rect(center=(400, 650+_value.sc))
         _value.screen.blit(text, text_rect)
-        text = font.render("コマンド", False, (fill))
+        text = _value.font.render("コマンド", False, (fill))
         text_rect = text.get_rect(center=(400, 700+_value.sc))
         _value.screen.blit(text, text_rect)
 
 
         for i in range(_value.tab-1):
             if _value.title_list[i]=="":
-                text = font.render("設定なし", False, (fill))
+                text = _value.font.render("設定なし", False, (fill))
             else:
-                text = font.render(_value.title_list[i], False, (fill))
+                text = _value.font.render(_value.title_list[i], False, (fill))
             text_rect = text.get_rect(center=(550, 300+50*i+_value.sc))
             _value.screen.blit(text, text_rect)
         if _value.title_list[_value.tab-1]=="":
-            text = font.render("設定なし", False, (fill))
+            text = _value.font.render("設定なし", False, (fill))
         else:
-            text = font.render(_value.title_list[_value.tab-1], False, (fill))
+            text = _value.font.render(_value.title_list[_value.tab-1], False, (fill))
         text_rect = text.get_rect(center=(550, 300+50*_value.tab+_value.sc))
         _value.screen.blit(text, text_rect)
         
@@ -106,10 +104,10 @@ def step3():
         y=460
         pygame.draw.rect(_value.screen, (200,50,50), (x,y,80,40), width=3,border_radius=5)
         pygame.draw.rect(_value.screen, (100,100,200), (100+x,y,100,40), width=3,border_radius=5)
-        text = font.render("保存", False, (fill))
+        text = _value.font.render("保存", False, (fill))
         text_rect = text.get_rect(center=(x+40,y+20))
         _value.screen.blit(text, text_rect)
-        text = font.render("プレイ", False, (fill))
+        text = _value.font.render("プレイ", False, (fill))
         text_rect = text.get_rect(center=(x+150,y+20))
         _value.screen.blit(text, text_rect)
         for event in pygame.event.get():

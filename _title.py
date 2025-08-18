@@ -10,18 +10,16 @@ pygame.mixer.init()
 import _func
 import _value
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
-
 def step1():
         pygame.display.update()
+        _value.screen.blit(_value.pekin, (-60,0))
         
-        _value.screen.fill((200,200,255))
 
         
-        text = font.render("コピーメーカー", False, (0,0,0))
+        text = _value.font.render("コピーメーカー", False, (0,0,0))
         text_rect = text.get_rect(center=(400, 180))
         _value.screen.blit(text, text_rect)
-        text = font.render("新規作成", False, (0,0,0))
+        text = _value.font.render("新規作成", False, (0,0,0))
         text_rect = text.get_rect(center=(700, 30))
         _value.screen.blit(text, text_rect)
 

@@ -358,8 +358,63 @@ def skillkirby(x,y,st):
 
 
 def tamekirby(x,y,t,step):
-    img1 = pygame.image.load(f"{_value.ka8_2[_value.skillnum+step*10]}_1.png")
-
+    if _value.ka8_2[_value.skillnum]==0:
+        if _value.buki==0:
+            if _value.bosi==0:
+                img1 = pygame.image.load("ノーマルf.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2)
+                if _value.flip==1:
+                    img1=pygame.transform.flip(img1, True, False)
+            if _value.bosi==1:
+                img1 = pygame.image.load("ノーマルfボム.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2)
+                if _value.flip==1:
+                    img1=pygame.transform.flip(img1, True, False)
+                x=-10
+                y-=10
+            if _value.bosi==2:
+                img1 = pygame.image.load("ノーマルfファイター.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2)
+                if _value.flip==1:
+                    img1=pygame.transform.flip(img1, True, False)
+                x-=5
+        if _value.buki==1:
+            if _value.bosi==0:
+                img1 = pygame.image.load("ノーマルh.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2)
+                if _value.flip==1:
+                    img1=pygame.transform.flip(img1, True, False)
+                x-=2.3
+            if _value.bosi==1:
+                img1 = pygame.image.load("ノーマルhボム.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2)
+                if _value.flip==1:
+                    img1=pygame.transform.flip(img1, True, False)
+                x-=10
+                y-=10
+            if _value.bosi==2:
+                img1 = pygame.image.load("ノーマルhファイター.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2)
+                if _value.flip==1:
+                    img1=pygame.transform.flip(img1, True, False)
+                x-=5
+    else:
+        img1 = pygame.image.load(f"{_value.ka8_2[_value.skillnum+step*10]}_1.png")
+        img1 = pygame.transform.scale_by(img1, 2)
+        if _value.flip==1:
+            img1=pygame.transform.flip(img1, True, False)
     if (step==1 and (t-t%10)%30==0)or(step==2 and (t-t%10)%20==0):
         arr = pygame.surfarray.array3d(img1)
         arr = np.transpose(arr, (1, 0, 2))  # 転置して (height, width, 3)
@@ -370,10 +425,6 @@ def tamekirby(x,y,t,step):
         # NumPy配列 → Surfaceに戻す
         blended = np.transpose(blended, (1, 0, 2))  # 転置戻す
         img1 = pygame.surfarray.make_surface(blended)
-
     img1.set_colorkey((255, 255, 255))
     img1 = img1.convert_alpha()
-    img1 = pygame.transform.scale_by(img1, 2)
-    if _value.flip==1:
-        img1=pygame.transform.flip(img1, True, False)
     _value.screen.blit(img1, (x,y))

@@ -12,8 +12,6 @@ pygame.mixer.init()
 import _func
 import _value
 
-font = pygame.font.SysFont("hg正楷書体pro", 30)
-
 def step6():
         pygame.display.update()
         _value.screen.fill((200,200,255))
@@ -33,16 +31,16 @@ def step6():
             fill=(100,100,100)
             fill2=(100,100,100)
             fill3=0,0,0
-        text = font.render("x方向     t^2+      t+                ", False, (fill))
+        text = _value.font.render("x方向     t^2+      t+                ", False, (fill))
         text_rect = text.get_rect(center=(500, 200))
         _value.screen.blit(text, text_rect)
-        text = font.render("ad入力     t^2+      t+                 ", False, (fill2))
+        text = _value.font.render("ad入力     t^2+      t+                 ", False, (fill2))
         text_rect = text.get_rect(center=(500,250))
         _value.screen.blit(text, text_rect)
-        text = font.render("    y方向     t^2+      t+        (t<        )", False, (fill))
+        text = _value.font.render("    y方向     t^2+      t+        (t<        )", False, (fill))
         text_rect = text.get_rect(center=(500, 400))
         _value.screen.blit(text, text_rect)
-        text = font.render("ws入力     t^2+      t+                 ", False, (fill2))
+        text = _value.font.render("ws入力     t^2+      t+                 ", False, (fill2))
         text_rect = text.get_rect(center=(500, 450))
         _value.screen.blit(text, text_rect)
         for event in pygame.event.get():
@@ -119,7 +117,7 @@ def step6():
                 _value.active2[i]=False
 
 
-            text_surface = font.render(_value.input_text[i], True, (0,0,0))
+            text_surface = _value.font.render(_value.input_text[i], True, (0,0,0))
             _value.screen.blit(text_surface, (_value.box_rects[i].x + 5, _value.box_rects[i].y))
             pygame.draw.line(_value.screen, (0,0,0),
                         (_value.box_rects[i].x, _value.box_rects[i].bottom),

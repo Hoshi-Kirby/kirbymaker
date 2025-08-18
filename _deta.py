@@ -90,11 +90,15 @@ def step4():
                     _value.step=3
                 if event.key == pygame.K_UP:
                     _value.ka4-=1
+                    if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
+                        _value.ka4=2
                 if event.key == pygame.K_DOWN:
                     if _value.title=="" or _value.ka4>0:
                         _value.ka4+=1
                         if _value.ka4>_value.tab4:
                             _value.ka4=_value.tab4
+                        if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
+                            _value.ka4=4
                 if event.key==pygame.K_RETURN:
                     if _value.ka4==2:
                         _value.step=5
@@ -238,11 +242,10 @@ def step4():
         _value.screen.blit(text, text_rect)
         
         if _value.wazatype[_value.ka3]!=0:
-            _value.font = pygame.font.SysFont("hg正楷書体pro", 20)
-            text = _value.font.render("ぶつかったとき", False, (0,0,0))
+            font = pygame.font.SysFont("hg正楷書体pro", 20)
+            text = font.render("ぶつかったとき", False, (0,0,0))
             text_rect = text.get_rect(center=(480, 230))
             _value.screen.blit(text, text_rect)
-            _value.font = pygame.font.SysFont("hg正楷書体pro", 30)
             if _value.wazatype[_value.ka3]==1:
                 if _value.wazapene[_value.ka3]==0:
                     text = _value.font.render("消滅", False, (0,0,0))
