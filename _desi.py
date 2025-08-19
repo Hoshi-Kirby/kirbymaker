@@ -55,13 +55,13 @@ def step8():
             
             if _value.wazatype[_value.ka3]==1:
                 tab=2
-                if(_value.t2<25):
+                if(_value.t2<10):
                     _func.settingkirby(100,298,1)
-                if(25<=_value.t2<50):
+                if(10<=_value.t2<15):
                     _func.settingkirby(100,298,2)
-                if(50<=_value.t2<75):
+                if(15<=_value.t2<20):
                     _func.settingkirby(100,298,3)
-                if(75<=_value.t2):
+                if(20<=_value.t2):
                     _func.settingkirby(100,298,4)
                 text = _value.font.render("カービィ", False, fill)
                 text_rect = text.get_rect(center=(500, 200))
@@ -80,13 +80,13 @@ def step8():
                 _value.screen.blit(text, text_rect)
             if _value.wazatype[_value.ka3]==2:
                 tab=1
-                if(_value.t2<25):
+                if(_value.t2<10):
                     _func.settingkirby(100,298,1)
-                if(25<=_value.t2<50):
+                if(10<=_value.t2<15):
                     _func.settingkirby(100,298,2)
-                if(50<=_value.t2<75):
+                if(15<=_value.t2<20):
                     _func.settingkirby(100,298,3)
-                if(75<=_value.t2):
+                if(20<=_value.t2):
                     _func.settingkirby(100,298,4)
                 text = _value.font.render("カービィ", False, fill)
                 text_rect = text.get_rect(center=(500, 200))
@@ -176,11 +176,12 @@ def step8():
             else:
                 fill=(_value.cr,_value.cg,_value.cb)
             
-            img1 = pygame.image.load(f"hado ({_value.ka3}).png")
-            img1.set_colorkey((255, 255, 255))
-            img1 = img1.convert_alpha()
-            img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
-            _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
+            if _value.t>_value.kzi[_value.ka3]*100:
+                img1 = pygame.image.load(f"hado ({_value.ka3}).png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
+                _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
 
             pygame.draw.rect(_value.screen,fill,(700,100,20,20))
             pygame.draw.line(_value.screen,(255,0,0),(650,150),(750,150),3)
@@ -328,7 +329,7 @@ def step8():
                         _value.image4 = image
         _value.t+=1
         _value.t2+=1
-        if _value.t>_value.kzi[_value.ka3]*100:
+        if _value.t>_value.kzi2[_value.ka3]*100:
             _value.t=0
             _value.t2=0
             _value.ws=0
@@ -344,11 +345,11 @@ def step8():
         _value.ky+=_value.kyv+_value.kws1[_value.ka3]*_value.ws*0.5
 
         if _value.wazapene[_value.ka3]==0:
-            if _value.ky>0:_value.t=_value.kzi[_value.ka3]*100
+            if _value.ky>0:_value.t=_value.kzi2[_value.ka3]*100
         if _value.wazapene[_value.ka3]==1:
             if _value.ky>0 and _value.kyv>0:_value.kyv=-_value.kyv
         
         if _value.wazapene[_value.ka3]==0:
-            if _value.ky>0:_value.t2=_value.kzi[_value.ka3]*100
+            if _value.ky>0:_value.t2=_value.kzi2[_value.ka3]*100
 
         time.sleep(0.01)

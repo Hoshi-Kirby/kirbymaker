@@ -54,7 +54,8 @@ kx0=[0]*(tab+20)
 ky2=[0]*(tab+20)
 ky1=[0]*(tab+20)
 ky0=[0]*(tab+20)
-kzi=[1]*(tab+20)
+kzi=[0]*(tab+20)
+kzi2=[1]*(tab+20)
 kad2=[0]*(tab+20)
 kws2=[0]*(tab+20)
 kad1=[0]*(tab+20)
@@ -107,24 +108,31 @@ title = title_list[ka3]
 
 ws=0
 t=0
+th=0
 t2=0
 ad=0
 kx=kx0[ka3]*50
 ky=ky0[ka3]*50
+kxha=kx0[ka3]*50
+kyha=ky0[ka3]*50
 kxv=kx1[ka3]
 kyv=ky1[ka3]
+kxvha=kx1[ka3]
+kyvha=ky1[ka3]
 
-box_rects = [pygame.Rect(371+i*100, 185, 40, 30) for i in range(13)]
-for i in range(4):
+box_rects = [pygame.Rect(371+i*100, 185, 40, 30) for i in range(14)]
+for i in range(3):
     box_rects[i+3]=pygame.Rect(371+i*100, 385, 40, 30)
 for i in range(2):
-    box_rects[i+7]=pygame.Rect(371+i*100, 235, 40, 30)
+    box_rects[i+6]=pygame.Rect(571+i*100, 385, 40, 30)
 for i in range(2):
-    box_rects[i+9]=pygame.Rect(371+i*100, 435, 40, 30)
+    box_rects[i+8]=pygame.Rect(371+i*100, 235, 40, 30)
 for i in range(2):
-    box_rects[i+11]=pygame.Rect(401+i*200, 85, 40, 30)
-active2=[False]*13
-input_text=["0"]*13
+    box_rects[i+10]=pygame.Rect(371+i*100, 435, 40, 30)
+for i in range(2):
+    box_rects[i+12]=pygame.Rect(401+i*200, 85, 40, 30)
+active2=[False]*14
+input_text=["0"]*14
 input_text[0]=str(kx2[ka3])
 input_text[1]=str(kx1[ka3])
 input_text[2]=str(kx0[ka3])
@@ -132,18 +140,21 @@ input_text[3]=str(ky2[ka3])
 input_text[4]=str(ky1[ka3])
 input_text[5]=str(ky0[ka3])
 input_text[6]=str(kzi[ka3])
-input_text[7]=str(kad2[ka3])
-input_text[8]=str(kad1[ka3])
-input_text[9]=str(kws2[ka3])
-input_text[10]=str(kws1[ka3])
-input_text[11]=str(kds[ka3])
-input_text[12]=str(kkk[ka3])
+input_text[7]=str(kzi2[ka3])
+input_text[8]=str(kad2[ka3])
+input_text[9]=str(kad1[ka3])
+input_text[10]=str(kws2[ka3])
+input_text[11]=str(kws1[ka3])
+input_text[12]=str(kds[ka3])
+input_text[13]=str(kkk[ka3])
 ka5=0
 tab5=0
 
 
 ka6=0
 
+kxtestbef=0
+kytestbef=0
 kxtest=225
 kytest=ground
 kxtestv=0
@@ -161,6 +172,7 @@ hados=[0]*40
 
 skillnum=0
 skilltime=-1
+hando=0
 
 
 

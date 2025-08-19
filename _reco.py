@@ -85,17 +85,17 @@ def step6():
                         value = 0
 
                     match i:
-                        case 0:_value.kx2[_value.ka3]=value
-                        case 1:_value.kx1[_value.ka3]=value
-                        case 2:_value.kx0[_value.ka3]=value
-                        case 3:_value.ky2[_value.ka3]=value
-                        case 4:_value.ky1[_value.ka3]=value
-                        case 5:_value.ky0[_value.ka3]=value
-                        case 6:_value.kzi[_value.ka3]=value
-                        case 7:_value.kad2[_value.ka3]=value
-                        case 8:_value.kad1[_value.ka3]=value
-                        case 9:_value.kws2[_value.ka3]=value
-                        case 10:_value.kws1[_value.ka3]=value
+                        case 0:_value.kx2h[_value.ka3]=value
+                        case 1:_value.kx1h[_value.ka3]=value
+                        case 2:_value.kx0h[_value.ka3]=value
+                        case 3:_value.ky2h[_value.ka3]=value
+                        case 4:_value.ky1h[_value.ka3]=value
+                        case 5:_value.ky0h[_value.ka3]=value
+                        case 6:_value.kzih[_value.ka3]=value
+                        case 7:_value.kad2h[_value.ka3]=value
+                        case 8:_value.kad1h[_value.ka3]=value
+                        case 9:_value.kws2h[_value.ka3]=value
+                        case 10:_value.kws1h[_value.ka3]=value
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[K_w]:
             _value.ws=-1

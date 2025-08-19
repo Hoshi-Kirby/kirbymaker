@@ -223,6 +223,7 @@ def step7():
             _value.kytestv=0
 
         _value.kxtest+=_value.kxtestv
+        _value.kxtestbef+=_value.kxtestv
         if _value.kxtest>750:_value.kxtest=750
         if _value.kxtest<0:_value.kxtest=0
         if _value.kytestv>0 and _value.hob==0:_value.kxtestv=0
@@ -254,6 +255,7 @@ def step7():
                         _value.kytestv+=0.2
                         if _value.kytestv>6:_value.kytestv=6
         _value.kytest+=_value.kytestv
+        _value.kytestbef+=_value.kytestv
         if _value.kytest>_value.ground:
             _value.kytest=_value.ground
         if _value.hobc>0:
@@ -289,23 +291,33 @@ def step7():
             _value.comtr-=0.01
         else:
             _value.comtr=0
-        if _value.comt%1<0.9:
+        if _value.comt%1<0.8:
             _value.comt=0
-        if _value.comtr%1<0.9:
+        if _value.comtr%1<0.8:
             _value.comtr=0
         _value.kxh=0
         _value.kyh=0
         bxh=0
         byh=0
-        if 0<_value.t2<25:
-            if(0<=_value.t2<10):
-                _func.skillkirby(_value.kxtest,_value.kytest,1)
-            if(10<=_value.t2<15):
-                _func.skillkirby(_value.kxtest,_value.kytest,2)
-            if(15<=_value.t2<20):
-                _func.skillkirby(_value.kxtest,_value.kytest,3)
-            if(20<=_value.t2):
-                _func.skillkirby(_value.kxtest,_value.kytest,4)
+        if 0<_value.t2:
+            if _value.t>_value.kzi[_value.skillnum]*100:
+                if(0<=_value.t2<10):
+                    _func.skillkirby(_value.kxtest,_value.kytest,1)
+                if(10<=_value.t2<15):
+                    _func.skillkirby(_value.kxtest,_value.kytest,2)
+                if(15<=_value.t2<20):
+                    _func.skillkirby(_value.kxtest,_value.kytest,3)
+                if(20<=_value.t2):
+                    _func.skillkirby(_value.kxtest,_value.kytest,4)
+            else:
+                if(0<=_value.t2<10):
+                    _func.skillkirby(_value.kxtestbef,_value.kytestbef,1)
+                if(10<=_value.t2<15):
+                    _func.skillkirby(_value.kxtestbef,_value.kytestbef,2)
+                if(15<=_value.t2<20):
+                    _func.skillkirby(_value.kxtestbef,_value.kytestbef,3)
+                if(20<=_value.t2):
+                    _func.skillkirby(_value.kxtestbef,_value.kytestbef,4)
         elif _value.skilltime>=0:
             if _value.skillnum>=0:
                 if _value.wazatame[_value.skillnum+20]<=_value.skilltime and _value.wazatame[_value.skillnum+20]>0:
@@ -616,39 +628,55 @@ def step7():
             _value.screen.blit(img2, (_value.kxtest+_value.kxh+bxh, _value.kytest-37+_value.kyh+byh))
 
         if _value.t>=0:_value.t+=1
+        if _value.th>=0:_value.th+=1
         if _value.t2>=0:_value.t2+=1
-        if _value.skillnum>=0 and _value.t>_value.kzi[_value.skillnum]*100:
-            _value.t=-1
+        if _value.skillnum>=0 and _value.t>_value.kzi2[_value.skillnum]*100:
             _value.t2=-1
+            if _value.wazatype[_value.skillnum]==2 and _value.hando==0:
+                _func.hando(_value.skillnum)
+                _value.hando=1
+        if _value.skillnum>=0 and _value.wazatype[_value.skillnum]!=2 and _value.kzi[_value.skillnum]*100<_value.t and _value.hando==0:
+            _func.hando(_value.skillnum)
+            _value.hando=1
+            
+        if _value.skillnum>=0 and  _value.th>_value.kzih[_value.skillnum]*100:
+            _value.th=-1
+        if _value.t2==-1 and _value.th==-1:
+            _value.t=-1
+            _value.hando=0
             _value.skillnum=-1
+        
         if _value.t==-1:_value.flip2=_value.flip
         if _value.skillnum>=0 and _value.wazatype[_value.skillnum]>0:
-            if _value.t>=0:
+            if _value.t2>=0:
                 _value.kxv+=_value.kx2[_value.skillnum]*0.05+_value.kad2[_value.skillnum]*_value.ad*0.01
                 _value.kyv+=_value.ky2[_value.skillnum]*0.05+_value.kws2[_value.skillnum]*_value.ws*0.01
                 # 遠距離
                 if _value.wazatype[_value.skillnum]==1:
-                    if _value.flip2==0:
-                        img1 = pygame.image.load(f"hado ({_value.skillnum}).png")
-                    else:
-                        img1 = pygame.image.load(f"hado2 ({_value.skillnum}).png")
-                    img1.set_colorkey((255, 255, 255))
-                    img1 = img1.convert_alpha()
-                    img1 = pygame.transform.scale_by(img1, 1.8*(1.02**(-_value.hados[_value.skillnum])))
+                    if _value.kzi[_value.skillnum]*100<_value.t:
+                        if _value.flip2==0:
+                            img1 = pygame.image.load(f"hado ({_value.skillnum}).png")
+                        else:
+                            img1 = pygame.image.load(f"hado2 ({_value.skillnum}).png")
+                        img1.set_colorkey((255, 255, 255))
+                        img1 = img1.convert_alpha()
+                        img1 = pygame.transform.scale_by(img1, 1.8*(1.02**(-_value.hados[_value.skillnum])))
                     if _value.flip2==0:
                         _value.kx+=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
                     else:
-                        img1=pygame.transform.flip(img1, True, False)
+                        if _value.kzi[_value.skillnum]*100<_value.t: img1=pygame.transform.flip(img1, True, False)
                         _value.kx-=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
                     _value.ky+=_value.kyv+_value.kws1[_value.skillnum]*_value.ws*0.5
-                    _value.screen.blit(img1, (_value.kx-7+21.6-43.2*(1.02**(-_value.hados[_value.skillnum])),_value.ky-16+21.6-43.2*(1.02**(-_value.hados[_value.skillnum]))))
+                    
+                    if _value.kzi[_value.skillnum]*100<_value.t: _value.screen.blit(img1, (_value.kx-7+21.6-43.2*(1.02**(-_value.hados[_value.skillnum])),_value.ky-16+21.6-43.2*(1.02**(-_value.hados[_value.skillnum]))))
+                    
                     if _value.wazapene[_value.skillnum]==0:
-                        if _value.ky-16>_value.ground:_value.t=_value.kzi[_value.skillnum]*100
+                        if _value.ky-16>_value.ground:_value.t=_value.kzi2[_value.skillnum]*100
                     if _value.wazapene[_value.skillnum]==1:
                         if _value.ky-16>_value.ground and _value.kyv>0:_value.kyv=-_value.kyv
 
                     if _value.wazapene[_value.skillnum]==0:
-                        if _value.ky-16>_value.ground:_value.t2=_value.kzi[_value.skillnum]*100
+                        if _value.ky-16>_value.ground:_value.t2=_value.kzi2[_value.skillnum]*100
                 # 突進
                 if _value.wazatype[_value.skillnum]==2:
                     if _value.flip2==0:
@@ -657,16 +685,28 @@ def step7():
                         _value.kxtest-=_value.kxv+_value.kad1[_value.skillnum]*_value.ad*0.5
                     _value.kytest+=_value.kyv+_value.kws1[_value.skillnum]*_value.ws*0.5
                     if _value.wazapene[_value.skillnum]==0:
-                        if _value.kytest>_value.ground:_value.t=_value.kzi[_value.skillnum]*100
+                        if _value.kytest>_value.ground:_value.t=_value.kzi2[_value.skillnum]*100
                     if _value.wazapene[_value.skillnum]==1:
 
 
                         if _value.kytest>_value.ground and _value.kyv>0:_value.kyv=-_value.kyv
+        if _value.skillnum>=0 and _value.th>=0:
+            _value.kxvha+=_value.kx2h[_value.skillnum]*0.05+_value.kad2h[_value.skillnum]*_value.ad*0.01
+            _value.kyvha+=_value.ky2h[_value.skillnum]*0.05+_value.kws2h[_value.skillnum]*_value.ws*0.01
+            if _value.flip2==0:
+                _value.kxtest+=_value.kxvha+_value.kad1h[_value.skillnum]*_value.ad*0.5
+            else:
+                _value.kxtest-=_value.kxvha+_value.kad1h[_value.skillnum]*_value.ad*0.5
+            _value.kytest+=_value.kyvha+_value.kws1h[_value.skillnum]*_value.ws*0.5
+            if _value.kytest>_value.ground:_value.kytest=_value.ground
                 
-                    # if _value.wazapene[_value.skillnum]==0:
-                    #     if _value.kytest>_value.ground:_value.t2=_value.kzi[_value.skillnum]*100
-        if _value.kxtest>750:_value.kxtest=750
-        if _value.kxtest<0:_value.kxtest=0
+                    
+        if _value.kxtest>750:
+            if _value.t<0 or _value.kzi[_value.skillnum]<_value.t:
+                _value.kxtest=750
+        if _value.kxtest<0:
+            if _value.t<0 or _value.kzi[_value.skillnum]<_value.t:
+                _value.kxtest=0
         _value.ttest+=1
         if _value.ttest==120:_value.ttest=0
         time.sleep(0.01)

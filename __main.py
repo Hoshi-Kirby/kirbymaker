@@ -36,7 +36,8 @@ while True:
         _value.ky2=[0]*(_value.tab+20)
         _value.ky1=[0]*(_value.tab+20)
         _value.ky0=[0]*(_value.tab+20)
-        _value.kzi=[1]*(_value.tab+20)
+        _value.kzi=[0]*(_value.tab+20)
+        _value.kzi2=[1]*(_value.tab+20)
         _value.kad2=[0]*(_value.tab+20)
         _value.kws2=[0]*(_value.tab+20)
         _value.kad1=[0]*(_value.tab+20)
@@ -139,31 +140,50 @@ while True:
             _value.box_rects = [pygame.Rect(371+i*95, 185, 40, 30) for i in range(5)]
             _value.box_rects[4]=pygame.Rect(485, 385, 40, 30)
         else:
-            _value.box_rects = [pygame.Rect(371+i*100, 185, 40, 30) for i in range(13)]
-            for i in range(4):
+            _value.box_rects = [pygame.Rect(371+i*100, 185, 40, 30) for i in range(14)]
+            for i in range(3):
                 _value.box_rects[i+3]=pygame.Rect(371+i*100, 385, 40, 30)
             for i in range(2):
-                _value.box_rects[i+7]=pygame.Rect(371+i*100, 235, 40, 30)
+                _value.box_rects[i+6]=pygame.Rect(651+i*80, 385, 40, 30)
             for i in range(2):
-                _value.box_rects[i+9]=pygame.Rect(371+i*100, 435, 40, 30)
+                _value.box_rects[i+8]=pygame.Rect(371+i*100, 235, 40, 30)
             for i in range(2):
-                _value.box_rects[i+11]=pygame.Rect(401+i*200, 85, 40, 30)
+                _value.box_rects[i+10]=pygame.Rect(371+i*100, 435, 40, 30)
+            for i in range(2):
+                _value.box_rects[i+12]=pygame.Rect(401+i*200, 85, 40, 30)
             
-        active=[False]*13
-        _value.input_text=["0"]*13
-        _value.input_text[0]=str(_value.kx2[_value.ka3])
-        _value.input_text[1]=str(_value.kx1[_value.ka3])
-        _value.input_text[2]=str(_value.kx0[_value.ka3])
-        _value.input_text[3]=str(_value.ky2[_value.ka3])
-        _value.input_text[4]=str(_value.ky1[_value.ka3])
-        _value.input_text[5]=str(_value.ky0[_value.ka3])
-        _value.input_text[6]=str(_value.kzi[_value.ka3])
-        _value.input_text[7]=str(_value.kad2[_value.ka3])
-        _value.input_text[8]=str(_value.kad1[_value.ka3])
-        _value.input_text[9]=str(_value.kws2[_value.ka3])
-        _value.input_text[10]=str(_value.kws1[_value.ka3])
-        _value.input_text[11]=str(_value.kds[_value.ka3])
-        _value.input_text[12]=str(_value.kkk[_value.ka3])
+        active=[False]*14
+        _value.input_text=["0"]*14
+        if _value.wazatype[_value.ka3]==0:
+            _value.input_text[0]=str(_value.kx2[_value.ka3])
+            _value.input_text[1]=str(_value.kx1[_value.ka3])
+            _value.input_text[2]=str(_value.kx0[_value.ka3])
+            _value.input_text[3]=str(_value.ky2[_value.ka3])
+            _value.input_text[4]=str(_value.kzi2[_value.ka3])
+            _value.input_text[5]=str(_value.ky0[_value.ka3])
+            _value.input_text[6]=str(_value.kzi[_value.ka3])
+            _value.input_text[7]=str(_value.kzi2[_value.ka3])
+            _value.input_text[8]=str(_value.kad2[_value.ka3])
+            _value.input_text[9]=str(_value.kad1[_value.ka3])
+            _value.input_text[10]=str(_value.kws2[_value.ka3])
+            _value.input_text[11]=str(_value.kws1[_value.ka3])
+            _value.input_text[12]=str(_value.kds[_value.ka3])
+            _value.input_text[13]=str(_value.kkk[_value.ka3])
+        else:
+            _value.input_text[0]=str(_value.kx2[_value.ka3])
+            _value.input_text[1]=str(_value.kx1[_value.ka3])
+            _value.input_text[2]=str(_value.kx0[_value.ka3])
+            _value.input_text[3]=str(_value.ky2[_value.ka3])
+            _value.input_text[4]=str(_value.ky1[_value.ka3])
+            _value.input_text[5]=str(_value.ky0[_value.ka3])
+            _value.input_text[6]=str(_value.kzi[_value.ka3])
+            _value.input_text[7]=str(_value.kzi2[_value.ka3])
+            _value.input_text[8]=str(_value.kad2[_value.ka3])
+            _value.input_text[9]=str(_value.kad1[_value.ka3])
+            _value.input_text[10]=str(_value.kws2[_value.ka3])
+            _value.input_text[11]=str(_value.kws1[_value.ka3])
+            _value.input_text[12]=str(_value.kds[_value.ka3])
+            _value.input_text[13]=str(_value.kkk[_value.ka3])
 
         _value.ka5=0
         _value.ws=0
@@ -191,8 +211,8 @@ while True:
         for i in range(2):
             _value.box_rects[i+9]=pygame.Rect(371+i*100, 435, 40, 30)
             
-        active=[False]*13
-        _value.input_text=["0"]*13
+        active=[False]*14
+        _value.input_text=["0"]*14
         _value.input_text[0]=str(_value.kx2h[_value.ka3])
         _value.input_text[1]=str(_value.kx1h[_value.ka3])
         _value.input_text[2]=str(_value.kx0h[_value.ka3])
@@ -227,8 +247,9 @@ while True:
         _value.t2=-1
         _value.kxtestv=0
         _value.kytestv=0
-        _value.skillnum=-1.
+        _value.skillnum=-1
         _value.ttest=0
+        _value.hando=0
         
     while _value.step==7:
         _test.step7()

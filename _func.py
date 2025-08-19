@@ -237,9 +237,24 @@ def skill(a):
     _value.kxv=_value.kx1[a]
     _value.kyv=_value.ky1[a]
     _value.skillnum=a
+    _value.kxtestbef=_value.kxtest
+    _value.kytestbef=_value.kytest
     if _value.wazatype[a]==2:
         _value.kxtest+=(-2)*(_value.flip-0.5)*_value.kx0[a]*50
         _value.kytest+=_value.ky0[a]*50
+
+def hando(a):
+    _value.th=0
+    _value.ws=0
+    _value.ad=0
+    _value.kxha=(-2)*(_value.flip-0.5)*_value.kx0h[a]*50+_value.kxtest
+    _value.kyha=_value.ky0h[a]*50+_value.kytest
+    _value.kxvha=_value.kx1h[a]
+    _value.kyvha=_value.ky1h[a]
+    _value.skillnum=a
+    _value.kxtest+=(-2)*(_value.flip-0.5)*_value.kx0h[a]*50
+    _value.kytest+=_value.ky0h[a]*50
+
 
 def skillkirby(x,y,st):
     if _value.ka8_2[_value.skillnum]==0 or st==0 :
