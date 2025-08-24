@@ -17,6 +17,9 @@ import _orbit
 import _reco
 import _test
 import _desi
+import _savedata
+import _name
+import _save
 
 pygame.display.set_caption("k")
 
@@ -27,6 +30,9 @@ while True:
         _value.ka=0
         _value.ka3=0
         _value.t=0
+
+        _value.buki=0
+        _value.bosi=0
         _value.title_list = [""]*(_value.tab+20)
         _value.title_len = [0]*(_value.tab+20)
         _value.wazatype=[0]*(_value.tab+20)
@@ -61,10 +67,10 @@ while True:
         _value.wazadame=[0]*(_value.tab+20)
         _value.wazahuto=[0]*(_value.tab+20)
         _value.wazatame=[0]*(_value.tab+20)
-        _value.buki=0
-        _value.bosi=0
+        _value.ka8_2=[0]*(_value.tab+20)
         _value.bukix=[-34.7]*(_value.tab+20)
         _value.bukiy=[-52.8]*(_value.tab+20)
+        _value.hados=[0]*(_value.tab+20)
         _value.erabuki=[0]*(_value.tab+20)
         image = cv2.imread(r"C:\python\kirby\h.png")
         cv2.imwrite("buki.png", image)
@@ -266,3 +272,33 @@ while True:
         
     while _value.step==8:
         _desi.step8()
+    
+    #保存
+    if _value.step==9:
+        _value.savestep=0
+        _name.nameload()
+    while _value.step==9:
+        while _value.savestep==0:
+            _savedata.savedata()
+        
+        if _value.savestep==1:
+            if _value.nameload[_value.ka9]=="データなし":
+                _value.title=""
+            else:
+                _value.title=_value.nameload[_value.ka9]
+        while _value.savestep==1:
+            _name.name()
+
+        if _value.savestep==2:
+            if _value.nameload=="データなし":
+                _value.savestep=3
+        
+        if _value.savestep==2:
+            _save.savebb()
+        while _value.savestep==2:
+            _save.saveb()
+
+        if _value.savestep==3:
+            _save.save()
+        while _value.savestep==3:
+            _save.savea()

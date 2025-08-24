@@ -138,7 +138,7 @@ def step4():
                         if _value.wazapene==2:wazapene=0
                     if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
                         _value.wazapene[_value.ka3]-=1
-                        if _value.wazapene[_value.ka3]<0:wazapene[_value.ka3]=0
+                        if _value.wazapene[_value.ka3]<0:_value.wazapene[_value.ka3]=0
                     if _value.ka4==4:
                         _value.wazatuka[_value.ka3]-=1
                         if _value.wazatuka[_value.ka3]<0:_value.wazatuka[_value.ka3]=0

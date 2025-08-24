@@ -443,3 +443,14 @@ def tamekirby(x,y,t,step):
     img1.set_colorkey((255, 255, 255))
     img1 = img1.convert_alpha()
     _value.screen.blit(img1, (x,y))
+
+#型自動判定
+def infer_sqlite_type(value):
+    if isinstance(value, int):
+        return "INTEGER"
+    elif isinstance(value, float):
+        return "REAL"
+    elif isinstance(value, str):
+        return "TEXT"
+    else:
+        return "BLOB"  # その他（画像など）も対応可能

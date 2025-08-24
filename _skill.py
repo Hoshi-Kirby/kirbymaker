@@ -96,19 +96,28 @@ def step3():
             _value.screen.blit(text, text_rect)
         if _value.title_list[_value.tab-1]=="":
             text = _value.font.render("設定なし", False, (fill))
+            text_rect = text.get_rect(center=(550, 300+50*(_value.tab-1)+_value.sc))
         else:
             text = _value.font.render(_value.title_list[_value.tab-1], False, (fill))
-        text_rect = text.get_rect(center=(550, 300+50*_value.tab+_value.sc))
+            text_rect = text.get_rect(center=(550, 300+50*_value.tab+_value.sc))
         _value.screen.blit(text, text_rect)
         
         x=50
         y=460
+        if x<mouseX<80+x and y<mouseY<40+y:
+            hozon=(200,100,100)
+        else:
+            hozon=(0,0,0)
+        if x+100<mouseX<x+200 and y<mouseY<y+40:
+            purei=(100,100,200)
+        else:
+            purei=(0,0,0)
         pygame.draw.rect(_value.screen, (200,50,50), (x,y,80,40), width=3,border_radius=5)
         pygame.draw.rect(_value.screen, (100,100,200), (100+x,y,100,40), width=3,border_radius=5)
-        text = _value.font.render("保存", False, (fill))
+        text = _value.font.render("保存", False, (hozon))
         text_rect = text.get_rect(center=(x+40,y+20))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render("プレイ", False, (fill))
+        text = _value.font.render("プレイ", False, (purei))
         text_rect = text.get_rect(center=(x+150,y+20))
         _value.screen.blit(text, text_rect)
         for event in pygame.event.get():
@@ -117,9 +126,9 @@ def step3():
                 sys.exit()
             elif event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    if x<mouseX<80+x and y<mouseY<40+mouseY:
+                    if x<mouseX<80+x and y<mouseY<40+y:
                         #保存
-                        a=1
+                        _value.step=9
                     if x+100<mouseX<x+200 and y<mouseY<y+40:
                         _value.step=7
             if event.type == KEYDOWN: 

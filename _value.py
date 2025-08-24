@@ -164,20 +164,52 @@ comt=0
 comtr=0
 
 ka8=0
-ka8_2=[0]*40
-erabuki=[0]*40
-bukix=[0]*40
-bukiy=[0]*40
-hados=[0]*40
+ka8_2=[0]*(tab+20)
+erabuki=[0]*(tab+20)
+bukix=[0]*(tab+20)
+bukiy=[0]*(tab+20)
+hados=[0]*(tab+20)
 
 skillnum=0
 skilltime=-1
 hando=0
 
-
+savestep=0
+ka9=-1
+nameload=[]
 
 # font = pygame.font.SysFont("HG創英角ﾎﾟｯﾌﾟ体", 30)
 font = pygame.font.SysFont("HG丸ｺﾞｼｯｸM-PRO", 30)
 pekin = pygame.image.load("壁紙.png").convert()
 original_width, original_height = pekin.get_size()
 pekin = pygame.transform.scale_by(pekin,600/original_height)
+
+
+
+# import sys, random
+# import pygame, time
+# import cv2
+# import numpy as np
+# image = cv2.imread(r"C:\python\kirby\h.png")
+# cv2.imwrite("buki.png", image)
+# from pygame.locals import *
+# pygame.init()
+# pygame.mixer.init()
+
+
+# import _func
+# import _value
+
+# def function():
+#     pygame.display.update()
+#     _value.screen.fill((200,200,255))
+#     mouseX, mouseY = pygame.mouse.get_pos()
+
+#     for event in pygame.event.get():
+#         if event.type == QUIT:
+#             pygame.quit()
+#             sys.exit()
+#         #if event.type == MOUSEBUTTONDOWN:
+#         #if event.type == pygame.KEYDOWN:
+    
+#     time.sleep(0.01)
