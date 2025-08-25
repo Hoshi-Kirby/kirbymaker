@@ -177,6 +177,10 @@ hando=0
 savestep=0
 ka9=-1
 nameload=[]
+bukiload=[]
+bosiload=[]
+
+loadstep=0
 
 # font = pygame.font.SysFont("HG創英角ﾎﾟｯﾌﾟ体", 30)
 font = pygame.font.SysFont("HG丸ｺﾞｼｯｸM-PRO", 30)

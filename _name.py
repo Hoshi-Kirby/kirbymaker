@@ -3,6 +3,7 @@ import pygame, time
 import cv2
 import numpy as np
 import sqlite3
+import os
 image = cv2.imread(r"C:\python\kirby\h.png")
 cv2.imwrite("buki.png", image)
 from pygame.locals import *
@@ -14,36 +15,48 @@ import _func
 import _value
 
 def nameload():
-    conn = sqlite3.connect("save.db")
     _value.nameload = []
-    for slot in range(6):
-        #ロード
-        table_name = f"save{slot}"
-        cursor = conn.cursor()
+    _value.bukiload = []
+    _value.bosiload = []
+    if os.path.isdir("save") and os.path.isfile(os.path.join("save", "save.db")):
+        
+        conn = sqlite3.connect(os.path.join("save", "save.db"))
+        for slot in range(6):
+            #ロード
+            table_name = f"save{slot}"
+            cursor = conn.cursor()
 
-        # テーブルの存在チェック
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?", (table_name,))
-        table_exists = cursor.fetchone()
+            # テーブルの存在チェック
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?", (table_name,))
+            table_exists = cursor.fetchone()
 
-        if not table_exists:
-            _value.nameload.append("データなし")  # テーブルが存在しない → 空文字を追加
-            continue
+            if not table_exists:
+                _value.nameload.append("データなし")  # テーブルが存在しない
+                _value.bukiload.append(0)
+                _value.bosiload.append(0)
+                continue
 
 
-        cursor.execute(f"PRAGMA table_info({table_name})")
+            cursor.execute(f"PRAGMA table_info({table_name})")
 
-        columns_info = cursor.fetchall()
-        columns = [col[1] for col in columns_info]
+            columns_info = cursor.fetchall()
+            columns = [col[1] for col in columns_info]
 
-        cursor.execute(f"SELECT col2 FROM {table_name} WHERE col1 = ?", (slot,))
-        row = cursor.fetchone()
+            cursor.execute(f"SELECT col2,col3,col4 FROM {table_name} WHERE col1 = ?", (slot,))
+            row = cursor.fetchone()
 
-        if row:
-            _value.nameload.append(row[0])
-        else:
-            _value.nameload.append("")
+            if row:
+                _value.nameload.append(row[0])
+            else:
+                _value.nameload.append("")
+            _value.bukiload.append(row[1])
+            _value.bosiload.append(row[2])
 
-    conn.close()
+        conn.close()
+    else:
+        _value.nameload = ["データなし"]*6
+        _value.bukiload = []
+        _value.bosiload = []
 
 def name():
     pygame.display.update()

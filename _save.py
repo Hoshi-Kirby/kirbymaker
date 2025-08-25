@@ -3,6 +3,8 @@ import pygame, time
 import cv2
 import numpy as np
 import sqlite3
+import os
+from PIL import Image
 image = cv2.imread(r"C:\python\kirby\h.png")
 cv2.imwrite("buki.png", image)
 from pygame.locals import *
@@ -119,7 +121,8 @@ def save():
                 ]
 
         #セーブ
-        conn = sqlite3.connect("save.db")  # データベースに接続（なければ作成）
+        os.makedirs("save", exist_ok=True) # フォルダがなければ作成
+        conn = sqlite3.connect(os.path.join("save", "save.db"))  # データベースに接続（なければ作成）
         cursor = conn.cursor()             # SQLを操作するためのカーソルを取得
 
         #要素数が変わるときにいるけど要素数が変わらないならいらない
@@ -144,6 +147,41 @@ def save():
 
         conn.commit()  # 保存（変更を確定）
         conn.close()   # 接続を終了
+
+
+        save_folder = "save"
+
+        img = Image.open("buki.png")
+        filename = f"{slot}-buki.png"
+        save_path = os.path.join(save_folder, filename)
+        img.save(save_path)
+
+        img = Image.open("buki2.png")
+        filename = f"{slot}-buki2.png"
+        save_path = os.path.join(save_folder, filename)
+        img.save(save_path)
+
+        for i in range(30):
+            img = Image.open(f"buki ({i}).png")
+            filename = f"{slot}-buki ({i}).png"
+            save_path = os.path.join(save_folder, filename)
+            img.save(save_path)
+
+            img = Image.open(f"buki2 ({i}).png")
+            filename = f"{slot}-buki2 ({i}).png"
+            save_path = os.path.join(save_folder, filename)
+            img.save(save_path)
+
+            img = Image.open(f"hado ({i}).png")
+            filename = f"{slot}-hado ({i}).png"
+            save_path = os.path.join(save_folder, filename)
+            img.save(save_path)
+
+            img = Image.open(f"hado2 ({i}).png")
+            filename = f"{slot}-hado2 ({i}).png"
+            save_path = os.path.join(save_folder, filename)
+            img.save(save_path)
+
 
     for event in pygame.event.get():
         if event.type == QUIT:

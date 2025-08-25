@@ -22,6 +22,9 @@ def step1():
         text = _value.font.render("新規作成", False, (0,0,0))
         text_rect = text.get_rect(center=(700, 30))
         _value.screen.blit(text, text_rect)
+        text = _value.font.render("ロード", False, (0,0,0))
+        text_rect = text.get_rect(center=(100, 30))
+        _value.screen.blit(text, text_rect)
 
         
         if _value.ky==_value.ground: _value.hob=0
@@ -71,6 +74,7 @@ def step1():
                     if _value.pose==9:
                         _value.pose=1
                 if pressed_keys[K_d]:
+                    _value.flip=0
                     if _value.hob==1:
                         _value.kxv=1.5
                     else:
@@ -78,6 +82,7 @@ def step1():
                     if _value.kx>750:
                         _value.kx=750
                 if pressed_keys[K_a]:
+                    _value.flip=1
                     if _value.hob==1:
                         _value.kxv=-1.5
                     else:

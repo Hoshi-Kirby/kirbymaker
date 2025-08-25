@@ -3,6 +3,7 @@ import pygame, time
 import cv2
 import numpy as np
 import _value
+import os
 
 def bgr_to_rgb(color_bgr):
     b, g, r = color_bgr
@@ -454,3 +455,52 @@ def infer_sqlite_type(value):
         return "TEXT"
     else:
         return "BLOB"  # その他（画像など）も対応可能
+    
+def loadkirby(x,y,buki,bosi,slot):
+        if buki==0:
+            if bosi==0:
+                img1 = pygame.image.load("ノーマルf.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2.5)
+                _value.screen.blit(img1, (x,y))
+            if bosi==1:
+                img1 = pygame.image.load("ノーマルfボム.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2.5)
+                _value.screen.blit(img1, (x-10, y-10))
+            if bosi==2:
+                img1 = pygame.image.load("ノーマルfファイター.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2.5)
+                _value.screen.blit(img1, (x-5, y))
+        if buki==1:
+            if bosi==0:
+                img1 = pygame.image.load("ノーマルh.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2.55)
+                _value.screen.blit(img1, (x-2.3, y))
+            if bosi==1:
+                img1 = pygame.image.load("ノーマルhボム.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2.5)
+                _value.screen.blit(img1, (x-10, y-10))
+            if bosi==2:
+                img1 = pygame.image.load("ノーマルhファイター.png")
+                img1.set_colorkey((255, 255, 255))
+                img1 = img1.convert_alpha()
+                img1 = pygame.transform.scale_by(img1, 2.5)
+                _value.screen.blit(img1, (x-5, y))
+
+            try:
+                img2 = pygame.image.load(f"save/{slot}-buki.png")
+                img2 = pygame.transform.scale_by(img2, 2.5)
+                img2.set_colorkey((255, 255, 255))
+                img2 = img2.convert_alpha()
+                _value.screen.blit(img2, (x-34.7, y-52.8))
+            except pygame.error as e:
+                1

@@ -20,13 +20,18 @@ import _desi
 import _savedata
 import _name
 import _save
+import _load
 
 pygame.display.set_caption("k")
 
-
+_value.step=10
 while True:
 
-    if _value.step==0:
-        a=0
-    while _value.step==0:
-        a=0
+    if _value.step==10:
+        _value.loadstep=0
+        _name.nameload()
+    while _value.step==10:
+        while _value.loadstep==0:
+            _load.loaddata()
+        while _value.loadstep==1:
+            1

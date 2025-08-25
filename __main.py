@@ -20,6 +20,7 @@ import _desi
 import _savedata
 import _name
 import _save
+import _load
 
 pygame.display.set_caption("k")
 
@@ -290,7 +291,7 @@ while True:
             _name.name()
 
         if _value.savestep==2:
-            if _value.nameload=="データなし":
+            if _value.nameload[_value.ka9]=="データなし":
                 _value.savestep=3
         
         if _value.savestep==2:

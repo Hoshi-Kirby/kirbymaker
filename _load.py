@@ -12,21 +12,24 @@ pygame.mixer.init()
 import _func
 import _value
 
-def savedata():
+def loaddata():
     pygame.display.update()
     _value.screen.fill((200,200,255))
     mouseX, mouseY = pygame.mouse.get_pos()
-    text = _value.font.render("どこにセーブしますか", False, (0,0,0))
+    text = _value.font.render("データを選択してください", False, (0,0,0))
     text_rect = text.get_rect(center=(400, 70))
     _value.screen.blit(text, text_rect)
     ka9=-1
     for i in range(2):
         for ii in range(3):
-            if 80+i*350<mouseX<80+i*350+300 and 130+ii*150<mouseY<130+ii*150+100:
+            if 80+i*350<mouseX<80+i*350+300 and 130+ii*150<mouseY<130+ii*150+100 and _value.nameload[i*3+ii]!="データなし":
                 pygame.draw.rect(_value.screen,(220,220,230),(80+i*350,130+ii*150,300,100),border_radius=5)
                 ka9=i*3+ii
             else:
-                pygame.draw.rect(_value.screen,(255,255,255),(80+i*350,130+ii*150,300,100),border_radius=5)
+                if _value.nameload[i*3+ii]=="データなし":
+                    pygame.draw.rect(_value.screen,(180,180,180),(80+i*350,130+ii*150,300,100),border_radius=5)
+                else:
+                    pygame.draw.rect(_value.screen,(255,255,255),(80+i*350,130+ii*150,300,100),border_radius=5)
             text = _value.font.render(str(i*3+ii+1), False, (0,0,0))
             text_rect = text.get_rect(center=(80+i*350+20,130+ii*150+20))
             _value.screen.blit(text, text_rect)
@@ -43,10 +46,11 @@ def savedata():
             sys.exit()
         if event.type == MOUSEBUTTONDOWN:
             if event.button == 1 and ka9>=0:
-                _value.savestep=1
+                if _value.nameload[ka9]!="データなし":
+                    _value.loadstep=1
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_ESCAPE:
-                _value.savestep=-1
-                _value.step=3
+                _value.loadstep=0
+                _value.step=1
     
     time.sleep(0.01)
