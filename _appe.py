@@ -50,18 +50,63 @@ def step2():
                 text = _value.font.render("あり", False, (0,0,0))
             text_rect = text.get_rect(center=(450, 400))
             _value.screen.blit(text, text_rect)
+
+            text = _value.font.render("武器を変更する", False, (0,0,0))
+            change_rect = text.get_rect(center=(400, 450))
             if _value.buki==1:
-                if _value.ka==2:
+                if _value.ka==2 or change_rect.collidepoint(mouseX,mouseY):
                     text = _value.font.render("武器を変更する", False, (150,50,50))
-                else:
-                    text = _value.font.render("武器を変更する", False, (0,0,0))
-                text_rect = text.get_rect(center=(500, 450))
-                _value.screen.blit(text, text_rect)
+                    change_rect = text.get_rect(center=(400, 450))
+                _value.screen.blit(text, change_rect)
+            x=50
+            y=460
+            if x+620<mouseX<80+x+620 and y<mouseY<40+y:
+                hozon=(200,100,100)
+            else:
+                hozon=(0,0,0)
+            if x<mouseX<x+80 and y<mouseY<y+40:
+                purei=(100,100,200)
+            else:
+                purei=(0,0,0)
             if _value.esch==1:
-                pygame.draw.rect(_value.screen, (140,140,180),(100,80,600,440))
+                hozon=(0,0,0)
+                purei=(0,0,0)
+            pygame.draw.rect(_value.screen, (200,50,50), (x+620,y,80,40), width=3,border_radius=5)
+            pygame.draw.rect(_value.screen, (100,100,200), (x,y,80,40), width=3,border_radius=5)
+            text = _value.font.render("次へ", False, (hozon))
+            text_rect = text.get_rect(center=(x+40+620,y+20))
+            _value.screen.blit(text, text_rect)
+            text = _value.font.render("戻る", False, (purei))
+            text_rect = text.get_rect(center=(x+40,y+20))
+            _value.screen.blit(text, text_rect)
+
+            if _value.esch==1:
+                if 120+480<mouseX<80+120+480 and y<mouseY<40+y:
+                    hozon=(200,100,100)
+                else:
+                    hozon=(0,0,0)
+                if 120<mouseX<120+100 and y<mouseY<y+40:
+                    purei=(100,100,200)
+                else:
+                    purei=(0,0,0)
+                pygame.draw.rect(_value.screen, (255,255,255),(100,80,600,440))
+                text=_value.font.render("保存していないデータは消えてしまいます", False, (0,0,0))
+                text_rect = text.get_rect(center=(400, 270))
+                _value.screen.blit(text, text_rect)
                 text=_value.font.render("本当に戻ってよろしいですか？", False, (0,0,0))
                 text_rect = text.get_rect(center=(400, 300))
                 _value.screen.blit(text, text_rect)
+
+                pygame.draw.rect(_value.screen, (200,50,50), (120+480,y,80,40), width=3,border_radius=5)
+                pygame.draw.rect(_value.screen, (100,100,200), (120,y,100,40), width=3,border_radius=5)
+                text = _value.font.render("はい", False, (hozon))
+                text_rect = text.get_rect(center=(120+40+480,y+20))
+                _value.screen.blit(text, text_rect)
+                text = _value.font.render("いいえ", False, (purei))
+                text_rect = text.get_rect(center=(120+50,y+20))
+                _value.screen.blit(text, text_rect)
+
+
         elif _value.step2==1:
             x=250
             y=50
@@ -96,7 +141,20 @@ def step2():
             pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cg*100/255,200),5)
             pygame.draw.circle(_value.screen,(255,255,255),(650+_value.cb*100/255,250),5)
 
-
+            x=50
+            y=460
+            if x+620<mouseX<80+x+620 and y<mouseY<40+y:
+                hozon=(200,100,100)
+            else:
+                hozon=(0,0,0)
+            if x<mouseX<x+80 and y<mouseY<y+40:
+                purei=(100,100,200)
+            else:
+                purei=(0,0,0)
+            pygame.draw.rect(_value.screen, (100,100,200), (x,y,80,40), width=3,border_radius=5)
+            text = _value.font.render("戻る", False, (purei))
+            text_rect = text.get_rect(center=(x+40,y+20))
+            _value.screen.blit(text, text_rect)
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -149,19 +207,38 @@ def step2():
                             for i2 in range(32):
                                 image[i,i2]=(255,255,255)
             elif event.type == MOUSEBUTTONDOWN:
-                if 350<mouseX<450 and 500<mouseY<600:
-                    _value.flip=1-_value.flip
-                if event.button == 1 and _value.step2==1:  # 左クリック
-                    _value.drag = 1
-                if event.button == 3 and _value.step2==1:  # 左クリック
-                    _value.drag = 3
-                    if _value.my>=0:
-                        bgr = tuple(int(c) for c in image[_value.my, _value.mx])
-                        fill = _func.bgr_to_rgb(bgr)
-                        _value.cr,_value.cg,_value.cb=fill
-                if event.button == 2 and _value.step2==1:
-                    if _value.back==(255,255,255):_value.back=(0,0,0)
-                    elif _value.back==(0,0,0):_value.back=(255,255,255)
+                if _value.step2==0:
+                    if _value.esch==1:
+                        #90+540,y,80,40), width=3,border_radius=5)pygame.draw.rect(_value.screen, (100,100,200), (90,y+20,y,100,40
+                        if 120+480<mouseX<80+120+480 and y<mouseY<40+y:
+                            _value.step=1
+                        #いいえ
+                        if 120<mouseX<120+100 and y<mouseY<y+40:
+                            _value.esch=0
+                    else:
+                        if change_rect.collidepoint(mouseX,mouseY):
+                            _value.step2=1
+                        if x+620<mouseX<80+x+620 and y<mouseY<40+y:
+                            _value.step=3
+                        if x<mouseX<x+80 and y<mouseY<y+40:
+                            _value.esch=1
+                if _value.step2==1:
+                    if 350<mouseX<450 and 500<mouseY<600:
+                        _value.flip=1-_value.flip
+                    if event.button == 1 and _value.step2==1:  # 左クリック
+                        _value.drag = 1
+                    if event.button == 3 and _value.step2==1:  # 左クリック
+                        _value.drag = 3
+                        if _value.my>=0:
+                            bgr = tuple(int(c) for c in image[_value.my, _value.mx])
+                            fill = _func.bgr_to_rgb(bgr)
+                            _value.cr,_value.cg,_value.cb=fill
+                    if event.button == 2 and _value.step2==1:
+                        if _value.back==(255,255,255):_value.back=(0,0,0)
+                        elif _value.back==(0,0,0):_value.back=(255,255,255)
+                    
+                    if x<mouseX<x+80 and y<mouseY<y+40:
+                        _value.step2=0
             elif event.type == MOUSEBUTTONUP:
                 if event.button ==1 and _value.drag==1:
                     _value.drag = 0

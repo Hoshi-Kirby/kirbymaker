@@ -70,6 +70,9 @@ def saveb():
 
 #一度切り
 def save():
+    text = _value.font.render("保存中...", False, (0,0,0))
+    text_rect = text.get_rect(center=(400,350+20))
+    _value.screen.blit(text, text_rect)
     pygame.display.update()
 
     if _value.ka9>=0:

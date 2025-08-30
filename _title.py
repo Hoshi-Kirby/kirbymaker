@@ -13,18 +13,18 @@ import _value
 def step1():
         pygame.display.update()
         _value.screen.blit(_value.pekin, (-60,0))
-        
+        mouseX, mouseY = pygame.mouse.get_pos()
 
         
         text = _value.font.render("コピーメーカー", False, (0,0,0))
         text_rect = text.get_rect(center=(400, 180))
         _value.screen.blit(text, text_rect)
         text = _value.font.render("新規作成", False, (0,0,0))
-        text_rect = text.get_rect(center=(700, 30))
-        _value.screen.blit(text, text_rect)
+        text_rectr = text.get_rect(center=(700, 30))
+        _value.screen.blit(text, text_rectr)
         text = _value.font.render("ロード", False, (0,0,0))
-        text_rect = text.get_rect(center=(100, 30))
-        _value.screen.blit(text, text_rect)
+        text_rectl = text.get_rect(center=(100, 30))
+        _value.screen.blit(text, text_rectl)
 
         
         if _value.ky==_value.ground: _value.hob=0
@@ -33,6 +33,11 @@ def step1():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == MOUSEBUTTONDOWN:
+                if text_rectr.collidepoint(mouseX,mouseY):
+                    _value.step=2
+                if text_rectl.collidepoint(mouseX,mouseY):
+                    _value.step=10
             if event.type == KEYDOWN: 
                 if _value.kaih==0:
                     if event.key == K_RETURN:
@@ -49,6 +54,8 @@ def step1():
                                 _value.kyv=-6
                         if 620<_value.kx<730 and -10<_value.ky<40:
                             _value.step=2
+                        if 40<_value.kx<150 and -10<_value.ky<40:
+                            _value.step=10
                     if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
                         _value.flip=1
                         if _value.guard==1:

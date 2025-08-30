@@ -15,6 +15,7 @@ import _value
 
 def step4():
         pygame.display.update()
+        mouseX, mouseY = pygame.mouse.get_pos()
         _value.screen.fill((200,200,255))
         if _value.wazatype[_value.ka3]==2 and _value.t>_value.kzi[_value.ka3]*100:
             if(_value.t2<10):
@@ -47,12 +48,169 @@ def step4():
             rect_surface = pygame.Surface((abs(_value.kx0[_value.ka3]), abs(_value.ky2[_value.ka3])), pygame.SRCALPHA)
             rect_surface.fill((255, 0, 0, 128))  # ← A=128で半透明
             _value.screen.blit(rect_surface, (_value.kx2[_value.ka3] + 125,_value.kx1[_value.ka3] + 315))
+        mouseka4=-1
+        for i in range (_value.tab4):
+            text = _value.font.render("遠遠遠遠遠距距離離離離離", False, (200,150,150))
+            text_rect = text.get_rect(center=(570, 150+i*50))
+            if text_rect.collidepoint(mouseX,mouseY):
+                if _value.wazatype[_value.ka3]!=0 or _value.ka4!=3:
+                    mouseka4=i+1
+        
+        if _value.ka4==1:
+            mouseka4_2=_value.wazatype[_value.ka3]
+            text = _value.font.render("近距離", False, (100,100,100))
+            text_rect = text.get_rect(center=(450, 150))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=0
+            text = _value.font.render("遠距離", False, (100,100,100))
+            text_rect = text.get_rect(center=(550, 150))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=1
+            text = _value.font.render("突進", False, (100,100,100))
+            text_rect = text.get_rect(center=(640, 150))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=2
+        if _value.ka4==2:
+            mouseka4_2=0
+            if _value.wazatype[_value.ka3]==0:
+                text = _value.font.render("攻撃範囲→", False, (0,0,0))
+            else:
+                text = _value.font.render("軌道→", False, (0,0,0))
+            text_rect = text.get_rect(center=(470, 200))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=1
+        if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
+            mouseka4_2=_value.wazapene[_value.ka3]
+            text = _value.font.render("停止", False, (100,100,100))
+            text_rect = text.get_rect(center=(450, 250))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=0
+
+            text = _value.font.render("反射", False, (100,100,100))
+            text_rect = text.get_rect(center=(550, 250))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=1
+
+            if _value.wazatype[_value.ka3]==1:
+                text = _value.font.render("貫通", False, (100,100,100))
+                text_rect = text.get_rect(center=(640, 250))
+                if text_rect.collidepoint(mouseX,mouseY):
+                    mouseka4_2=2
+        if _value.ka4==4:
+            mouseka4_2=_value.wazatuka[_value.ka3]
+            text = _value.font.render("無視", False, (100,100,100))
+            text_rect = text.get_rect(center=(550, 300))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=0
+
+            text = _value.font.render("受ける", False, (100,100,100))
+            text_rect = text.get_rect(center=(650, 300))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=1
+        if _value.ka4==7:
+            mouseka4_2=0
+            text = _value.font.render("反動→", False, (0,0,0))
+            text_rect = text.get_rect(center=(450, 450))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=1
+        if _value.ka4==8:
+            mouseka4_2=0
+            text = _value.font.render("デザイン→", False, (0,0,0))
+            text_rect = text.get_rect(center=(470, 500))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka4_2=1
+        if _value.ka4==9:
+            mouseka4_2=_value.wazatame[_value.ka3]
+            if _value.ka3<10:
+                text = _value.font.render("押した時", False, (100,100,100))
+                text_rect = text.get_rect(center=(550, 550))
+                if text_rect.collidepoint(mouseX,mouseY):
+                    mouseka4_2=0
+
+                text = _value.font.render("離した時", False, (100,100,100))
+                text_rect = text.get_rect(center=(690, 550))
+                if text_rect.collidepoint(mouseX,mouseY):
+                    mouseka4_2=1
+        
+
+
+
+
+        x=50
+        y=510
+        y2=460-y
+        if x<mouseX<80+x and y<mouseY<40+y:
+            hozon=(200,100,100)
+        else:
+            hozon=(0,0,0)
+        if x+100<mouseX<x+200 and y<mouseY<y+40:
+            purei=(100,100,200)
+        else:
+            purei=(0,0,0)
+        if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
+            modoru=(100,100,100)
+        else:
+            modoru=(0,0,0)
+        pygame.draw.rect(_value.screen, (200,50,50), (x,y,80,40), width=3,border_radius=5)
+        pygame.draw.rect(_value.screen, (100,100,200), (100+x,y,100,40), width=3,border_radius=5)
+        pygame.draw.rect(_value.screen, (100,100,100), (50,y+y2,80,40), width=3,border_radius=5)
+        text = _value.font.render("保存", False, (hozon))
+        text_rect = text.get_rect(center=(x+40,y+20))
+        _value.screen.blit(text, text_rect)
+        text = _value.font.render("プレイ", False, (purei))
+        text_rect = text.get_rect(center=(x+150,y+20))
+        _value.screen.blit(text, text_rect)
+        text = _value.font.render("戻る", False, (modoru))
+        text_rect = text.get_rect(center=(90,y+20+y2))
+        _value.screen.blit(text, text_rect)
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if x<mouseX<80+x and y<mouseY<40+y:
+                        #保存
+                        _value.stepbefore=4
+                        _value.step=9
+                    if x+100<mouseX<x+200 and y<mouseY<y+40:
+                        _value.stepbefore=4
+                        _value.step=7
+                    if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                        _value.step=3
+                    
 
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if _value.ka4==1:
+                        _value.wazatype[_value.ka3]=mouseka4_2
+                    if _value.ka4==2:
+                        if mouseka4_2==1:_value.step=5
+                    if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
+                        _value.wazapene[_value.ka3]=mouseka4_2
+                    if _value.ka4==4:
+                        _value.wazatuka[_value.ka3]=mouseka4_2
+                    if _value.ka4==7:
+                        if mouseka4_2==1:_value.step=6
+                    if _value.ka4==8:
+                        if mouseka4_2==1:_value.step=8
+                    if _value.ka4==9:
+                        _value.wazatame[_value.ka3]=mouseka4_2
+
+                    if mouseka4!=-1:
+                        if _value.ka4==mouseka4:
+                            1
+                        _value.ka4=mouseka4
+                if event.button == 4:
+                    _value.ka4-=1
+                    if _value.ka4<1:_value.ka4=1
+                    if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
+                        _value.ka4=2
+                if event.button == 5:
+                    if _value.ka4>0:
+                        _value.ka4+=1
+                        if _value.ka4>_value.tab4:
+                            _value.ka4=_value.tab4
+                        if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
+                            _value.ka4=4
                 # 入力欄がクリックされたかどうか
                 if _value.input_box.collidepoint(event.pos):
                     _value.ka4=0
@@ -135,7 +293,7 @@ def step4():
                     if _value.ka4==1:
                         _value.wazatype[_value.ka3]-=1
                         if _value.wazatype[_value.ka3]<0:_value.wazatype[_value.ka3]=0
-                        if _value.wazapene==2:wazapene=0
+                        if _value.wazapene[_value.ka3]==2:_value.wazapene[_value.ka3]=1
                     if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
                         _value.wazapene[_value.ka3]-=1
                         if _value.wazapene[_value.ka3]<0:_value.wazapene[_value.ka3]=0

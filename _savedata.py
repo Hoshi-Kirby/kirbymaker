@@ -47,6 +47,6 @@ def savedata():
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_ESCAPE:
                 _value.savestep=-1
-                _value.step=3
+                _value.step=_value.stepbefore
     
     time.sleep(0.01)

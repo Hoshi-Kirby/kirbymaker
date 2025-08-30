@@ -12,6 +12,7 @@ pygame.init()
 pygame.mixer.init()
 
 step=1
+stepbefore=1
 white = (255,255,255)
 black = (0,0,0)
 red=(255,0,0)
@@ -181,6 +182,7 @@ bukiload=[]
 bosiload=[]
 
 loadstep=0
+ka10=0
 
 # font = pygame.font.SysFont("HG創英角ﾎﾟｯﾌﾟ体", 30)
 font = pygame.font.SysFont("HG丸ｺﾞｼｯｸM-PRO", 30)

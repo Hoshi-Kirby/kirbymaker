@@ -303,3 +303,17 @@ while True:
             _save.save()
         while _value.savestep==3:
             _save.savea()
+    
+    #ロード
+    if _value.step==10:
+        _value.loadstep=0
+        _name.nameload()
+    while _value.step==10:
+        while _value.loadstep==0:
+            _load.loaddata()
+        while _value.loadstep==1:
+            _load.loadb()
+        if _value.loadstep==2:
+            _load.load()
+        while _value.loadstep==2:
+            _load.loada()

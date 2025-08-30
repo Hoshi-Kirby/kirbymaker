@@ -14,6 +14,7 @@ import _value
 
 def step7():
         pygame.display.update()
+        mouseX, mouseY = pygame.mouse.get_pos()
         
         _value.screen.fill((200,200,255))
 
@@ -30,6 +31,9 @@ def step7():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type==MOUSEBUTTONDOWN:
+                if 620<mouseX<730 and -10<mouseY<40:
+                    _value.step=_value.stepbefore
             if event.type == KEYDOWN:
                 if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
                     command=""
@@ -47,7 +51,7 @@ def step7():
                             else:
                                 _value.kytestv=-6
                         if 620<_value.kxtest<730 and -10<_value.kytest<40:
-                            _value.step=3
+                            _value.step=_value.stepbefore
                     if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
                         _value.flip=1
                         command="←"
@@ -114,7 +118,7 @@ def step7():
                                     _func.skill(_value.skillnum)
                                 _value.skilltime=0
                 if event.key == pygame.K_ESCAPE:
-                    _value.step=3
+                    _value.step=_value.stepbefore
             if event.type == KEYUP:
                 if event.key == K_RSHIFT:
                     if 0<=_value.skillnum<9 and _value.skilltime>=0:

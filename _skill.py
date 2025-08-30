@@ -86,13 +86,20 @@ def step3():
         text_rect = text.get_rect(center=(400, 700+_value.sc))
         _value.screen.blit(text, text_rect)
 
-
+        mouseka3=-1
         for i in range(_value.tab-1):
             if _value.title_list[i]=="":
                 text = _value.font.render("設定なし", False, (fill))
             else:
                 text = _value.font.render(_value.title_list[i], False, (fill))
             text_rect = text.get_rect(center=(550, 300+50*i+_value.sc))
+            if text_rect.collidepoint(mouseX,mouseY):
+                mouseka3=i
+                if _value.title_list[i]=="":
+                    text = _value.font.render("設定なし", False, (tuple(int(255-(255-c)*0.8) for c in fill)))
+                else:
+                    text = _value.font.render(_value.title_list[i], False, (tuple(int(255-(255-c)*0.8) for c in fill)))
+                text_rect = text.get_rect(center=(550, 300+50*i+_value.sc))
             _value.screen.blit(text, text_rect)
         if _value.title_list[_value.tab-1]=="":
             text = _value.font.render("設定なし", False, (fill))
@@ -103,7 +110,8 @@ def step3():
         _value.screen.blit(text, text_rect)
         
         x=50
-        y=460
+        y=510
+        y2=460-y
         if x<mouseX<80+x and y<mouseY<40+y:
             hozon=(200,100,100)
         else:
@@ -112,25 +120,56 @@ def step3():
             purei=(100,100,200)
         else:
             purei=(0,0,0)
+        if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
+            modoru=(100,100,100)
+        else:
+            modoru=(0,0,0)
         pygame.draw.rect(_value.screen, (200,50,50), (x,y,80,40), width=3,border_radius=5)
         pygame.draw.rect(_value.screen, (100,100,200), (100+x,y,100,40), width=3,border_radius=5)
+        pygame.draw.rect(_value.screen, (100,100,100), (50,y+y2,80,40), width=3,border_radius=5)
         text = _value.font.render("保存", False, (hozon))
         text_rect = text.get_rect(center=(x+40,y+20))
         _value.screen.blit(text, text_rect)
         text = _value.font.render("プレイ", False, (purei))
         text_rect = text.get_rect(center=(x+150,y+20))
         _value.screen.blit(text, text_rect)
+        text = _value.font.render("戻る", False, (modoru))
+        text_rect = text.get_rect(center=(90,y+20+y2))
+        _value.screen.blit(text, text_rect)
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == MOUSEBUTTONDOWN:
+            if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if x<mouseX<80+x and y<mouseY<40+y:
                         #保存
+                        _value.stepbefore=3
                         _value.step=9
                     if x+100<mouseX<x+200 and y<mouseY<y+40:
+                        _value.stepbefore=3
                         _value.step=7
+                    if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                        _value.step=2
+                    if mouseka3!=-1:
+                        if _value.ka3==mouseka3:
+                            _value.step=4
+                        _value.sctime=(_value.ka3-mouseka3)*10
+                        _value.ka3=mouseka3
+                if event.button == 4:
+                    if _value.sctime==0:
+                        _value.ka3-=1
+                        if _value.ka3<0:_value.ka3=0
+                        if _value.ka3==9:_value.ka3=10
+                        if _value.ka3==19:_value.ka3=20
+                        _value.sctime=10
+                if event.button == 5:
+                    if _value.sctime==0:
+                        _value.ka3+=1
+                        if _value.ka3==_value.tab:_value.ka3=_value.tab-1
+                        if _value.ka3==_value.tab+10:_value.ka3=_value.tab-1+10
+                        if _value.ka3==_value.tab+20:_value.ka3=_value.tab-1+20
+                        _value.sctime=-10
             if event.type == KEYDOWN: 
                 if event.key == pygame.K_UP or event.key == pygame.K_w:
                     if _value.sctime==0:

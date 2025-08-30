@@ -34,4 +34,8 @@ while True:
         while _value.loadstep==0:
             _load.loaddata()
         while _value.loadstep==1:
-            1
+            _load.loadb()
+        if _value.loadstep==2:
+            _load.load()
+        while _value.loadstep==2:
+            _load.loada()

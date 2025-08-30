@@ -14,8 +14,8 @@ import _value
 
 def step8():
         pygame.display.update()
-        _value.screen.fill((200,200,255))
         mouseX, mouseY = pygame.mouse.get_pos()
+        _value.screen.fill((200,200,255))
         if _value.ka8==0:
             fill=0,0,0
             fill2=(100,100,100)
@@ -194,7 +194,17 @@ def step8():
             pygame.draw.line(_value.screen,fill,(700,400),(700,500),3)
             pygame.draw.circle(_value.screen,(255,255,255),(700,450+_value.hados[_value.ka3]),5)
 
-
+        x=50
+        y=510
+        y2=460-y
+        if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
+            modoru=(100,100,200)
+        else:
+            modoru=(0,0,0)
+        pygame.draw.rect(_value.screen, (100,100,200), (50,y+y2,80,40), width=3,border_radius=5)
+        text = _value.font.render("戻る", False, (modoru))
+        text_rect = text.get_rect(center=(90,y+20+y2))
+        _value.screen.blit(text, text_rect)
 
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -243,7 +253,13 @@ def step8():
                         _value.step2=0
                     if event.key==pygame.K_ESCAPE:
                         _value.step2=0
-            elif event.type == MOUSEBUTTONDOWN:
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                        if _value.step2==0:_value.step=4
+                        if _value.step2>=1:_value.step2=0
+
+
                 if 350<mouseX<450 and 500<mouseY<600:
                     _value.flip=1-_value.flip
                 if event.button == 1 and _value.step2>=1:  # 左クリック

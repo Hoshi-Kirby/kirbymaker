@@ -14,6 +14,7 @@ import _value
 
 def step6():
         pygame.display.update()
+        mouseX, mouseY = pygame.mouse.get_pos()
         _value.screen.fill((200,200,255))
         pygame.draw.line(_value.screen,(0,0,0),(25,315),(225,315),1)
         pygame.draw.line(_value.screen,(0,0,0),(125,215),(125,415),1)
@@ -43,10 +44,26 @@ def step6():
         text = _value.font.render("ws入力     t^2+      t+                 ", False, (fill2))
         text_rect = text.get_rect(center=(500, 450))
         _value.screen.blit(text, text_rect)
+
+        y=510
+        y2=460-y
+        if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
+            modoru=(100,100,200)
+        else:
+            modoru=(0,0,0)
+        pygame.draw.rect(_value.screen, (100,100,200), (50,y+y2,80,40), width=3,border_radius=5)
+        text = _value.font.render("戻る", False, (modoru))
+        text_rect = text.get_rect(center=(90,y+20+y2))
+        _value.screen.blit(text, text_rect)
+
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                        _value.step=4
             if event.type == pygame.KEYDOWN:
                 if event.key==pygame.K_UP:
                     _value.ka6-=1
