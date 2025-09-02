@@ -24,18 +24,12 @@ import _load
 
 pygame.display.set_caption("k")
 
-_value.step=10
 while True:
-
-    if _value.step==10:
-        _value.loadstep=0
-        _name.nameload()
-    while _value.step==10:
-        while _value.loadstep==0:
-            _load.loaddata()
-        while _value.loadstep==1:
-            _load.loadb()
-        if _value.loadstep==2:
-            _load.load()
-        while _value.loadstep==2:
-            _load.loada()
+    pygame.display.update()
+    _value.screen.fill((200,200,255))
+    text_rect = pygame.Rect(100, 80, 600, 440)
+    _func.draw_text_wrapped(_value.screen, "とんでとんでとんでとんでとんlううーーーーー", _value.font, (0, 0, 0), text_rect)
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()

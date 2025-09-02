@@ -41,6 +41,8 @@ sc=0
 tab=9
 rightime=0
 leftime=0
+help=0
+mouseclick=0
 
 screen = pygame.display.set_mode((800, 600))
 

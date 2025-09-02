@@ -155,95 +155,99 @@ def step2():
             text = _value.font.render("戻る", False, (purei))
             text_rect = text.get_rect(center=(x+40,y+20))
             _value.screen.blit(text, text_rect)
+        _value.mouseclick=0
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == KEYDOWN: 
-                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                    if _value.ka==0:
-                        _value.bosi-=1
-                        if _value.bosi<0:_value.bosi=0
-                    if _value.ka==1:
-                        _value.buki=0
-                        _value.erabuki=[0]*(_value.tab+20)
-                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                    if _value.ka==0:
-                        _value.bosi+=1
-                        if _value.bosi>2:_value.bosi=2
-                    if _value.ka==1:
-                        _value.buki=1
-                        _value.erabuki=[1]*(_value.tab+20)
-                if event.key == pygame.K_UP or event.key == pygame.K_w:
-                    if _value.step2==0:
-                        _value.ka-=1
-                    if _value.ka<0:_value.ka=0
-                    
+            if event.type == MOUSEBUTTONDOWN:     #
+                _value.mouseclick=1               #
+            if _value.help==0:
+                if event.type == KEYDOWN: 
+                    if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                        if _value.ka==0:
+                            _value.bosi-=1
+                            if _value.bosi<0:_value.bosi=0
+                        if _value.ka==1:
+                            _value.buki=0
+                            _value.erabuki=[0]*(_value.tab+20)
+                    if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                        if _value.ka==0:
+                            _value.bosi+=1
+                            if _value.bosi>2:_value.bosi=2
+                        if _value.ka==1:
+                            _value.buki=1
+                            _value.erabuki=[1]*(_value.tab+20)
+                    if event.key == pygame.K_UP or event.key == pygame.K_w:
+                        if _value.step2==0:
+                            _value.ka-=1
+                        if _value.ka<0:_value.ka=0
+                        
 
-                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                    if _value.step2==0:
-                        _value.ka+=1
-                        if _value.ka>1+_value.buki:_value.ka=1+_value.buki
-                
-                if event.key == pygame.K_RSHIFT:
-                    _value.esch=0
-                if event.key == pygame.K_RETURN:
-                    if _value.step2==0:
-                        if _value.ka<2:
-                            _value.step=3
-                        else:
-                            _value.step2=1
-                        if _value.esch==1:_value.step=1
-                    else:
-                        _value.step2=0
-                if event.key == pygame.K_ESCAPE:
-                    if _value.step2==0:
-                        _value.esch=1
-                    else:
-                        _value.step2=0
-                if _value.step2==1:
-                    if event.key == pygame.K_c:
-                        for i in range(45):
-                            for i2 in range(32):
-                                image[i,i2]=(255,255,255)
-            elif event.type == MOUSEBUTTONDOWN:
-                if _value.step2==0:
-                    if _value.esch==1:
-                        #90+540,y,80,40), width=3,border_radius=5)pygame.draw.rect(_value.screen, (100,100,200), (90,y+20,y,100,40
-                        if 120+480<mouseX<80+120+480 and y<mouseY<40+y:
-                            _value.step=1
-                        #いいえ
-                        if 120<mouseX<120+100 and y<mouseY<y+40:
-                            _value.esch=0
-                    else:
-                        if change_rect.collidepoint(mouseX,mouseY):
-                            _value.step2=1
-                        if x+620<mouseX<80+x+620 and y<mouseY<40+y:
-                            _value.step=3
-                        if x<mouseX<x+80 and y<mouseY<y+40:
-                            _value.esch=1
-                if _value.step2==1:
-                    if 350<mouseX<450 and 500<mouseY<600:
-                        _value.flip=1-_value.flip
-                    if event.button == 1 and _value.step2==1:  # 左クリック
-                        _value.drag = 1
-                    if event.button == 3 and _value.step2==1:  # 左クリック
-                        _value.drag = 3
-                        if _value.my>=0:
-                            bgr = tuple(int(c) for c in image[_value.my, _value.mx])
-                            fill = _func.bgr_to_rgb(bgr)
-                            _value.cr,_value.cg,_value.cb=fill
-                    if event.button == 2 and _value.step2==1:
-                        if _value.back==(255,255,255):_value.back=(0,0,0)
-                        elif _value.back==(0,0,0):_value.back=(255,255,255)
+                    if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                        if _value.step2==0:
+                            _value.ka+=1
+                            if _value.ka>1+_value.buki:_value.ka=1+_value.buki
                     
-                    if x<mouseX<x+80 and y<mouseY<y+40:
-                        _value.step2=0
-            elif event.type == MOUSEBUTTONUP:
-                if event.button ==1 and _value.drag==1:
-                    _value.drag = 0
-                if event.button ==3 and _value.drag==3:
-                    _value.drag = 0
+                    if event.key == pygame.K_RSHIFT:
+                        _value.esch=0
+                    if event.key == pygame.K_RETURN:
+                        if _value.step2==0:
+                            if _value.ka<2:
+                                _value.step=3
+                            else:
+                                _value.step2=1
+                            if _value.esch==1:_value.step=1
+                        else:
+                            _value.step2=0
+                    if event.key == pygame.K_ESCAPE:
+                        if _value.step2==0:
+                            _value.esch=1
+                        else:
+                            _value.step2=0
+                    if _value.step2==1:
+                        if event.key == pygame.K_c:
+                            for i in range(45):
+                                for i2 in range(32):
+                                    image[i,i2]=(255,255,255)
+                elif event.type == MOUSEBUTTONDOWN:
+                    if _value.step2==0:
+                        if _value.esch==1:
+                            #90+540,y,80,40), width=3,border_radius=5)pygame.draw.rect(_value.screen, (100,100,200), (90,y+20,y,100,40
+                            if 120+480<mouseX<80+120+480 and y<mouseY<40+y:
+                                _value.step=1
+                            #いいえ
+                            if 120<mouseX<120+100 and y<mouseY<y+40:
+                                _value.esch=0
+                        else:
+                            if change_rect.collidepoint(mouseX,mouseY):
+                                _value.step2=1
+                            if x+620<mouseX<80+x+620 and y<mouseY<40+y:
+                                _value.step=3
+                            if x<mouseX<x+80 and y<mouseY<y+40:
+                                _value.esch=1
+                    if _value.step2==1:
+                        if 350<mouseX<450 and 500<mouseY<600:
+                            _value.flip=1-_value.flip
+                        if event.button == 1 and _value.step2==1:  # 左クリック
+                            _value.drag = 1
+                        if event.button == 3 and _value.step2==1:  # 左クリック
+                            _value.drag = 3
+                            if _value.my>=0:
+                                bgr = tuple(int(c) for c in image[_value.my, _value.mx])
+                                fill = _func.bgr_to_rgb(bgr)
+                                _value.cr,_value.cg,_value.cb=fill
+                        if event.button == 2 and _value.step2==1:
+                            if _value.back==(255,255,255):_value.back=(0,0,0)
+                            elif _value.back==(0,0,0):_value.back=(255,255,255)
+                        
+                        if x<mouseX<x+80 and y<mouseY<y+40:
+                            _value.step2=0
+                elif event.type == MOUSEBUTTONUP:
+                    if event.button ==1 and _value.drag==1:
+                        _value.drag = 0
+                    if event.button ==3 and _value.drag==3:
+                        _value.drag = 0
         if _value.drag==1:
             if _value.mx>=0:
                 if _value.cr==255 and _value.cg==255 and _value.cb==255:

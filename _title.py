@@ -28,50 +28,63 @@ def step1():
 
         
         if _value.ky==_value.ground: _value.hob=0
+        
+        _value.mouseclick=0
         # 終了イベントを確認 --- (*5)
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == MOUSEBUTTONDOWN:
-                if text_rectr.collidepoint(mouseX,mouseY):
-                    _value.step=2
-                if text_rectl.collidepoint(mouseX,mouseY):
-                    _value.step=10
-            if event.type == KEYDOWN: 
-                if _value.kaih==0:
-                    if event.key == K_RETURN:
-                        if _value.ky<_value.ground:
-                            if _value.hobfc==0:
-                                _value.hob=1
-                                _value.hobc=18
-                                _value.kyv=-2.7
-                        else:
-                            if _value.shagam==1:
-                                if _value.sura==0:
-                                    _value.sura=50
+                _value.mouseclick=1
+                if _value.help==0:
+                    if text_rectr.collidepoint(mouseX,mouseY):
+                        _value.step=2
+                    if text_rectl.collidepoint(mouseX,mouseY):
+                        _value.step=10
+            
+            if _value.help==0:
+                if event.type == KEYDOWN: 
+                    if _value.kaih==0:
+                        if event.key == K_RETURN:
+                            if _value.ky<_value.ground:
+                                if _value.hobfc==0:
+                                    _value.hob=1
+                                    _value.hobc=18
+                                    _value.kyv=-2.7
                             else:
-                                _value.kyv=-6
-                        if 620<_value.kx<730 and -10<_value.ky<40:
-                            _value.step=2
-                        if 40<_value.kx<150 and -10<_value.ky<40:
-                            _value.step=10
-                    if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
-                        _value.flip=1
-                        if _value.guard==1:
-                            _value.kaih=30
-                    if event.key == K_d and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
-                        _value.flip=0
-                        if _value.guard==1:
-                            _value.kaih=30
-                    if event.key == K_s:
-                        if _value.guard==1 and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
-                            _value.skaih=30
-                    if event.key == K_q:
-                        if _value.ky<_value.ground and _value.hob==0 and _value.skaih==0 and _value.sura==0:
-                            _value.skaih=20
-            #
-        pressed_keys = pygame.key.get_pressed()
+                                if _value.shagam==1:
+                                    if _value.sura==0:
+                                        _value.sura=50
+                                else:
+                                    _value.kyv=-6
+                            if 620<_value.kx<730 and -10<_value.ky<40:
+                                _value.step=2
+                            if 40<_value.kx<150 and -10<_value.ky<40:
+                                _value.step=10
+                        if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
+                            _value.flip=1
+                            if _value.guard==1:
+                                _value.kaih=30
+                        if event.key == K_d and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
+                            _value.flip=0
+                            if _value.guard==1:
+                                _value.kaih=30
+                        if event.key == K_s:
+                            if _value.guard==1 and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
+                                _value.skaih=30
+                        if event.key == K_q:
+                            if _value.ky<_value.ground and _value.hob==0 and _value.skaih==0 and _value.sura==0:
+                                _value.skaih=20
+                #
+        class Fakekeys:
+            def __getitem__(self, key):
+                return False
+
+        if _value.help==0:
+            pressed_keys = pygame.key.get_pressed()
+        else:
+            pressed_keys = Fakekeys()
         if _value.kaih==0 and _value.skaih==0 and _value.sura==0:
             if (pressed_keys[K_d] or pressed_keys[K_a]) and _value.guard==0 and _value.hobfc==0:
                 _value.posetime+=1
@@ -288,4 +301,6 @@ def step1():
             img1=pygame.transform.flip(img1, True, False)
         img1 = pygame.transform.scale_by(img1, 2)
         _value.screen.blit(img1, (_value.kx+_value.kxh, _value.ky+_value.kyh))
+        
+        _func.help(100,100,1,"ヘルプテストだよちゃんと開業するかな、開業じゃなくて改行だよいい街があえたよ。いい街があえたんじゃないよ言い間違えたんだよ")
         time.sleep(0.01)

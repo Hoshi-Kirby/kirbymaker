@@ -56,64 +56,77 @@ def step6():
         text_rect = text.get_rect(center=(90,y+20+y2))
         _value.screen.blit(text, text_rect)
 
+        _value.mouseclick=0
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+            if event.type == MOUSEBUTTONDOWN:     #
+                _value.mouseclick=1               #
+            if _value.help==0:                           #
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                            _value.step=4
+                if event.type == pygame.KEYDOWN:
+                    if event.key==pygame.K_UP:
+                        _value.ka6-=1
+                        if _value.ka6<0:_value.ka6=0
+                        if _value.ka6==6:_value.ka6=7
+                        if _value.ka6==10:_value.ka6=11
+                    if event.key==pygame.K_DOWN:
+                        _value.ka6+=1
+                        if _value.ka6==7:_value.ka6=6
+                        if _value.ka6==11:_value.ka6=10
+                        if _value.ka6==13:_value.ka6=12
+                    if event.key==pygame.K_RETURN:
+                        _value.ka6+=1
+                        if _value.ka6==7:_value.ka6=6
+                        if _value.ka6==11:_value.step=4
+                    if event.key==pygame.K_ESCAPE:
                         _value.step=4
-            if event.type == pygame.KEYDOWN:
-                if event.key==pygame.K_UP:
-                    _value.ka6-=1
-                    if _value.ka6<0:_value.ka6=0
-                    if _value.ka6==6:_value.ka6=7
-                    if _value.ka6==10:_value.ka6=11
-                if event.key==pygame.K_DOWN:
-                    _value.ka6+=1
-                    if _value.ka6==7:_value.ka6=6
-                    if _value.ka6==11:_value.ka6=10
-                    if _value.ka6==13:_value.ka6=12
-                if event.key==pygame.K_RETURN:
-                    _value.ka6+=1
-                    if _value.ka6==7:_value.ka6=6
-                    if _value.ka6==11:_value.step=4
-                if event.key==pygame.K_ESCAPE:
-                    _value.step=4
-            for i in range(11):
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if _value.box_rects[i].collidepoint(event.pos):
-                        _value.ka6=i
-                    else:
-                        _value.active2[i]=False
-                if _value.active2[i] and event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_BACKSPACE:
-                        _value.input_text[i] = _value.input_text[i][:-1]
-                    elif event.unicode.isdigit():
-                        _value.input_text[i] += event.unicode
-                    elif event.key == pygame.K_PERIOD:
-                        _value.input_text[i] += event.unicode
-                    elif event.key == pygame.K_MINUS:
-                        _value.input_text[i] += event.unicode
-                    try:
-                        value = float(_value.input_text[i])
-                    except ValueError:
-                        value = 0
+                for i in range(11):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if _value.box_rects[i].collidepoint(event.pos):
+                            _value.ka6=i
+                        else:
+                            _value.active2[i]=False
+                    if _value.active2[i] and event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_BACKSPACE:
+                            _value.input_text[i] = _value.input_text[i][:-1]
+                        elif event.unicode.isdigit():
+                            _value.input_text[i] += event.unicode
+                        elif event.key == pygame.K_PERIOD:
+                            _value.input_text[i] += event.unicode
+                        elif event.key == pygame.K_MINUS:
+                            _value.input_text[i] += event.unicode
+                        try:
+                            value = float(_value.input_text[i])
+                        except ValueError:
+                            value = 0
 
-                    match i:
-                        case 0:_value.kx2h[_value.ka3]=value
-                        case 1:_value.kx1h[_value.ka3]=value
-                        case 2:_value.kx0h[_value.ka3]=value
-                        case 3:_value.ky2h[_value.ka3]=value
-                        case 4:_value.ky1h[_value.ka3]=value
-                        case 5:_value.ky0h[_value.ka3]=value
-                        case 6:_value.kzih[_value.ka3]=value
-                        case 7:_value.kad2h[_value.ka3]=value
-                        case 8:_value.kad1h[_value.ka3]=value
-                        case 9:_value.kws2h[_value.ka3]=value
-                        case 10:_value.kws1h[_value.ka3]=value
-        pressed_keys = pygame.key.get_pressed()
+                        match i:
+                            case 0:_value.kx2h[_value.ka3]=value
+                            case 1:_value.kx1h[_value.ka3]=value
+                            case 2:_value.kx0h[_value.ka3]=value
+                            case 3:_value.ky2h[_value.ka3]=value
+                            case 4:_value.ky1h[_value.ka3]=value
+                            case 5:_value.ky0h[_value.ka3]=value
+                            case 6:_value.kzih[_value.ka3]=value
+                            case 7:_value.kad2h[_value.ka3]=value
+                            case 8:_value.kad1h[_value.ka3]=value
+                            case 9:_value.kws2h[_value.ka3]=value
+                            case 10:_value.kws1h[_value.ka3]=value
+
+        class Fakekeys:                           #
+            def __getitem__(self, key):           #
+                return False                      #
+
+        if _value.help==0:                        #
+            pressed_keys = pygame.key.get_pressed()
+        else:                                     #
+            pressed_keys = Fakekeys()             #
+            
         if pressed_keys[K_w]:
             _value.ws=-1
         elif pressed_keys[K_s]:

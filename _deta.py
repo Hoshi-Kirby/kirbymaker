@@ -163,155 +163,168 @@ def step4():
         text = _value.font.render("戻る", False, (modoru))
         text_rect = text.get_rect(center=(90,y+20+y2))
         _value.screen.blit(text, text_rect)
+
+        _value.mouseclick=0
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    if x<mouseX<80+x and y<mouseY<40+y:
-                        #保存
-                        _value.stepbefore=4
-                        _value.step=9
-                    if x+100<mouseX<x+200 and y<mouseY<y+40:
-                        _value.stepbefore=4
-                        _value.step=7
-                    if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+            if event.type == MOUSEBUTTONDOWN:     #
+                _value.mouseclick=1               #
+            if _value.help==0:                           #
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        if x<mouseX<80+x and y<mouseY<40+y:
+                            #保存
+                            _value.stepbefore=4
+                            _value.step=9
+                        if x+100<mouseX<x+200 and y<mouseY<y+40:
+                            _value.stepbefore=4
+                            _value.step=7
+                        if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                            _value.step=3
+                        
+
+                        if _value.ka4==1:
+                            _value.wazatype[_value.ka3]=mouseka4_2
+                        if _value.ka4==2:
+                            if mouseka4_2==1:_value.step=5
+                        if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
+                            _value.wazapene[_value.ka3]=mouseka4_2
+                        if _value.ka4==4:
+                            _value.wazatuka[_value.ka3]=mouseka4_2
+                        if _value.ka4==7:
+                            if mouseka4_2==1:_value.step=6
+                        if _value.ka4==8:
+                            if mouseka4_2==1:_value.step=8
+                        if _value.ka4==9:
+                            _value.wazatame[_value.ka3]=mouseka4_2
+
+                        if mouseka4!=-1:
+                            if _value.ka4==mouseka4:
+                                1
+                            _value.ka4=mouseka4
+                    if event.button == 4:
+                        _value.ka4-=1
+                        if _value.ka4<1:_value.ka4=1
+                        if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
+                            _value.ka4=2
+                    if event.button == 5:
+                        if _value.ka4>0:
+                            _value.ka4+=1
+                            if _value.ka4>_value.tab4:
+                                _value.ka4=_value.tab4
+                            if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
+                                _value.ka4=4
+                    # 入力欄がクリックされたかどうか
+                    if _value.input_box.collidepoint(event.pos):
+                        _value.ka4=0
+                    else:
+                        _value.active = False
+                    _value.color = _value.color_active if _value.active else _value.color_inactive
+
+                elif event.type == pygame.KEYDOWN:
+                    if _value.active:
+                        if event.key == pygame.K_BACKSPACE:
+                            _value.title = _value.title[:-1]
+                        else:
+                            if event.key!=pygame.K_RETURN and _value.title_len[_value.ka3]<14:
+                                if _value.ka3%10==8:
+                                    if event.key == pygame.K_w:
+                                        _value.title += "↑"
+                                    if event.key == pygame.K_a:
+                                        _value.title += "←"
+                                    if event.key == pygame.K_s:
+                                        _value.title += "↓"
+                                    if event.key == pygame.K_d:
+                                        _value.title += "→"
+                                    if event.key == pygame.K_RSHIFT:
+                                        _value.title += "B"
+                                    if event.key == pygame.K_RIGHTBRACKET:
+                                        _value.title += "Y"
+                                else:
+                                    _value.title += event.unicode
+                        
+                        _value.title_len[_value.ka3]=len(_value.title)
+                        if event.key==pygame.K_RETURN:
+                            _value.active=False
+                            _value.color = _value.color_active if _value.active else _value.color_inactive
+                            _value.title_list[_value.ka3%10] = _value.title
+                    if event.key == pygame.K_ESCAPE:
                         _value.step=3
-                    
-
-                    if _value.ka4==1:
-                        _value.wazatype[_value.ka3]=mouseka4_2
-                    if _value.ka4==2:
-                        if mouseka4_2==1:_value.step=5
-                    if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
-                        _value.wazapene[_value.ka3]=mouseka4_2
-                    if _value.ka4==4:
-                        _value.wazatuka[_value.ka3]=mouseka4_2
-                    if _value.ka4==7:
-                        if mouseka4_2==1:_value.step=6
-                    if _value.ka4==8:
-                        if mouseka4_2==1:_value.step=8
-                    if _value.ka4==9:
-                        _value.wazatame[_value.ka3]=mouseka4_2
-
-                    if mouseka4!=-1:
-                        if _value.ka4==mouseka4:
-                            1
-                        _value.ka4=mouseka4
-                if event.button == 4:
-                    _value.ka4-=1
-                    if _value.ka4<1:_value.ka4=1
-                    if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
-                        _value.ka4=2
-                if event.button == 5:
-                    if _value.ka4>0:
-                        _value.ka4+=1
-                        if _value.ka4>_value.tab4:
-                            _value.ka4=_value.tab4
+                    if event.key == pygame.K_UP:
+                        _value.ka4-=1
                         if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
-                            _value.ka4=4
-                # 入力欄がクリックされたかどうか
-                if _value.input_box.collidepoint(event.pos):
-                    _value.ka4=0
-                else:
-                    _value.active = False
-                _value.color = _value.color_active if _value.active else _value.color_inactive
-
-            elif event.type == pygame.KEYDOWN:
-                if _value.active:
-                    if event.key == pygame.K_BACKSPACE:
-                        _value.title = _value.title[:-1]
-                    else:
-                        if event.key!=pygame.K_RETURN and _value.title_len[_value.ka3]<14:
-                            if _value.ka3%10==8:
-                                if event.key == pygame.K_w:
-                                    _value.title += "↑"
-                                if event.key == pygame.K_a:
-                                    _value.title += "←"
-                                if event.key == pygame.K_s:
-                                    _value.title += "↓"
-                                if event.key == pygame.K_d:
-                                    _value.title += "→"
-                                if event.key == pygame.K_RSHIFT:
-                                    _value.title += "B"
-                                if event.key == pygame.K_RIGHTBRACKET:
-                                    _value.title += "Y"
-                            else:
-                                _value.title += event.unicode
-                    
-                    _value.title_len[_value.ka3]=len(_value.title)
+                            _value.ka4=2
+                    if event.key == pygame.K_DOWN:
+                        if _value.title=="" or _value.ka4>0:
+                            _value.ka4+=1
+                            if _value.ka4>_value.tab4:
+                                _value.ka4=_value.tab4
+                            if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
+                                _value.ka4=4
                     if event.key==pygame.K_RETURN:
-                        _value.active=False
-                        _value.color = _value.color_active if _value.active else _value.color_inactive
-                        _value.title_list[_value.ka3%10] = _value.title
-                if event.key == pygame.K_ESCAPE:
-                    _value.step=3
-                if event.key == pygame.K_UP:
-                    _value.ka4-=1
-                    if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
-                        _value.ka4=2
-                if event.key == pygame.K_DOWN:
-                    if _value.title=="" or _value.ka4>0:
-                        _value.ka4+=1
-                        if _value.ka4>_value.tab4:
-                            _value.ka4=_value.tab4
-                        if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
-                            _value.ka4=4
-                if event.key==pygame.K_RETURN:
-                    if _value.ka4==2:
-                        _value.step=5
-                    elif _value.ka4==7:
-                        _value.step=6
-                    elif _value.ka4==8:
-                        _value.step=8
-                    else:
-                        _value.ka4+=1
-                        if _value.ka4>_value.tab4:
-                            _value.ka4=_value.tab4
-                if event.key==pygame.K_RIGHT:
-                    if _value.ka4==1:
-                        _value.wazatype[_value.ka3]+=1
-                        if _value.wazatype[_value.ka3]>2:_value.wazatype[_value.ka3]=2
-                        if _value.wazapene[_value.ka3]==2:_value.wazapene[_value.ka3]=1
-                    if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
-                        _value.wazapene[_value.ka3]+=1
-                        if _value.wazapene[_value.ka3]>2:_value.wazapene[_value.ka3]=2
-                        if _value.wazapene[_value.ka3]>1 and _value.wazatype[_value.ka3]==2:_value.wazapene[_value.ka3]=1
-                    if _value.ka4==4:
-                        _value.wazatuka[_value.ka3]+=1
-                        if _value.wazatuka[_value.ka3]>1:_value.wazatuka[_value.ka3]=1
-                    if _value.ka4==5:
-                        _value.wazadame[_value.ka3]+=1
-                        if _value.wazadame[_value.ka3]>100:_value.wazadame[_value.ka3]=100
-                    if _value.ka4==6:
-                        _value.wazahuto[_value.ka3]+=1
-                    if _value.ka4==9:
-                        _value.wazatame[_value.ka3]+=1
-                        if _value.wazatame[_value.ka3]>1 and _value.ka3<10:_value.wazatame[_value.ka3]=1
-                if event.key==pygame.K_LEFT:
-                    if _value.ka4==1:
-                        _value.wazatype[_value.ka3]-=1
-                        if _value.wazatype[_value.ka3]<0:_value.wazatype[_value.ka3]=0
-                        if _value.wazapene[_value.ka3]==2:_value.wazapene[_value.ka3]=1
-                    if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
-                        _value.wazapene[_value.ka3]-=1
-                        if _value.wazapene[_value.ka3]<0:_value.wazapene[_value.ka3]=0
-                    if _value.ka4==4:
-                        _value.wazatuka[_value.ka3]-=1
-                        if _value.wazatuka[_value.ka3]<0:_value.wazatuka[_value.ka3]=0
-                    if _value.ka4==5:
-                        _value.wazadame[_value.ka3]-=1
-                        if _value.wazadame[_value.ka3]<0:_value.wazadame[_value.ka3]=0
-                    if _value.ka4==6:
-                        _value.wazahuto[_value.ka3]-=1
-                        if _value.wazahuto[_value.ka3]<0:_value.wazahuto[_value.ka3]=0
-                    if _value.ka4==9:
-                        _value.wazatame[_value.ka3]-=1
-                        if _value.wazatame[_value.ka3]<0:_value.wazatame[_value.ka3]=0
-                        if _value.ka3>=30:
-                            if _value.wazatame[_value.ka3]<_value.wazatame[_value.ka3-10]:_value.wazatame[_value.ka3]=_value.wazatame[_value.ka3-10]
-        pressed_keys = pygame.key.get_pressed()
+                        if _value.ka4==2:
+                            _value.step=5
+                        elif _value.ka4==7:
+                            _value.step=6
+                        elif _value.ka4==8:
+                            _value.step=8
+                        else:
+                            _value.ka4+=1
+                            if _value.ka4>_value.tab4:
+                                _value.ka4=_value.tab4
+                    if event.key==pygame.K_RIGHT:
+                        if _value.ka4==1:
+                            _value.wazatype[_value.ka3]+=1
+                            if _value.wazatype[_value.ka3]>2:_value.wazatype[_value.ka3]=2
+                            if _value.wazapene[_value.ka3]==2:_value.wazapene[_value.ka3]=1
+                        if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
+                            _value.wazapene[_value.ka3]+=1
+                            if _value.wazapene[_value.ka3]>2:_value.wazapene[_value.ka3]=2
+                            if _value.wazapene[_value.ka3]>1 and _value.wazatype[_value.ka3]==2:_value.wazapene[_value.ka3]=1
+                        if _value.ka4==4:
+                            _value.wazatuka[_value.ka3]+=1
+                            if _value.wazatuka[_value.ka3]>1:_value.wazatuka[_value.ka3]=1
+                        if _value.ka4==5:
+                            _value.wazadame[_value.ka3]+=1
+                            if _value.wazadame[_value.ka3]>100:_value.wazadame[_value.ka3]=100
+                        if _value.ka4==6:
+                            _value.wazahuto[_value.ka3]+=1
+                        if _value.ka4==9:
+                            _value.wazatame[_value.ka3]+=1
+                            if _value.wazatame[_value.ka3]>1 and _value.ka3<10:_value.wazatame[_value.ka3]=1
+                    if event.key==pygame.K_LEFT:
+                        if _value.ka4==1:
+                            _value.wazatype[_value.ka3]-=1
+                            if _value.wazatype[_value.ka3]<0:_value.wazatype[_value.ka3]=0
+                            if _value.wazapene[_value.ka3]==2:_value.wazapene[_value.ka3]=1
+                        if _value.ka4==3 and _value.wazatype[_value.ka3]!=0:
+                            _value.wazapene[_value.ka3]-=1
+                            if _value.wazapene[_value.ka3]<0:_value.wazapene[_value.ka3]=0
+                        if _value.ka4==4:
+                            _value.wazatuka[_value.ka3]-=1
+                            if _value.wazatuka[_value.ka3]<0:_value.wazatuka[_value.ka3]=0
+                        if _value.ka4==5:
+                            _value.wazadame[_value.ka3]-=1
+                            if _value.wazadame[_value.ka3]<0:_value.wazadame[_value.ka3]=0
+                        if _value.ka4==6:
+                            _value.wazahuto[_value.ka3]-=1
+                            if _value.wazahuto[_value.ka3]<0:_value.wazahuto[_value.ka3]=0
+                        if _value.ka4==9:
+                            _value.wazatame[_value.ka3]-=1
+                            if _value.wazatame[_value.ka3]<0:_value.wazatame[_value.ka3]=0
+                            if _value.ka3>=30:
+                                if _value.wazatame[_value.ka3]<_value.wazatame[_value.ka3-10]:_value.wazatame[_value.ka3]=_value.wazatame[_value.ka3-10]
+        class Fakekeys:                           #
+            def __getitem__(self, key):           #
+                return False                      #
+
+        if _value.help==0:                        #
+            pressed_keys = pygame.key.get_pressed()
+        else:                                     #
+            pressed_keys = Fakekeys()             #
+            
         if pressed_keys[K_w]:
             _value.ws=-1
         elif pressed_keys[K_s]:
@@ -523,4 +536,6 @@ def step4():
         if _value.wazapene[_value.ka3]==0:
             if _value.ky>0:_value.t2=_value.kzi2[_value.ka3]*100
         # pygame.display.flip()
+
+        _func.help(700,100,1,"名前を入れないと技として反映されないので、気を付けてください。逆に名前だけを消すことで一時的に技を削除することもできます。")
         time.sleep(0.01)

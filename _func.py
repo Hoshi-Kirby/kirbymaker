@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 import _value
 import os
+from pygame.locals import *
 
 def bgr_to_rgb(color_bgr):
     b, g, r = color_bgr
@@ -504,3 +505,77 @@ def loadkirby(x,y,buki,bosi,slot):
                 _value.screen.blit(img2, (x-34.7, y-52.8))
             except pygame.error as e:
                 1
+
+def draw_text_wrapped(surface, text, font, color, rect, line_spacing=5):
+    lines = []
+    current_line = ""
+    x_max = rect.width
+
+    for char in text:
+        test_line = current_line + char
+        test_surface = font.render(test_line, False, color)
+        if test_surface.get_width() > x_max:
+            lines.append(current_line)
+            current_line = char
+        else:
+            current_line = test_line
+    lines.append(current_line)
+    line_height = font.get_height()
+    total_height = len(lines) * line_height + (len(lines) - 1) * line_spacing
+
+    # 最初の行のY座標を調整
+    y = 280 - total_height // 2
+
+    for line in lines:
+        rendered = font.render(line, False, color)
+        surface.blit(rendered, (rect.left, y))
+        y += rendered.get_height() + line_spacing
+        if y > rect.bottom:
+            break
+
+
+
+
+# _value.mouseclick=0                       #
+# for event in pygame.event.get():
+#     if event.type == QUIT:
+#         pygame.quit()
+#         sys.exit()
+#     if event.type == MOUSEBUTTONDOWN:     #
+#         _value.mouseclick=1               #
+#     if _value.help==0:                           #
+#         if event.type == MOUSEBUTTONDOWN:
+#
+#         if event.type == pygame.KEYDOWN:
+#
+# class Fakekeys:                           #
+#     def __getitem__(self, key):           #
+#         return False                      #
+#
+# if _value.help==0:                        #
+#     pressed_keys = pygame.key.get_pressed()
+# else:                                     #
+#     pressed_keys = Fakekeys()             #
+
+def help(x,y,num,helptext):
+    r=20
+    pygame.draw.circle(_value.screen, (255,255,200),(x,y),r)
+    text = _value.font.render("?", False, (0,0,0))
+    text_rect = text.get_rect(center=(x,y))
+    _value.screen.blit(text, text_rect)
+    mouseX, mouseY = pygame.mouse.get_pos()
+    if _value.help==0:
+        if _value.mouseclick==1:
+            if (mouseX-x)**2+(mouseY-y)**2<r**2:
+                _value.help=num
+    else:
+        if _value.help==num:
+            pygame.draw.rect(_value.screen, (255,255,255),(100,80,600,440))
+            draw_text_wrapped(_value.screen, helptext, _value.font, (0, 0, 0),pygame.Rect(110,80,580,440))
+            text = _value.font.render("×", False, (0,0,0))
+            text_rect = text.get_rect(center=(680, 100))
+            _value.screen.blit(text, text_rect)
+            if _value.mouseclick==1:
+                if text_rect.collidepoint(mouseX,mouseY):
+                    _value.help=0
+                

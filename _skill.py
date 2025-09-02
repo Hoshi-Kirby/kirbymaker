@@ -136,65 +136,70 @@ def step3():
         text = _value.font.render("戻る", False, (modoru))
         text_rect = text.get_rect(center=(90,y+20+y2))
         _value.screen.blit(text, text_rect)
+
+        _value.mouseclick=0
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    if x<mouseX<80+x and y<mouseY<40+y:
-                        #保存
-                        _value.stepbefore=3
-                        _value.step=9
-                    if x+100<mouseX<x+200 and y<mouseY<y+40:
-                        _value.stepbefore=3
-                        _value.step=7
-                    if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+            if event.type == MOUSEBUTTONDOWN:     #
+                _value.mouseclick=1               #
+            if _value.help==0:                           #
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        if x<mouseX<80+x and y<mouseY<40+y:
+                            #保存
+                            _value.stepbefore=3
+                            _value.step=9
+                        if x+100<mouseX<x+200 and y<mouseY<y+40:
+                            _value.stepbefore=3
+                            _value.step=7
+                        if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                            _value.step=2
+                        if mouseka3!=-1:
+                            if _value.ka3==mouseka3:
+                                _value.step=4
+                            _value.sctime=(_value.ka3-mouseka3)*10
+                            _value.ka3=mouseka3
+                    if event.button == 4:
+                        if _value.sctime==0:
+                            _value.ka3-=1
+                            if _value.ka3<0:_value.ka3=0
+                            if _value.ka3==9:_value.ka3=10
+                            if _value.ka3==19:_value.ka3=20
+                            _value.sctime=10
+                    if event.button == 5:
+                        if _value.sctime==0:
+                            _value.ka3+=1
+                            if _value.ka3==_value.tab:_value.ka3=_value.tab-1
+                            if _value.ka3==_value.tab+10:_value.ka3=_value.tab-1+10
+                            if _value.ka3==_value.tab+20:_value.ka3=_value.tab-1+20
+                            _value.sctime=-10
+                if event.type == KEYDOWN: 
+                    if event.key == pygame.K_UP or event.key == pygame.K_w:
+                        if _value.sctime==0:
+                            _value.ka3-=1
+                            if _value.ka3<0:_value.ka3=0
+                            if _value.ka3==9:_value.ka3=10
+                            if _value.ka3==19:_value.ka3=20
+                            _value.sctime=10
+                    if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                        if _value.sctime==0:
+                            _value.ka3+=1
+                            if _value.ka3==_value.tab:_value.ka3=_value.tab-1
+                            if _value.ka3==_value.tab+10:_value.ka3=_value.tab-1+10
+                            if _value.ka3==_value.tab+20:_value.ka3=_value.tab-1+20
+                            _value.sctime=-10
+                    if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                        if _value.ka3<20:
+                            _value.ka3+=10
+                    if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                        if _value.ka3>=10:
+                            _value.ka3-=10
+                    if event.key == pygame.K_ESCAPE:
                         _value.step=2
-                    if mouseka3!=-1:
-                        if _value.ka3==mouseka3:
-                            _value.step=4
-                        _value.sctime=(_value.ka3-mouseka3)*10
-                        _value.ka3=mouseka3
-                if event.button == 4:
-                    if _value.sctime==0:
-                        _value.ka3-=1
-                        if _value.ka3<0:_value.ka3=0
-                        if _value.ka3==9:_value.ka3=10
-                        if _value.ka3==19:_value.ka3=20
-                        _value.sctime=10
-                if event.button == 5:
-                    if _value.sctime==0:
-                        _value.ka3+=1
-                        if _value.ka3==_value.tab:_value.ka3=_value.tab-1
-                        if _value.ka3==_value.tab+10:_value.ka3=_value.tab-1+10
-                        if _value.ka3==_value.tab+20:_value.ka3=_value.tab-1+20
-                        _value.sctime=-10
-            if event.type == KEYDOWN: 
-                if event.key == pygame.K_UP or event.key == pygame.K_w:
-                    if _value.sctime==0:
-                        _value.ka3-=1
-                        if _value.ka3<0:_value.ka3=0
-                        if _value.ka3==9:_value.ka3=10
-                        if _value.ka3==19:_value.ka3=20
-                        _value.sctime=10
-                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                    if _value.sctime==0:
-                        _value.ka3+=1
-                        if _value.ka3==_value.tab:_value.ka3=_value.tab-1
-                        if _value.ka3==_value.tab+10:_value.ka3=_value.tab-1+10
-                        if _value.ka3==_value.tab+20:_value.ka3=_value.tab-1+20
-                        _value.sctime=-10
-                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                    if _value.ka3<20:
-                        _value.ka3+=10
-                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                    if _value.ka3>=10:
-                        _value.ka3-=10
-                if event.key == pygame.K_ESCAPE:
-                    _value.step=2
-                if event.key == pygame.K_RETURN:
-                    _value.step=4
+                    if event.key == pygame.K_RETURN:
+                        _value.step=4
         if _value.sctime<0:
             _value.sctime+=1
             _value.sc-=5
