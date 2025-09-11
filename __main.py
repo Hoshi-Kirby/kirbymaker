@@ -24,6 +24,11 @@ import _load
 
 pygame.display.set_caption("k")
 
+
+pygame.mixer.init()
+pygame.mixer.music.load("title.mp3")
+pygame.mixer.music.play(-1)  # -1で無限ループ
+
 while True:
     if _value.step==1:
         _value.kx=225
@@ -301,6 +306,7 @@ while True:
 
         if _value.savestep==3:
             _save.save()
+            _value.se_1up.play()
         while _value.savestep==3:
             _save.savea()
     
@@ -315,5 +321,6 @@ while True:
             _load.loadb()
         if _value.loadstep==2:
             _load.load()
+            _value.se_copy.play()
         while _value.loadstep==2:
             _load.loada()

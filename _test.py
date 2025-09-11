@@ -34,6 +34,7 @@ def step7():
             if event.type==MOUSEBUTTONDOWN:
                 if 620<mouseX<730 and -10<mouseY<40:
                     _value.step=_value.stepbefore
+                    _value.se_enter1.play()
             if event.type == KEYDOWN:
                 if _value.t==-1 or (_value.t>=0 and _value.wazatuka[_value.skillnum]==1):
                     command=""
@@ -44,26 +45,30 @@ def step7():
                                 _value.hob=1
                                 _value.hobc=18
                                 _value.kytestv=-2.7
+                                _value.se_hob.play()
                         else:
                             if _value.shagam==1:
                                 if _value.sura==0:
                                     _value.sura=50
+                                    _value.se_sura.play()
                             else:
                                 _value.kytestv=-6
+                                _value.se_jump.play()
                         if 620<_value.kxtest<730 and -10<_value.kytest<40:
                             _value.step=_value.stepbefore
+                            _value.se_enter1.play()
                     if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
-                        _value.flip=1
+                        _value.fliplip=1
                         command="←"
                         command2="→"
-                        if _value.guard==1:
-                            _value.kaih=30
+                        if _value.ky>=_value.ground:
+                            _value.se_run.play()
                     if event.key == K_d and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
-                        _value.flip=0
+                        _value.fliplip=0
                         command="→"
                         command2="←"
-                        if _value.guard==1:
-                            _value.kaih=30
+                        if _value.ky>=_value.ground:
+                            _value.se_run.play()
                     if event.key == K_w and _value.sura==0:
                         command=command2="↑"
                     if event.key == K_s and _value.sura==0:
@@ -119,6 +124,7 @@ def step7():
                                 _value.skilltime=0
                 if event.key == pygame.K_ESCAPE:
                     _value.step=_value.stepbefore
+                    _value.se_esc.play()
             if event.type == KEYUP:
                 if event.key == K_RSHIFT:
                     if 0<=_value.skillnum<9 and _value.skilltime>=0:
@@ -143,7 +149,7 @@ def step7():
                 if pressed_keys[K_d]:
                     _value.flip=0
                     if _value.hob==1:
-                        _value.kxtestv=1.5
+                        _value.kxtestv+=1.5
                         if _value.kxtestv>1.5:
                             _value.kxtestv=1.5
                     else:
@@ -172,6 +178,9 @@ def step7():
                             _value.kxtestv=-2
                     if _value.kxtest<0:
                         _value.kxtest=0
+                if pressed_keys[K_d] and pressed_keys[K_a]:
+                    _value.pose=0
+                    _value.flip=1-_value.fliplip
             else:
                 _value.pose=0
 
@@ -179,6 +188,7 @@ def step7():
                 if _value.hob==1:
                     _value.hob=0
                     _value.hobfc=10
+                    _value.se_hobfin.play()
             
             
             if pressed_keys[K_w]:

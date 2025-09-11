@@ -151,14 +151,20 @@ def step3():
                             #保存
                             _value.stepbefore=3
                             _value.step=9
+                            _value.se_enter1.play()
                         if x+100<mouseX<x+200 and y<mouseY<y+40:
                             _value.stepbefore=3
                             _value.step=7
+                            _value.se_enter1.play()
                         if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
                             _value.step=2
+                            _value.se_esc.play()
                         if mouseka3!=-1:
                             if _value.ka3==mouseka3:
                                 _value.step=4
+                                _value.se_enter1.play()
+                            else:
+                                _value.se_enter2.play()
                             _value.sctime=(_value.ka3-mouseka3)*10
                             _value.ka3=mouseka3
                     if event.button == 4:
@@ -198,8 +204,10 @@ def step3():
                             _value.ka3-=10
                     if event.key == pygame.K_ESCAPE:
                         _value.step=2
+                        _value.se_esc.play()
                     if event.key == pygame.K_RETURN:
                         _value.step=4
+                        _value.se_enter1.play()
         if _value.sctime<0:
             _value.sctime+=1
             _value.sc-=5

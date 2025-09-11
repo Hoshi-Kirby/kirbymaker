@@ -104,8 +104,10 @@ def name():
             if event.button == 1:
                 if x<mouseX<80+x and y<mouseY<40+y:
                     _value.savestep=0
+                    _value.se_esc.play()
                 if x+620<mouseX<x+620+80 and y<mouseY<y+40:
                     _value.savestep=2
+                    _value.se_enter1.play()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_BACKSPACE:
                 _value.title = _value.title[:-1]
@@ -113,6 +115,7 @@ def name():
                 if event.key!=pygame.K_RETURN and event.key!=pygame.K_ESCAPE and event.key!=pygame.K_TAB and len(_value.title)<20:
                     _value.title += event.unicode
             if event.key == pygame.K_ESCAPE:
+                _value.se_esc.play()
                 _value.savestep=0
     
     time.sleep(0.01)

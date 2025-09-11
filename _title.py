@@ -40,8 +40,10 @@ def step1():
                 if _value.help==0:
                     if text_rectr.collidepoint(mouseX,mouseY):
                         _value.step=2
+                        _value.se_enter1.play()
                     if text_rectl.collidepoint(mouseX,mouseY):
                         _value.step=10
+                        _value.se_enter1.play()
             
             if _value.help==0:
                 if event.type == KEYDOWN: 
@@ -52,24 +54,29 @@ def step1():
                                     _value.hob=1
                                     _value.hobc=18
                                     _value.kyv=-2.7
+                                    _value.se_hob.play()
                             else:
                                 if _value.shagam==1:
                                     if _value.sura==0:
                                         _value.sura=50
+                                        _value.se_sura.play()
                                 else:
                                     _value.kyv=-6
+                                    _value.se_jump.play()
                             if 620<_value.kx<730 and -10<_value.ky<40:
                                 _value.step=2
+                                _value.se_enter1.play()
                             if 40<_value.kx<150 and -10<_value.ky<40:
                                 _value.step=10
+                                _value.se_enter1.play()
                         if event.key == K_a and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
-                            _value.flip=1
-                            if _value.guard==1:
-                                _value.kaih=30
+                            _value.fliplip=1
+                            if _value.ky>=_value.ground:
+                                _value.se_run.play()
                         if event.key == K_d and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
-                            _value.flip=0
-                            if _value.guard==1:
-                                _value.kaih=30
+                            _value.fliplip=0
+                            if _value.ky>=_value.ground:
+                                _value.se_run.play()
                         if event.key == K_s:
                             if _value.guard==1 and _value.skaih==0 and _value.kaih==0 and _value.sura==0:
                                 _value.skaih=30
@@ -96,19 +103,30 @@ def step1():
                 if pressed_keys[K_d]:
                     _value.flip=0
                     if _value.hob==1:
-                        _value.kxv=1.5
+                        _value.kxv+=1.5
+                        if _value.kxv>1.5:
+                            _value.kxv=1.5
                     else:
                         _value.kxv=2
+                        if _value.kxv>2:
+                            _value.kxv=2
                     if _value.kx>750:
                         _value.kx=750
                 if pressed_keys[K_a]:
                     _value.flip=1
                     if _value.hob==1:
-                        _value.kxv=-1.5
+                        _value.kxv-=1.5
+                        if _value.kxv<-1.5:
+                            _value.kxv=-1.5
                     else:
-                        _value.kxv=-2
+                        _value.kxv-=2
+                        if _value.kxv<-2:
+                            _value.kxv=-2
                     if _value.kx<0:
                         _value.kx=0
+                if pressed_keys[K_d] and pressed_keys[K_a]:
+                    _value.pose=0
+                    _value.flip=1-_value.fliplip
             else:
                 _value.pose=0
 
@@ -116,6 +134,8 @@ def step1():
                 if _value.hob==1:
                     _value.hob=0
                     _value.hobfc=10
+                    _value.se_hobfin.play()
+
             
             if pressed_keys[K_q] and _value.ky==_value.ground:
                 _value.guard=1

@@ -68,6 +68,7 @@ def step6():
                     if event.button == 1:
                         if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
                             _value.step=4
+                            _value.se_esc.play()
                 if event.type == pygame.KEYDOWN:
                     if event.key==pygame.K_UP:
                         _value.ka6-=1
@@ -81,14 +82,17 @@ def step6():
                         if _value.ka6==13:_value.ka6=12
                     if event.key==pygame.K_RETURN:
                         _value.ka6+=1
+                        _value.se_enter1.play()
                         if _value.ka6==7:_value.ka6=6
                         if _value.ka6==11:_value.step=4
                     if event.key==pygame.K_ESCAPE:
+                        _value.se_esc.play()
                         _value.step=4
                 for i in range(11):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if _value.box_rects[i].collidepoint(event.pos):
                             _value.ka6=i
+                            _value.se_enter2.play()
                         else:
                             _value.active2[i]=False
                     if _value.active2[i] and event.type == pygame.KEYDOWN:

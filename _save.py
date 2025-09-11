@@ -58,13 +58,17 @@ def saveb():
             if event.button == 1:
                 if x<mouseX<80+x and y<mouseY<40+y:
                     _value.savestep=1
+                    _value.se_esc.play()
                 if x+540<mouseX<x+540+80 and y<mouseY<y+40:
                     _value.savestep=3
+                    _value.se_enter1.play()
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_RETURN:
                 _value.savestep=3
+                _value.se_enter1.play()
             if event.key==pygame.K_ESCAPE:
                 _value.savestep=1
+                _value.se_esc.play()
     
     time.sleep(0.01)
 
@@ -233,15 +237,19 @@ def savea():
                 if x<mouseX<100+x and y<mouseY<40+y:
                     _value.savestep=0
                     _value.step=1
+                    _value.se_esc.play()
                 if x+540<mouseX<x+540+100 and y<mouseY<y+40:
                     _value.savestep=0
                     _value.step=3
+                    _value.se_enter1.play()
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_RETURN:
                     _value.savestep=0
                     _value.step=3
+                    _value.se_enter1.play()
             if event.key==pygame.K_ESCAPE:
                     _value.savestep=0
                     _value.step=1
+                    _value.se_esc.play()
     
     time.sleep(0.01)

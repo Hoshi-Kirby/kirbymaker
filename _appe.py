@@ -190,17 +190,25 @@ def step2():
                             if _value.ka>1+_value.buki:_value.ka=1+_value.buki
                     
                     if event.key == pygame.K_RSHIFT:
-                        _value.esch=0
+                        if _value.esch==1:
+                            _value.se_esc.play()
+                            _value.esch=0
                     if event.key == pygame.K_RETURN:
                         if _value.step2==0:
                             if _value.ka<2:
                                 _value.step=3
+                                _value.se_enter1.play()
                             else:
                                 _value.step2=1
-                            if _value.esch==1:_value.step=1
+                                _value.se_enter2.play()
+                            if _value.esch==1:
+                                _value.step=1
+                                _value.se_enter1.play()
                         else:
                             _value.step2=0
+                            _value.se_enter2.play()
                     if event.key == pygame.K_ESCAPE:
+                        _value.se_esc.play()
                         if _value.step2==0:
                             _value.esch=1
                         else:
@@ -216,16 +224,21 @@ def step2():
                             #90+540,y,80,40), width=3,border_radius=5)pygame.draw.rect(_value.screen, (100,100,200), (90,y+20,y,100,40
                             if 120+480<mouseX<80+120+480 and y<mouseY<40+y:
                                 _value.step=1
+                                _value.se_enter1.play()
                             #いいえ
                             if 120<mouseX<120+100 and y<mouseY<y+40:
                                 _value.esch=0
+                                _value.se_esc.play()
                         else:
                             if change_rect.collidepoint(mouseX,mouseY):
                                 _value.step2=1
+                                _value.se_enter2.play()
                             if x+620<mouseX<80+x+620 and y<mouseY<40+y:
                                 _value.step=3
+                                _value.se_enter1.play()
                             if x<mouseX<x+80 and y<mouseY<y+40:
                                 _value.esch=1
+                                _value.se_esc.play()
                     if _value.step2==1:
                         if 350<mouseX<450 and 500<mouseY<600:
                             _value.flip=1-_value.flip
@@ -243,6 +256,7 @@ def step2():
                         
                         if x<mouseX<x+80 and y<mouseY<y+40:
                             _value.step2=0
+                            _value.se_esc.play()
                 elif event.type == MOUSEBUTTONUP:
                     if event.button ==1 and _value.drag==1:
                         _value.drag = 0

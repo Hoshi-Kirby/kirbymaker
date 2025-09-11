@@ -50,9 +50,13 @@ def loaddata():
         if event.type == MOUSEBUTTONDOWN:
             if event.button == 1 and ka9>=0:
                 if _value.nameload[ka9]!="データなし":
+                    _value.se_enter1.play()
                     _value.loadstep=1
+                else:
+                    _value.se_bubu.play()
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_ESCAPE:
+                _value.se_esc.play()
                 _value.loadstep=-1
                 _value.step=1
     
@@ -95,12 +99,16 @@ def loadb():
             if event.button == 1:
                 if x<mouseX<100+x and y<mouseY<40+y:
                     _value.loadstep=0
+                    _value.se_esc.play()
                 if x+540<mouseX<x+540+100 and y<mouseY<y+40:
                     _value.loadstep=2
+                    _value.se_enter1.play()
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_RETURN:
+                    _value.se_enter1.play()
                     _value.loadstep=2
             if event.key==pygame.K_ESCAPE:
+                    _value.se_esc.play()
                     _value.loadstep=0
 
 def load():
@@ -297,10 +305,11 @@ def loada():
                             1
                         
                         case 0:
+                            _value.se_enter1.play()
                             _value.step=2
                             _value.loadstep=0
                         case 1:
-                            1
+                            _value.se_enter1.play()
             if event.type == KEYDOWN: 
                 if event.key == pygame.K_UP or event.key == pygame.K_w:
                     _value.ka10-=1
@@ -312,10 +321,11 @@ def loada():
                             1
                         
                         case 0:
+                            _value.se_enter1.play()
                             _value.step=2
                             _value.loadstep=0
                         case 1:
-                            1
+                            _value.se_enter1.play()
             
             if _value.ka10<0:
                 _value.ka10=0

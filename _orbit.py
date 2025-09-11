@@ -113,6 +113,7 @@ def step5():
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                            _value.se_esc.play()
                             _value.step=4
                 if event.type == pygame.KEYDOWN:
                     if event.key==pygame.K_UP or event.key==pygame.K_LEFT:
@@ -128,13 +129,16 @@ def step5():
                         if _value.wazatype[_value.ka3]==0:
                             if _value.ka5==5:_value.ka5=4
                     if event.key==pygame.K_RETURN:
+                        _value.se_enter1.play()
                         _value.ka5+=1
                         if _value.ka5==14:_value.step=13
                     if event.key==pygame.K_ESCAPE:
+                        _value.se_esc.play()
                         _value.step=4
                 for i in range(_value.tab5):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if _value.box_rects[i].collidepoint(event.pos):
+                            _value.se_enter2.play()
                             _value.ka5=i
                         else:
                             _value.active2[i]=False

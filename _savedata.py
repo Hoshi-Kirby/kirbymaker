@@ -44,9 +44,13 @@ def savedata():
         if event.type == MOUSEBUTTONDOWN:
             if event.button == 1 and ka9>=0:
                 _value.savestep=1
+                _value.se_enter1.play()
+            else:
+                _value.se_bubu.play()
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_ESCAPE:
                 _value.savestep=-1
                 _value.step=_value.stepbefore
+                _value.se_esc.play()
     
     time.sleep(0.01)

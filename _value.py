@@ -20,6 +20,7 @@ blue=(0,0,255)
 pose=0
 posetime=0
 flip=0
+fliplip=0
 flip2=0
 ground=430
 kx=225
@@ -192,6 +193,18 @@ pekin = pygame.image.load("壁紙.png").convert()
 original_width, original_height = pekin.get_size()
 pekin = pygame.transform.scale_by(pekin,600/original_height)
 
+se_jump = pygame.mixer.Sound("jump.wav")
+se_hob = pygame.mixer.Sound("hob.wav")
+se_hobfin = pygame.mixer.Sound("hobfin.wav")
+se_sura = pygame.mixer.Sound("sura.wav")
+se_run = pygame.mixer.Sound("run.wav")
+se_enter1 = pygame.mixer.Sound("enter1.wav")
+se_enter2 = pygame.mixer.Sound("enter2.wav")
+se_esc = pygame.mixer.Sound("esc.wav")
+
+se_bubu = pygame.mixer.Sound("bubu-.wav")
+se_1up = pygame.mixer.Sound("1up.wav")
+se_copy = pygame.mixer.Sound("copy.wav")
 
 
 # import sys, random

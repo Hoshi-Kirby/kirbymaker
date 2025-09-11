@@ -178,10 +178,13 @@ def step4():
                             #保存
                             _value.stepbefore=4
                             _value.step=9
+                            _value.se_enter1.play()
                         if x+100<mouseX<x+200 and y<mouseY<y+40:
                             _value.stepbefore=4
                             _value.step=7
+                            _value.se_enter1.play()
                         if 50<mouseX<130 and y+y2<mouseY<y+40+y2:
+                            _value.se_esc.play()
                             _value.step=3
                         
 
@@ -202,7 +205,9 @@ def step4():
 
                         if mouseka4!=-1:
                             if _value.ka4==mouseka4:
-                                1
+                                _value.se_enter1.play()
+                            else:
+                                _value.se_enter2.play()
                             _value.ka4=mouseka4
                     if event.button == 4:
                         _value.ka4-=1
@@ -247,10 +252,12 @@ def step4():
                         
                         _value.title_len[_value.ka3]=len(_value.title)
                         if event.key==pygame.K_RETURN:
+                            _value.se_enter2.play()
                             _value.active=False
                             _value.color = _value.color_active if _value.active else _value.color_inactive
                             _value.title_list[_value.ka3%10] = _value.title
                     if event.key == pygame.K_ESCAPE:
+                        _value.se_esc.play()
                         _value.step=3
                     if event.key == pygame.K_UP:
                         _value.ka4-=1
@@ -264,6 +271,7 @@ def step4():
                             if _value.wazatype[_value.ka3]==0 and _value.ka4==3:
                                 _value.ka4=4
                     if event.key==pygame.K_RETURN:
+                        _value.se_enter1.play()
                         if _value.ka4==2:
                             _value.step=5
                         elif _value.ka4==7:
