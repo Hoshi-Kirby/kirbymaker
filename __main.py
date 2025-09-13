@@ -26,8 +26,6 @@ pygame.display.set_caption("k")
 
 
 pygame.mixer.init()
-pygame.mixer.music.load("title.mp3")
-pygame.mixer.music.play(-1)  # -1で無限ループ
 
 while True:
     if _value.step==1:
@@ -90,6 +88,10 @@ while True:
             cv2.imwrite(f"hado2 ({i}).png", image) 
 
         _value.ka8=0
+        pygame.mixer.music.stop()
+        pygame.mixer.music.load("title.mp3")
+        pygame.mixer.music.play(-1)
+
     while _value.step==1:
 
         _title.step1()
@@ -110,6 +112,9 @@ while True:
         _value.flip=0
         _value.image1=cv2.imread(r"C:\python\kirby\buki.png")
         _value.image2=cv2.imread(r"C:\python\kirby\buki2.png")
+        pygame.mixer.music.stop()
+        pygame.mixer.music.load("setting.mp3")
+        pygame.mixer.music.play(-1)
     while _value.step==2:
 
         _appe.step2()
@@ -314,6 +319,9 @@ while True:
     if _value.step==10:
         _value.loadstep=0
         _name.nameload()
+        pygame.mixer.music.stop()
+        pygame.mixer.music.load("select.mp3")
+        pygame.mixer.music.play(-1)
     while _value.step==10:
         while _value.loadstep==0:
             _load.loaddata()

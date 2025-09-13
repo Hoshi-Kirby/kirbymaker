@@ -127,17 +127,17 @@ def step7():
                     _value.se_esc.play()
             if event.type == KEYUP:
                 if event.key == K_RSHIFT:
-                    if 0<=_value.skillnum<9 and _value.skilltime>=0:
+                    if 0<=_value.skillnum<=9 and _value.skilltime>=0:
                         if _value.wazatame[_value.skillnum+20]<=_value.skilltime and _value.wazatame[_value.skillnum+20]>0:
                             _func.skill(_value.skillnum+20)
                         elif _value.wazatame[_value.skillnum+10]<=_value.skilltime and _value.wazatame[_value.skillnum+10]>0:
                             _func.skill(_value.skillnum+10)
                         elif _value.wazatame[_value.skillnum]==1:
                             _func.skill(_value.skillnum)
-                    _value.skilltime=-1
-            #
-            
-        # 
+                        _value.skilltime=-1
+                        if _value.t2==-1 and _value.th==-1:
+                            _value.skillnum=-1
+
         if _value.kaih==0 and _value.skaih==0 and _value.sura==0:
             if (pressed_keys[K_d] or pressed_keys[K_a]) and _value.hobfc==0 and _value.skilltime==-1:
                 _value.posetime+=1
@@ -658,7 +658,7 @@ def step7():
         if _value.t2==-1 and _value.th==-1:
             _value.t=-1
             _value.hando=0
-            _value.skillnum=-1
+            if _value.skilltime==-1 :_value.skillnum=-1
         
         if _value.t==-1:_value.flip2=_value.flip
         if _value.skillnum>=0 and _value.wazatype[_value.skillnum]>0:

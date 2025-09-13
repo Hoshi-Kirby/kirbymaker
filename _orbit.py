@@ -78,16 +78,16 @@ def step5():
             text_rect = text.get_rect(center=(500, 450))
             _value.screen.blit(text, text_rect)
             # 遠距離の弾
-            # if _value.wazatype[_value.ka3]==1:#kx2[_value.ka3]*0.1*t*t+(kx1[_value.ka3]+kad2[_value.ka3]*0.02*ad)*t*1.5+kx0[_value.ka3]*50+125+kad1[_value.ka3]*ad*1.5,ky2[_value.ka3]*0.1*t*t+(ky1[_value.ka3]+kws2[_value.ka3]*0.02*ws)*1.5*t+ky0[_value.ka3]*50+315+kws1[_value.ka3]*ws*1.5
-            #     if _value.t>_value.kzi[_value.ka3]*100:
-            #         img1 = pygame.image.load(f"hado ({_value.ka3}).png")
-            #         img1.set_colorkey((255, 255, 255))
-            #         img1 = img1.convert_alpha()
-            #         img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
-            #         _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
-            #     text = _value.font.render("弾数      個　間隔       秒", False, (fill3))
-            #     text_rect = text.get_rect(center=(500, 100))
-            #     _value.screen.blit(text, text_rect)
+            if _value.wazatype[_value.ka3]==1:#kx2[_value.ka3]*0.1*t*t+(kx1[_value.ka3]+kad2[_value.ka3]*0.02*ad)*t*1.5+kx0[_value.ka3]*50+125+kad1[_value.ka3]*ad*1.5,ky2[_value.ka3]*0.1*t*t+(ky1[_value.ka3]+kws2[_value.ka3]*0.02*ws)*1.5*t+ky0[_value.ka3]*50+315+kws1[_value.ka3]*ws*1.5
+                if _value.t>_value.kzi[_value.ka3]*100:
+                    img1 = pygame.image.load(f"hado ({_value.ka3}).png")
+                    img1.set_colorkey((255, 255, 255))
+                    img1 = img1.convert_alpha()
+                    img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
+                    _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
+                text = _value.font.render("弾数      個　間隔       秒", False, (fill3))
+                text_rect = text.get_rect(center=(500, 100))
+                _value.screen.blit(text, text_rect)
 
 
         x=50

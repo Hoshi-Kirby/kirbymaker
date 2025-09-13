@@ -356,6 +356,8 @@ def step4():
                     _value.wazahuto[_value.ka3]+=1 
                 if _value.ka4==9:
                     _value.wazatame[_value.ka3]+=1 
+                    if _value.wazatame[_value.ka3]>1 and _value.ka3<10:_value.wazatame[_value.ka3]=1
+
         else:
             _value.rightime=10
         if pressed_keys[K_LEFT]:
@@ -371,6 +373,8 @@ def step4():
                 if _value.ka4==9:
                     _value.wazatame[_value.ka3]-=1 
                     if _value.wazatame[_value.ka3]<0:_value.wazatame[_value.ka3]=0
+                    if _value.ka3>=30:
+                                if _value.wazatame[_value.ka3]<_value.wazatame[_value.ka3-10]:_value.wazatame[_value.ka3]=_value.wazatame[_value.ka3-10]
         else:
             _value.leftime=10
         
