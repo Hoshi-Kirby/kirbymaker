@@ -290,26 +290,104 @@ def loada():
             text_rect[i] = text.get_rect(center=(400, 350-interval*le/2 + i*interval))
         _value.screen.blit(text, text_rect[i])
     
+    
+    if _value.step2==1:
+        x=85
+        y=350
+        pygame.draw.rect(_value.screen, (255,255,255),(50,200,700,200))
+        text=_value.font.render("本当にこのデータを削除しますか", False, (0,0,0))
+        text_rect = text.get_rect(center=(400, 300))
+        _value.screen.blit(text, text_rect)
+        if x+540<mouseX<100+x+540 and y<mouseY<40+y:
+            hozon=(200,100,100)
+        else:
+            hozon=(0,0,0)
+        if x<mouseX<x+100 and y<mouseY<y+40:
+            purei=(100,100,200)
+        else:
+            purei=(0,0,0)
+        pygame.draw.rect(_value.screen, (200,50,50), (x+550,y,80,40), width=3,border_radius=5)
+        pygame.draw.rect(_value.screen, (100,100,200), (x,y,100,40), width=3,border_radius=5)
+        text = _value.font.render("削除", False, (hozon))
+        text_rect = text.get_rect(center=(x+50+540,y+20))
+        _value.screen.blit(text, text_rect)
+        text = _value.font.render("やめる", False, (purei))
+        text_rect = text.get_rect(center=(x+50,y+20))
+        _value.screen.blit(text, text_rect)
+    if _value.step2==2:
+        x=400-40
+        y=350
+        pygame.draw.rect(_value.screen, (255,255,255),(50,200,700,200))
+        text=_value.font.render("削除しました", False, (0,0,0))
+        text_rect = text.get_rect(center=(400, 300))
+        _value.screen.blit(text, text_rect)
+        if x<mouseX<x+100 and y<mouseY<y+40:
+            purei=(100,100,200)
+        else:
+            purei=(0,0,0)
+        pygame.draw.rect(_value.screen, (100,100,200), (x,y,80,40), width=3,border_radius=5)
+        text = _value.font.render("戻る", False, (purei))
+        text_rect = text.get_rect(center=(x+40,y+20))
+        _value.screen.blit(text, text_rect)
+
     for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
             elif event.type == MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    click=-1
-                    for i in range (le):
-                        if text_rect[i].collidepoint(event.pos):
-                            click=i
-                    match click:
-                        case -1:
-                            1
-                        
-                        case 0:
+                if _value.step2==0:
+                    if event.button == 1:
+                        click=-1
+                        for i in range (le):
+                            if text_rect[i].collidepoint(event.pos):
+                                click=i
+                        match click:
+                            case -1:
+                                1
+                            
+                            case 0:
+                                _value.se_enter1.play()
+                                _value.step=2
+                                _value.loadstep=0
+                            case 1:
+                                _value.step2=1
+                                _value.se_enter1.play()
+                elif _value.step2==1:
+                    if event.button == 1:
+                        if x<mouseX<100+x and y<mouseY<40+y:
+                            _value.step2=0
+                            _value.se_esc.play()
+                        if x+540<mouseX<x+540+100 and y<mouseY<y+40:
                             _value.se_enter1.play()
-                            _value.step=2
+                            _value.se_enter1.play()
+                            slot=_value.ka9
+                            # データベースのテーブル削除
+                            db_path = os.path.join("save", "save.db")
+                            if os.path.exists(db_path):
+                                conn = sqlite3.connect(db_path)
+                                cursor = conn.cursor()
+                                cursor.execute(f"DROP TABLE IF EXISTS save{slot}")
+                                conn.commit()
+                                conn.close()
+
+                            # 画像ファイルの削除
+                            for i in range(30):
+                                image_files = [
+                                    f"{slot}-buki ({i}).png",
+                                    f"{slot}-buki2 ({i}).png",
+                                    f"{slot}-hado ({i}).png",
+                                    f"{slot}-hado2 ({i}).png",
+                                ]
+                                for path in image_files:
+                                    if os.path.exists(path):
+                                        os.remove(path)
+                            _value.step2=2
+                elif _value.step2==2:
+                    if event.button == 1:
+                        if x<mouseX<100+x and y<mouseY<40+y:
+                            _value.se_esc.play()
+                            _value.step=1
                             _value.loadstep=0
-                        case 1:
-                            _value.se_enter1.play()
             if event.type == KEYDOWN: 
                 if event.key == pygame.K_UP or event.key == pygame.K_w:
                     _value.ka10-=1
@@ -326,6 +404,8 @@ def loada():
                             _value.loadstep=0
                         case 1:
                             _value.se_enter1.play()
+                            _value.step2=1
+
             
             if _value.ka10<0:
                 _value.ka10=0

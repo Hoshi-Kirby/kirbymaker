@@ -264,6 +264,13 @@ def step8():
                         if event.key==pygame.K_ESCAPE:
                             _value.se_esc.play()
                             _value.step=4
+                    else:
+                        if event.key==pygame.K_RETURN:
+                            _value.se_enter2.play()
+                            _value.step2=0
+                        if event.key==pygame.K_ESCAPE:
+                            _value.se_esc.play()
+                            _value.step2=0
                         if _value.step2==1:
                             if event.key == pygame.K_c:
                                 for i in range(45):
@@ -274,22 +281,16 @@ def step8():
                                 for i in range(46):
                                     for i2 in range(45):
                                         image[i,i2]=(255,255,255)
-                    else:
-                        if event.key==pygame.K_RETURN:
-                            _value.se_enter2.play()
-                            _value.step2=0
-                        if event.key==pygame.K_ESCAPE:
-                            _value.se_esc.play()
-                            _value.step2=0
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         if _value.step2==0:
                             if _value.ka8==mouseka8:
                                 _value.se_enter2.play()
                                 if (_value.wazatype[_value.ka3]==1 and _value.ka8==2)or(_value.wazatype[_value.ka3]!=1 and _value.ka8==1):
-                                    if _value.erabuki[_value.ka3]==1:_value.step2=1
+                                    if _value.erabuki[_value.ka3]==1:1#_value.step2=1
                                 if _value.wazatype[_value.ka3]==1 and _value.ka8==1:
-                                    _value.step2=2
+                                    #_value.step2=2
+                                    1
                             if _value.ka8!=mouseka8 and mouseka8>=0:
                                 _value.ka8=mouseka8
                         if 50<mouseX<130 and y+y2<mouseY<y+40+y2:

@@ -559,14 +559,16 @@ def draw_text_wrapped(surface, text, font, color, rect, line_spacing=5):
 
 def help(x,y,num,helptext):
     r=20
-    pygame.draw.circle(_value.screen, (255,255,200),(x,y),r)
-    text = _value.font.render("?", False, (0,0,0))
-    text_rect = text.get_rect(center=(x,y))
-    _value.screen.blit(text, text_rect)
+    if not(100<x<700 and 80<y<520 and _value.help!=0):
+        pygame.draw.circle(_value.screen, (255,255,200),(x,y),r)
+        text = _value.font.render("?", False, (0,0,0))
+        text_rect = text.get_rect(center=(x,y))
+        _value.screen.blit(text, text_rect)
     mouseX, mouseY = pygame.mouse.get_pos()
     if _value.help==0:
         if _value.mouseclick==1:
             if (mouseX-x)**2+(mouseY-y)**2<r**2:
+                _value.se_enter1.play()
                 _value.help=num
     else:
         if _value.help==num:
@@ -577,5 +579,6 @@ def help(x,y,num,helptext):
             _value.screen.blit(text, text_rect)
             if _value.mouseclick==1:
                 if text_rect.collidepoint(mouseX,mouseY):
+                    _value.se_esc.play()
                     _value.help=0
                 

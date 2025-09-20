@@ -36,6 +36,7 @@ kaih=0
 skaih=0
 shagam=0
 sura=0
+comskillstep=0
 
 sctime=0
 sc=0

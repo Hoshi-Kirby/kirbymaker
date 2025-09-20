@@ -322,6 +322,7 @@ while True:
         pygame.mixer.music.stop()
         pygame.mixer.music.load("select.mp3")
         pygame.mixer.music.play(-1)
+        _value.step2=0
     while _value.step==10:
         while _value.loadstep==0:
             _load.loaddata()
@@ -330,5 +331,8 @@ while True:
         if _value.loadstep==2:
             _load.load()
             _value.se_copy.play()
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load("koruku.mp3")
+            pygame.mixer.music.play(-1)
         while _value.loadstep==2:
             _load.loada()

@@ -322,5 +322,5 @@ def step1():
         img1 = pygame.transform.scale_by(img1, 2)
         _value.screen.blit(img1, (_value.kx+_value.kxh, _value.ky+_value.kyh))
         
-        _func.help(100,100,1,"ヘルプテストだよちゃんと開業するかな、開業じゃなくて改行だよいい街があえたよ。いい街があえたんじゃないよ言い間違えたんだよ")
+        _func.help(400,100,1,"このゲームはカービィのコピー能力を自作して動かすことができるだけのゲームです")
         time.sleep(0.01)

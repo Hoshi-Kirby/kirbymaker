@@ -80,6 +80,7 @@ def step7():
                     if event.key == K_RIGHTBRACKET and _value.sura==0:
                         command = command2 = "Y"
                     
+                    _value.title_len[8]=len(_value.title_list[8])
                     if _value.comt<_value.title_len[8]:
                         if _value.title_list[8][int(_value.comt)]==command:
                             if _value.comt<_value.title_len[8]-1:
@@ -658,7 +659,11 @@ def step7():
         if _value.t2==-1 and _value.th==-1:
             _value.t=-1
             _value.hando=0
-            if _value.skilltime==-1 :_value.skillnum=-1
+            if _value.skillnum==18:
+                _func.skill(28)
+            elif _value.skillnum==8:
+                _func.skill(18)
+            elif _value.skilltime==-1 :_value.skillnum=-1
         
         if _value.t==-1:_value.flip2=_value.flip
         if _value.skillnum>=0 and _value.wazatype[_value.skillnum]>0:

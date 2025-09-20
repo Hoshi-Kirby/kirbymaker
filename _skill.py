@@ -109,6 +109,19 @@ def step3():
             text_rect = text.get_rect(center=(550, 300+50*_value.tab+_value.sc))
         _value.screen.blit(text, text_rect)
         
+        if _value.ka3<10:
+            text = _value.font.render("通常", False, (fill))
+            text_rect = text.get_rect(center=(100, 200))
+            _value.screen.blit(text, text_rect)
+        elif _value.ka3<20:
+            text = _value.font.render("溜め1", False, (fill))
+            text_rect = text.get_rect(center=(100, 200))
+            _value.screen.blit(text, text_rect)
+        else:
+            text = _value.font.render("溜め2", False, (fill))
+            text_rect = text.get_rect(center=(100, 200))
+            _value.screen.blit(text, text_rect)
+
         x=50
         y=510
         y2=460-y
@@ -243,4 +256,5 @@ def step3():
         if _value.wazapene[_value.ka3]==0:
             if _value.ky>0:_value.t2=_value.kzi2[_value.ka3]*100
         # pygame.display.flip()
+        _func.help(50,50,1,"設定する技を選択します。十字の左右もしくはA,Dキーを押すと色が変わって、技の溜め動作をしたときの技を設定できます。")    
         time.sleep(0.01)
