@@ -15,33 +15,36 @@ import _value
 def step6():
         pygame.display.update()
         mouseX, mouseY = pygame.mouse.get_pos()
-        _value.screen.fill((200,200,255))
-        pygame.draw.line(_value.screen,(0,0,0),(25,315),(225,315),1)
-        pygame.draw.line(_value.screen,(0,0,0),(125,215),(125,415),1)
+        _value.screen.blit(_value.pekin3, (0,0))
+        rect_surface = pygame.Surface((520, 340), pygame.SRCALPHA)
+        rect_surface.fill((0, 0, 0, 170))  # ← 透明　0<=A<=255 不透明
+        _value.screen.blit(rect_surface, (270,160))
+        pygame.draw.line(_value.screen,(255,255,255),(25,315),(225,315),1)
+        pygame.draw.line(_value.screen,(255,255,255),(125,215),(125,415),1)
         
         _func.settingkirby(_value.kx+100,_value.ky+298,0)
         if _value.ka6<7:
-            fill=0,0,0
+            fill=255,255,255
             fill2=(100,100,100)
             fill3=(100,100,100)
         elif 7<=_value.ka6<11:
             fill=(100,100,100)
-            fill2=0,0,0
+            fill2=255,255,255
             fill3=(100,100,100)
         else:
             fill=(100,100,100)
             fill2=(100,100,100)
-            fill3=0,0,0
+            fill3=255,255,255
         text = _value.font.render("x方向     t^2+      t+                ", False, (fill))
         text_rect = text.get_rect(center=(500, 200))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render("ad入力     t^2+      t+                 ", False, (fill2))
+        text = _value.font.render("ad入力     t^2+                         ", False, (fill2))
         text_rect = text.get_rect(center=(500,250))
         _value.screen.blit(text, text_rect)
         text = _value.font.render("    y方向     t^2+      t+        (t<        )", False, (fill))
         text_rect = text.get_rect(center=(500, 400))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render("ws入力     t^2+      t+                 ", False, (fill2))
+        text = _value.font.render("ws入力     t^2+                         ", False, (fill2))
         text_rect = text.get_rect(center=(500, 450))
         _value.screen.blit(text, text_rect)
 
@@ -50,7 +53,7 @@ def step6():
         if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
             modoru=(100,100,200)
         else:
-            modoru=(0,0,0)
+            modoru=(255,255,255)
         pygame.draw.rect(_value.screen, (100,100,200), (50,y+y2,80,40), width=3,border_radius=5)
         text = _value.font.render("戻る", False, (modoru))
         text_rect = text.get_rect(center=(90,y+20+y2))
@@ -151,14 +154,14 @@ def step6():
                 _value.active2[i]=False
 
 
-            text_surface = _value.font.render(_value.input_text[i], True, (0,0,0))
+            text_surface = _value.font.render(_value.input_text[i], True, (255,255,255))
             _value.screen.blit(text_surface, (_value.box_rects[i].x + 5, _value.box_rects[i].y))
-            pygame.draw.line(_value.screen, (0,0,0),
+            pygame.draw.line(_value.screen, (255,255,255),
                         (_value.box_rects[i].x, _value.box_rects[i].bottom),
                         (_value.box_rects[i].right, _value.box_rects[i].bottom), 2)
             if _value.active2[i] and pygame.time.get_ticks() % 1000 < 500:
                 cursor_x = _value.box_rects[i].x + 5 + text_surface.get_width()
-                pygame.draw.line(_value.screen, (0,0,0),
+                pygame.draw.line(_value.screen, (255,255,255),
                                 (cursor_x, _value.box_rects[i].y + 5),
                                 (cursor_x, _value.box_rects[i].y + 25), 2)
         # if wazatype[_value.ka3]==0:

@@ -15,9 +15,12 @@ import _value
 def step5():
         pygame.display.update()
         mouseX, mouseY = pygame.mouse.get_pos()
-        _value.screen.fill((200,200,255))
-        pygame.draw.line(_value.screen,(0,0,0),(25,315),(225,315),1)
-        pygame.draw.line(_value.screen,(0,0,0),(125,215),(125,415),1)
+        _value.screen.blit(_value.pekin3, (0,0))
+        rect_surface = pygame.Surface((520, 340), pygame.SRCALPHA)
+        rect_surface.fill((0, 0, 0, 170))  # ← 透明　0<=A<=255 不透明
+        _value.screen.blit(rect_surface, (270,160))
+        pygame.draw.line(_value.screen,(255,255,255),(25,315),(225,315),1)
+        pygame.draw.line(_value.screen,(255,255,255),(125,215),(125,415),1)
         if _value.wazatype[_value.ka3]==2 and _value.t>_value.kzi[_value.ka3]*100:
             if(_value.t2<10):
                 _func.settingkirby(_value.kx+100,_value.ky+298,1)
@@ -37,7 +40,7 @@ def step5():
             if(20<=_value.t2):
                 _func.settingkirby(100,298,4)
         if _value.wazatype[_value.ka3]==0:
-            fill=0,0,0
+            fill=255,255,255
             text = _value.font.render("rect        ,         ,         ,        ", False, (fill))
             text_rect = text.get_rect(center=(500, 200))
             _value.screen.blit(text, text_rect)
@@ -54,27 +57,27 @@ def step5():
             # pygame.draw.rect(_value.screen,(255,0,0),rect)
         else:
             if _value.ka5<8:
-                fill=0,0,0
+                fill=255,255,255
                 fill2=(100,100,100)
                 fill3=(100,100,100)
             elif 8<=_value.ka5<12:
                 fill=(100,100,100)
-                fill2=0,0,0
+                fill2=255,255,255
                 fill3=(100,100,100)
             else:
                 fill=(100,100,100)
                 fill2=(100,100,100)
-                fill3=0,0,0
+                fill3=255,255,255
             text = _value.font.render("x方向     t^2+      t+                ", False, (fill))
             text_rect = text.get_rect(center=(500, 200))
             _value.screen.blit(text, text_rect)
-            text = _value.font.render("ad入力     t^2+      t+                 ", False, (fill2))
+            text = _value.font.render("ad入力     t^2+                         ", False, (fill2))
             text_rect = text.get_rect(center=(500,250))
             _value.screen.blit(text, text_rect)
             text = _value.font.render("    y方向     t^2+      t+       (     <t<     )", False, (fill))
             text_rect = text.get_rect(center=(520, 400))
             _value.screen.blit(text, text_rect)
-            text = _value.font.render("ws入力     t^2+      t+                 ", False, (fill2))
+            text = _value.font.render("ws入力     t^2+                         ", False, (fill2))
             text_rect = text.get_rect(center=(500, 450))
             _value.screen.blit(text, text_rect)
             # 遠距離の弾
@@ -85,9 +88,9 @@ def step5():
                     img1 = img1.convert_alpha()
                     img1 = pygame.transform.scale_by(img1, 2.5*(1.02**(-_value.hados[_value.ka3])))
                     _value.screen.blit(img1, (_value.kx+105+30-60*(1.02**(-_value.hados[_value.ka3])),_value.ky+282+30-60*(1.02**(-_value.hados[_value.ka3]))))
-                text = _value.font.render("弾数      個　間隔       秒", False, (fill3))
-                text_rect = text.get_rect(center=(500, 100))
-                _value.screen.blit(text, text_rect)
+                # text = _value.font.render("弾数      個　間隔       秒", False, (fill3))
+                # text_rect = text.get_rect(center=(500, 100))
+                # _value.screen.blit(text, text_rect)
 
 
         x=50
@@ -96,7 +99,7 @@ def step5():
         if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
             modoru=(100,100,200)
         else:
-            modoru=(0,0,0)
+            modoru=(255,255,255)
         pygame.draw.rect(_value.screen, (100,100,200), (50,y+y2,80,40), width=3,border_radius=5)
         text = _value.font.render("戻る", False, (modoru))
         text_rect = text.get_rect(center=(90,y+20+y2))
@@ -131,7 +134,7 @@ def step5():
                     if event.key==pygame.K_RETURN:
                         _value.se_enter1.play()
                         _value.ka5+=1
-                        if _value.ka5==14:_value.step=13
+                        if _value.ka5>=12:_value.ka5>=11
                     if event.key==pygame.K_ESCAPE:
                         _value.se_esc.play()
                         _value.step=4
@@ -206,14 +209,14 @@ def step5():
                 _value.active2[i]=False
 
 
-            text_surface = _value.font.render(_value.input_text[i], True, (0,0,0))
+            text_surface = _value.font.render(_value.input_text[i], True, (255,255,255))
             _value.screen.blit(text_surface, (_value.box_rects[i].x + 5, _value.box_rects[i].y))
-            pygame.draw.line(_value.screen, (0,0,0),
+            pygame.draw.line(_value.screen, (255,255,255),
                         (_value.box_rects[i].x, _value.box_rects[i].bottom),
                         (_value.box_rects[i].right, _value.box_rects[i].bottom), 2)
             if _value.active2[i] and pygame.time.get_ticks() % 1000 < 500:
                 cursor_x = _value.box_rects[i].x + 5 + text_surface.get_width()
-                pygame.draw.line(_value.screen, (0,0,0),
+                pygame.draw.line(_value.screen, (255,255,255),
                                 (cursor_x, _value.box_rects[i].y + 5),
                                 (cursor_x, _value.box_rects[i].y + 25), 2)
         # if wazatype[_value.ka3]==0:
@@ -243,4 +246,10 @@ def step5():
             
             if _value.wazapene[_value.ka3]==0:
                 if _value.ky>0:_value.t2=_value.kzi2[_value.ka3]*100
+
+
+        if _value.wazatype[_value.ka3]==0:
+            _func.help(50,50,-1,"攻撃技の技範囲を設定します。形は四角のみで、カービィの中心を原点としてrect(左上頂点x座標,y座標,幅,高さ) (t<攻撃時間)で設定します。")
+        if _value.wazatype[_value.ka3]>0:
+            _func.help(50,50,-1,"攻撃技の軌道を設定します。カービィの中心を原点とする二次関数で設定します。(_<t<_)は攻撃時間を設定します。")
         time.sleep(0.01)

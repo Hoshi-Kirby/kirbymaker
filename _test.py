@@ -16,10 +16,10 @@ def step7():
         pygame.display.update()
         mouseX, mouseY = pygame.mouse.get_pos()
         
-        _value.screen.fill((200,200,255))
+        _value.screen.blit(_value.pekin2, (0,0))
 
         
-        text = _value.font.render("編集", False, (0,0,0))
+        text = _value.font.render("編集", False, (255,255,255))
         text_rect = text.get_rect(center=(700, 30))
         _value.screen.blit(text, text_rect)
 

@@ -74,7 +74,7 @@ def saveb():
 
 #一度切り
 def save():
-    text = _value.font.render("保存中...", False, (0,0,0))
+    text = _value.font.render("保存中...", False, _value.fill)
     text_rect = text.get_rect(center=(400,350+20))
     _value.screen.blit(text, text_rect)
     pygame.display.update()
@@ -200,7 +200,7 @@ def save():
 #セーブ後
 def savea():
     pygame.display.update()
-    _value.screen.fill((200,200,255))
+    _value.screen.blit(_value.pekin3, (0,0))
     mouseX, mouseY = pygame.mouse.get_pos()
     pygame.draw.rect(_value.screen, (255,255,255),(50,200,700,200))
     text=_value.font.render("保存しました", False, (0,0,0))

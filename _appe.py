@@ -18,7 +18,7 @@ def step2():
         if _value.flip==1:
             image=_value.image2
         pygame.display.update()
-        _value.screen.fill((200,200,255))
+        _value.screen.blit(_value.pekin3, (0,0))
         mouseX, mouseY = pygame.mouse.get_pos()
         _func.standingkirby(100,298,0)
 
@@ -26,32 +26,32 @@ def step2():
             if _value.ka==0:
                 text = _value.font.render("帽子　←　　　　　→", False, (150,50,50))
             else:
-                text = _value.font.render("帽子　←　　　　　→", False, (0,0,0))
+                text = _value.font.render("帽子　←　　　　　→", False, (255,255,255))
             text_rect = text.get_rect(center=(440, 200))
             _value.screen.blit(text, text_rect)
             if _value.bosi==0:
-                text = _value.font.render("なし", False, (0,0,0))
+                text = _value.font.render("なし", False, (255,255,255))
             if _value.bosi==1:
-                text = _value.font.render("ボム", False, (0,0,0))
+                text = _value.font.render("ボム", False, (255,255,255))
             if _value.bosi==2:
-                text = _value.font.render("ファイター", False, (0,0,0))
+                text = _value.font.render("ファイター", False, (255,255,255))
             text_rect = text.get_rect(center=(480, 200))
             _value.screen.blit(text, text_rect)
 
             if _value.ka==1:
                 text = _value.font.render("武器　←　　→", False, (150,50,50))
             else:
-                text = _value.font.render("武器　←　　→", False, (0,0,0))
+                text = _value.font.render("武器　←　　→", False, (255,255,255))
             text_rect = text.get_rect(center=(400, 400))
             _value.screen.blit(text, text_rect)
             if _value.buki==0:
-                text = _value.font.render("なし", False, (0,0,0))
+                text = _value.font.render("なし", False, (255,255,255))
             if _value.buki==1:
-                text = _value.font.render("あり", False, (0,0,0))
+                text = _value.font.render("あり", False, (255,255,255))
             text_rect = text.get_rect(center=(450, 400))
             _value.screen.blit(text, text_rect)
 
-            text = _value.font.render("武器を変更する", False, (0,0,0))
+            text = _value.font.render("武器を変更する", False, (255,255,255))
             change_rect = text.get_rect(center=(400, 450))
             if _value.buki==1:
                 if _value.ka==2 or change_rect.collidepoint(mouseX,mouseY):
@@ -63,14 +63,14 @@ def step2():
             if x+620<mouseX<80+x+620 and y<mouseY<40+y:
                 hozon=(200,100,100)
             else:
-                hozon=(0,0,0)
+                hozon=(255,255,255)
             if x<mouseX<x+80 and y<mouseY<y+40:
                 purei=(100,100,200)
             else:
-                purei=(0,0,0)
+                purei=(255,255,255)
             if _value.esch==1:
-                hozon=(0,0,0)
-                purei=(0,0,0)
+                hozon=(255,255,255)
+                purei=(255,255,255)
             pygame.draw.rect(_value.screen, (200,50,50), (x+620,y,80,40), width=3,border_radius=5)
             pygame.draw.rect(_value.screen, (100,100,200), (x,y,80,40), width=3,border_radius=5)
             text = _value.font.render("次へ", False, (hozon))
@@ -110,7 +110,7 @@ def step2():
         elif _value.step2==1:
             x=250
             y=50
-            text=_value.font.render("裏", False, (0,0,0))
+            text=_value.font.render("裏", False, (255,255,255))
             text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
             for i in range(45):
@@ -146,11 +146,11 @@ def step2():
             if x+620<mouseX<80+x+620 and y<mouseY<40+y:
                 hozon=(200,100,100)
             else:
-                hozon=(0,0,0)
+                hozon=(255,255,255)
             if x<mouseX<x+80 and y<mouseY<y+40:
                 purei=(100,100,200)
             else:
-                purei=(0,0,0)
+                purei=(255,255,255)
             pygame.draw.rect(_value.screen, (100,100,200), (x,y,80,40), width=3,border_radius=5)
             text = _value.font.render("戻る", False, (purei))
             text_rect = text.get_rect(center=(x+40,y+20))
@@ -167,14 +167,14 @@ def step2():
                     if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                         if _value.ka==0:
                             _value.bosi-=1
-                            if _value.bosi<0:_value.bosi=0
+                            if _value.bosi<0:_value.bosi=2
                         if _value.ka==1:
                             _value.buki=0
                             _value.erabuki=[0]*(_value.tab+20)
                     if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                         if _value.ka==0:
                             _value.bosi+=1
-                            if _value.bosi>2:_value.bosi=2
+                            if _value.bosi>2:_value.bosi=0
                         if _value.ka==1:
                             _value.buki=1
                             _value.erabuki=[1]*(_value.tab+20)
@@ -251,8 +251,8 @@ def step2():
                                 fill = _func.bgr_to_rgb(bgr)
                                 _value.cr,_value.cg,_value.cb=fill
                         if event.button == 2 and _value.step2==1:
-                            if _value.back==(255,255,255):_value.back=(0,0,0)
-                            elif _value.back==(0,0,0):_value.back=(255,255,255)
+                            if _value.back==(255,255,255):_value.back=(255,255,255)
+                            elif _value.back==(255,255,255):_value.back=(255,255,255)
                         
                         if x<mouseX<x+80 and y<mouseY<y+40:
                             _value.step2=0

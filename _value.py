@@ -11,6 +11,7 @@ from pygame.locals import *
 pygame.init()
 pygame.mixer.init()
 
+fill=1
 step=1
 stepbefore=1
 white = (255,255,255)
@@ -105,7 +106,7 @@ flip=0
 ka4=1
 tab4=8
 input_box = pygame.Rect(50, 80, 400, 40)
-color_inactive = pygame.Color(0,0,0)
+color_inactive = pygame.Color(255,255,255)
 color_active = pygame.Color(150,50,50)
 color = color_inactive
 active = False
@@ -190,9 +191,19 @@ ka10=0
 
 # font = pygame.font.SysFont("HG創英角ﾎﾟｯﾌﾟ体", 30)
 font = pygame.font.SysFont("HG丸ｺﾞｼｯｸM-PRO", 30)
-pekin = pygame.image.load("壁紙.png").convert()
-original_width, original_height = pekin.get_size()
-pekin = pygame.transform.scale_by(pekin,600/original_height)
+
+pekin1 = pygame.image.load("壁紙クラッコ.png").convert()
+original_width, original_height = pekin1.get_size()
+pekin1 = pygame.transform.scale_by(pekin1,600/original_height)
+pekin2 = pygame.image.load("壁紙ロブスター2.png").convert()
+original_width, original_height = pekin2.get_size()
+pekin2 = pygame.transform.scale_by(pekin2,600/original_height)
+pekin3 = pygame.image.load("壁紙リアクター.png").convert()
+original_width, original_height = pekin3.get_size()
+pekin3 = pygame.transform.scale_by(pekin3,600/original_height)
+pekin4 = pygame.image.load("壁紙バトルウィンドウズ2.png").convert()
+original_width, original_height = pekin4.get_size()
+pekin4 = pygame.transform.scale_by(pekin4,600/original_height)
 
 se_jump = pygame.mixer.Sound("jump.wav")
 se_hob = pygame.mixer.Sound("hob.wav")

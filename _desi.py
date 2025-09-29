@@ -14,20 +14,23 @@ import _value
 
 def step8():
         pygame.display.update()
+        _value.screen.blit(_value.pekin3, (0,0))
+        rect_surface = pygame.Surface((120, 200), pygame.SRCALPHA)
+        rect_surface.fill((0, 0, 0, 170))  # ← 透明　0<=A<=255 不透明
+        _value.screen.blit(rect_surface, (400,200))
         mouseX, mouseY = pygame.mouse.get_pos()
-        _value.screen.fill((200,200,255))
         if _value.ka8==0:
-            fill=0,0,0
+            fill=255,255,255
             fill2=(100,100,100)
             fill3=(100,100,100)
         elif _value.ka8==1:
             fill=(100,100,100)
-            fill2=0,0,0
+            fill2=255,255,255
             fill3=(100,100,100)
         else:
             fill=(100,100,100)
             fill2=(100,100,100)
-            fill3=0,0,0
+            fill3=255,255,255
         
         if _value.step2==0:
             if _value.wazatype[_value.ka3]==0:
@@ -129,7 +132,7 @@ def step8():
                 image=_value.image2
             x=250
             y=50
-            text=_value.font.render("裏", False, (0,0,0))
+            text=_value.font.render("裏", False, (255,255,255))
             text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
             for i in range(45):
@@ -172,7 +175,7 @@ def step8():
                 image=_value.image4
             x=180
             y=40
-            text=_value.font.render("裏", False, (0,0,0))
+            text=_value.font.render("裏", False, (255,255,255))
             text_rect = text.get_rect(center=(400, 550))
             _value.screen.blit(text, text_rect)
             for i in range(46):
@@ -220,7 +223,7 @@ def step8():
         if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
             modoru=(100,100,200)
         else:
-            modoru=(0,0,0)
+            modoru=(255,255,255)
         pygame.draw.rect(_value.screen, (100,100,200), (50,y+y2,80,40), width=3,border_radius=5)
         text = _value.font.render("戻る", False, (modoru))
         text_rect = text.get_rect(center=(90,y+20+y2))
@@ -309,8 +312,8 @@ def step8():
                             fill = _func.bgr_to_rgb(bgr)
                             _value.cr,_value.cg,_value.cb=fill
                     if event.button == 2 and _value.step2>=1:
-                        if _value.back==(255,255,255):_value.back=(0,0,0)
-                        elif _value.back==(0,0,0):_value.back=(255,255,255)
+                        if _value.back==(255,255,255):_value.back=(255,255,255)
+                        elif _value.back==(255,255,255):_value.back=(255,255,255)
                 elif event.type == MOUSEBUTTONUP:
                     if event.button ==1 and _value.drag==1:
                         _value.drag = 0

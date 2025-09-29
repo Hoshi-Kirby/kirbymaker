@@ -60,7 +60,7 @@ def nameload():
 
 def name():
     pygame.display.update()
-    _value.screen.fill((200,200,255))
+    _value.screen.blit(_value.pekin3, (0,0))
     mouseX, mouseY = pygame.mouse.get_pos()
 
     txt_surface = _value.font.render(_value.title, True, _value.color)
@@ -69,24 +69,24 @@ def name():
     _value.screen.blit(txt_surface, (250, 260))
     pygame.draw.line(_value.screen, _value.color, (250,300),(250+width,300), 2)
     
-    text = _value.font.render("能力名を決めてね", False, (0,0,0))
+    text = _value.font.render("能力名を決めてね", False, (255,255,255))
     text_rect = text.get_rect(center=(400, 70))
     _value.screen.blit(text, text_rect)
 
     if pygame.time.get_ticks() % 1000 < 500:
         cursor_x = 250 + 5 + txt_surface.get_width()
-        pygame.draw.line(_value.screen, (0,0,0),(cursor_x, 262),(cursor_x, 294), 2)
+        pygame.draw.line(_value.screen, (255,255,255),(cursor_x, 262),(cursor_x, 294), 2)
 
     x=50
     y=460
     if x+620<mouseX<80+x+620 and y<mouseY<40+y:
         hozon=(200,100,100)
     else:
-        hozon=(0,0,0)
+        hozon=(255,255,255)
     if x<mouseX<x+80 and y<mouseY<y+40:
         purei=(100,100,200)
     else:
-        purei=(0,0,0)
+        purei=(255,255,255)
     pygame.draw.rect(_value.screen, (200,50,50), (x+620,y,80,40), width=3,border_radius=5)
     pygame.draw.rect(_value.screen, (100,100,200), (x,y,80,40), width=3,border_radius=5)
     text = _value.font.render("保存", False, (hozon))

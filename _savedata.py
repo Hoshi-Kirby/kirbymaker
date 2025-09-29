@@ -14,9 +14,9 @@ import _value
 
 def savedata():
     pygame.display.update()
-    _value.screen.fill((200,200,255))
+    _value.screen.blit(_value.pekin3, (0,0))
     mouseX, mouseY = pygame.mouse.get_pos()
-    text = _value.font.render("どこにセーブしますか", False, (0,0,0))
+    text = _value.font.render("どこにセーブしますか", False, (255,255,255))
     text_rect = text.get_rect(center=(400, 70))
     _value.screen.blit(text, text_rect)
     ka9=-1

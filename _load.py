@@ -17,9 +17,9 @@ import _value
 
 def loaddata():
     pygame.display.update()
-    _value.screen.fill((200,200,255))
+    _value.screen.blit(_value.pekin4, (0,0))
     mouseX, mouseY = pygame.mouse.get_pos()
-    text = _value.font.render("データを選択してください", False, (0,0,0))
+    text = _value.font.render("データを選択してください", False, (255,255,255))
     text_rect = text.get_rect(center=(400, 70))
     _value.screen.blit(text, text_rect)
     ka9=-1
@@ -64,6 +64,7 @@ def loaddata():
 
 def loadb():
     pygame.display.update()
+    _value.screen.blit(_value.pekin4, (0,0))
     mouseX, mouseY = pygame.mouse.get_pos()
     pygame.draw.rect(_value.screen, (255,255,255),(50,200,700,200))
     text=_value.font.render(_value.nameload[_value.ka9], False, (0,0,0))
@@ -270,9 +271,9 @@ def load():
 
 def loada():
     pygame.display.update()
-    _value.screen.fill((200,200,255))
+    _value.screen.blit(_value.pekin4, (0,0))
     mouseX, mouseY = pygame.mouse.get_pos()
-    text = _value.font.render("カービィメーカー", False, (0,0,0))
+    text = _value.font.render("カービィメーカー", False, (255,255,255))
     text_rect = text.get_rect(center=(400, 70))
     _value.screen.blit(text, text_rect)
     list=["編集","削除"]
@@ -281,7 +282,7 @@ def loada():
     
     text_rect=[None]*le
     for i in range (le):
-        text = _value.font.render(list[i], False, (0,0,0))
+        text = _value.font.render(list[i], False, (255,255,255))
         text_rect[i] = text.get_rect(center=(400, 350-interval*le/2 + i*interval))
         if text_rect[i].collidepoint(mouseX,mouseY):
             _value.ka10=i

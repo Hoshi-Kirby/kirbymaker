@@ -15,7 +15,7 @@ import _value
 def step3():
         pygame.display.update()
         mouseX, mouseY = pygame.mouse.get_pos()
-        _value.screen.fill((200,200,255))
+        _value.screen.blit(_value.pekin3, (0,0))
         if _value.wazatype[_value.ka3]==2 and _value.t>_value.kzi[_value.ka3]*100:
             if(_value.t2<10):
                 _func.settingkirby(_value.kx+100,_value.ky+298,1)
@@ -48,9 +48,9 @@ def step3():
             rect_surface.fill((255, 0, 0, 128))  # ← A=128で半透明
             _value.screen.blit(rect_surface, (_value.kx2[_value.ka3] + 125,_value.kx1[_value.ka3] + 315))
         if _value.ka3<10:
-            fill=(0,0,0)
+            fill=(255,255,255)
         elif _value.ka3<20:
-            fill=(100,0,0)
+            fill=(255,127,127)
         else:
             fill=(255,0,0)
 
@@ -108,7 +108,14 @@ def step3():
             text = _value.font.render(_value.title_list[_value.tab-1], False, (fill))
             text_rect = text.get_rect(center=(550, 300+50*_value.tab+_value.sc))
         _value.screen.blit(text, text_rect)
-        
+        if text_rect.collidepoint(mouseX,mouseY):
+            mouseka3=_value.tab-1
+            if _value.title_list[_value.tab]=="":
+                text = _value.font.render("設定なし", False, (tuple(int(255-(255-c)*0.8) for c in fill)))
+            else:
+                text = _value.font.render(_value.title_list[i], False, (tuple(int(255-(255-c)*0.8) for c in fill)))
+            _value.screen.blit(text, text_rect)
+            
         if _value.ka3<10:
             text = _value.font.render("通常", False, (fill))
             text_rect = text.get_rect(center=(100, 200))
@@ -128,15 +135,15 @@ def step3():
         if x<mouseX<80+x and y<mouseY<40+y:
             hozon=(200,100,100)
         else:
-            hozon=(0,0,0)
+            hozon=(255,255,255)
         if x+100<mouseX<x+200 and y<mouseY<y+40:
             purei=(100,100,200)
         else:
-            purei=(0,0,0)
+            purei=(255,255,255)
         if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
             modoru=(100,100,100)
         else:
-            modoru=(0,0,0)
+            modoru=(255,255,255)
         pygame.draw.rect(_value.screen, (200,50,50), (x,y,80,40), width=3,border_radius=5)
         pygame.draw.rect(_value.screen, (100,100,200), (100+x,y,100,40), width=3,border_radius=5)
         pygame.draw.rect(_value.screen, (100,100,100), (50,y+y2,80,40), width=3,border_radius=5)
@@ -173,13 +180,20 @@ def step3():
                             _value.step=2
                             _value.se_esc.play()
                         if mouseka3!=-1:
-                            if _value.ka3==mouseka3:
+                            if _value.ka3==mouseka3 or _value.ka3==mouseka3+10 or _value.ka3==mouseka3+20:
                                 _value.step=4
                                 _value.se_enter1.play()
                             else:
                                 _value.se_enter2.play()
-                            _value.sctime=(_value.ka3-mouseka3)*10
-                            _value.ka3=mouseka3
+                            if _value.ka3<10:
+                                _value.sctime=(_value.ka3-mouseka3)*10
+                                _value.ka3=mouseka3
+                            if 10<=_value.ka3<20:
+                                _value.sctime=(_value.ka3-10-mouseka3)*10
+                                _value.ka3=mouseka3+10
+                            if 20<=_value.ka3:
+                                _value.sctime=(_value.ka3-20-mouseka3)*10
+                                _value.ka3=mouseka3+20
                     if event.button == 4:
                         if _value.sctime==0:
                             _value.ka3-=1

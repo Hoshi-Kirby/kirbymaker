@@ -16,7 +16,10 @@ import _value
 def step4():
         pygame.display.update()
         mouseX, mouseY = pygame.mouse.get_pos()
-        _value.screen.fill((200,200,255))
+        _value.screen.blit(_value.pekin3, (0,0))
+        rect_surface = pygame.Surface((430, 460), pygame.SRCALPHA)
+        rect_surface.fill((0, 0, 0, 170))  # ← 透明　0<=A<=255 不透明
+        _value.screen.blit(rect_surface, (320,130))
         if _value.wazatype[_value.ka3]==2 and _value.t>_value.kzi[_value.ka3]*100:
             if(_value.t2<10):
                 _func.settingkirby(_value.kx+100,_value.ky+298,1)
@@ -73,9 +76,9 @@ def step4():
         if _value.ka4==2:
             mouseka4_2=0
             if _value.wazatype[_value.ka3]==0:
-                text = _value.font.render("攻撃範囲→", False, (0,0,0))
+                text = _value.font.render("攻撃範囲→", False, (255,255,255))
             else:
-                text = _value.font.render("軌道→", False, (0,0,0))
+                text = _value.font.render("軌道→", False, (255,255,255))
             text_rect = text.get_rect(center=(470, 200))
             if text_rect.collidepoint(mouseX,mouseY):
                 mouseka4_2=1
@@ -109,13 +112,13 @@ def step4():
                 mouseka4_2=1
         if _value.ka4==7:
             mouseka4_2=0
-            text = _value.font.render("反動→", False, (0,0,0))
+            text = _value.font.render("反動→", False, (255,255,255))
             text_rect = text.get_rect(center=(450, 450))
             if text_rect.collidepoint(mouseX,mouseY):
                 mouseka4_2=1
         if _value.ka4==8:
             mouseka4_2=0
-            text = _value.font.render("デザイン→", False, (0,0,0))
+            text = _value.font.render("デザイン→", False, (255,255,255))
             text_rect = text.get_rect(center=(470, 500))
             if text_rect.collidepoint(mouseX,mouseY):
                 mouseka4_2=1
@@ -142,15 +145,15 @@ def step4():
         if x<mouseX<80+x and y<mouseY<40+y:
             hozon=(200,100,100)
         else:
-            hozon=(0,0,0)
+            hozon=(255,255,255)
         if x+100<mouseX<x+200 and y<mouseY<y+40:
             purei=(100,100,200)
         else:
-            purei=(0,0,0)
+            purei=(255,255,255)
         if 50<mouseX<80+50 and y+y2<mouseY<40+y+y2:
             modoru=(100,100,100)
         else:
-            modoru=(0,0,0)
+            modoru=(255,255,255)
         pygame.draw.rect(_value.screen, (200,50,50), (x,y,80,40), width=3,border_radius=5)
         pygame.draw.rect(_value.screen, (100,100,200), (100+x,y,100,40), width=3,border_radius=5)
         pygame.draw.rect(_value.screen, (100,100,100), (50,y+y2,80,40), width=3,border_radius=5)
@@ -386,7 +389,7 @@ def step4():
         _value.screen.blit(txt_surface, (_value.input_box.x + 5, _value.input_box.y + 5))
         pygame.draw.rect(_value.screen, _value.color, _value.input_box, 2)
 
-        text = _value.font.render("→", False, (0,0,0))
+        text = _value.font.render("→", False, (255,255,255))
         text_rect = text.get_rect(center=(350, 100+50*_value.ka4))
         if _value.ka4>0:
             _value.active=False
@@ -398,46 +401,46 @@ def step4():
             _value.ka4=0
         
         if _value.wazatype[_value.ka3]==0:
-            text = _value.font.render("近距離", False, (0,0,0))
+            text = _value.font.render("近距離", False, (255,255,255))
         else:
             text = _value.font.render("近距離", False, (100,100,100))
         text_rect = text.get_rect(center=(450, 150))
         _value.screen.blit(text, text_rect)
 
         if _value.wazatype[_value.ka3]==1:
-            text = _value.font.render("遠距離", False, (0,0,0))
+            text = _value.font.render("遠距離", False, (255,255,255))
         else:
             text = _value.font.render("遠距離", False, (100,100,100))
         text_rect = text.get_rect(center=(550, 150))
         _value.screen.blit(text, text_rect)
 
         if _value.wazatype[_value.ka3]==2:
-            text = _value.font.render("突進", False, (0,0,0))
+            text = _value.font.render("突進", False, (255,255,255))
         else:
             text = _value.font.render("突進", False, (100,100,100))
         text_rect = text.get_rect(center=(640, 150))
         _value.screen.blit(text, text_rect)
 
         if _value.wazatype[_value.ka3]==0:
-            text = _value.font.render("攻撃範囲→", False, (0,0,0))
+            text = _value.font.render("攻撃範囲→", False, (255,255,255))
         else:
-            text = _value.font.render("軌道→", False, (0,0,0))
+            text = _value.font.render("軌道→", False, (255,255,255))
         text_rect = text.get_rect(center=(470, 200))
         _value.screen.blit(text, text_rect)
         
         if _value.wazatype[_value.ka3]!=0:
             font = pygame.font.SysFont("hg正楷書体pro", 20)
-            text = font.render("ぶつかったとき", False, (0,0,0))
+            text = font.render("ぶつかったとき", False, (255,255,255))
             text_rect = text.get_rect(center=(480, 230))
             _value.screen.blit(text, text_rect)
             if _value.wazatype[_value.ka3]==1:
                 if _value.wazapene[_value.ka3]==0:
-                    text = _value.font.render("消滅", False, (0,0,0))
+                    text = _value.font.render("消滅", False, (255,255,255))
                 else:
                     text = _value.font.render("消滅", False, (100,100,100))
             if _value.wazatype[_value.ka3]==2:
                 if _value.wazapene[_value.ka3]==0:
-                    text = _value.font.render("停止", False, (0,0,0))
+                    text = _value.font.render("停止", False, (255,255,255))
                 else:
                     text = _value.font.render("停止", False, (100,100,100))
             text_rect = text.get_rect(center=(450, 250))
@@ -445,7 +448,7 @@ def step4():
 
 
             if _value.wazapene[_value.ka3]==1:
-                text = _value.font.render("反射", False, (0,0,0))
+                text = _value.font.render("反射", False, (255,255,255))
             else:
                 text = _value.font.render("反射", False, (100,100,100))
             text_rect = text.get_rect(center=(550, 250))
@@ -453,72 +456,72 @@ def step4():
 
             if _value.wazatype[_value.ka3]==1:
                 if _value.wazapene[_value.ka3]==2:
-                    text = _value.font.render("貫通", False, (0,0,0))
+                    text = _value.font.render("貫通", False, (255,255,255))
                 else:
                     text = _value.font.render("貫通", False, (100,100,100))
                 text_rect = text.get_rect(center=(640, 250))
                 _value.screen.blit(text, text_rect)
 
 
-        text = _value.font.render("慣性", False, (0,0,0))
+        text = _value.font.render("慣性", False, (255,255,255))
         text_rect = text.get_rect(center=(450, 300))
         _value.screen.blit(text, text_rect)
         if _value.wazatuka[_value.ka3]==0:
-            text = _value.font.render("無視", False, (0,0,0))
+            text = _value.font.render("無視", False, (255,255,255))
         else:
             text = _value.font.render("無視", False, (100,100,100))
         text_rect = text.get_rect(center=(550, 300))
         _value.screen.blit(text, text_rect)
 
         if _value.wazatuka[_value.ka3]==1:
-            text = _value.font.render("受ける", False, (0,0,0))
+            text = _value.font.render("受ける", False, (255,255,255))
         else:
             text = _value.font.render("受ける", False, (100,100,100))
         text_rect = text.get_rect(center=(650, 300))
         _value.screen.blit(text, text_rect)
 
 
-        text = _value.font.render("ダメージ量　　　　　％", False, (0,0,0))
+        text = _value.font.render("ダメージ量　　　　　％", False, (255,255,255))
         text_rect = text.get_rect(center=(570, 350))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render(str(_value.wazadame[_value.ka3]), False, (0,0,0))
+        text = _value.font.render(str(_value.wazadame[_value.ka3]), False, (255,255,255))
         text_rect = text.get_rect(center=(670, 350))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render("吹っ飛ばし力", False, (0,0,0))
+        text = _value.font.render("吹っ飛ばし力", False, (255,255,255))
         text_rect = text.get_rect(center=(500, 400))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render(str(_value.wazahuto[_value.ka3]), False, (0,0,0))
+        text = _value.font.render(str(_value.wazahuto[_value.ka3]), False, (255,255,255))
         text_rect = text.get_rect(center=(670, 400))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render("反動→", False, (0,0,0))
+        text = _value.font.render("反動→", False, (255,255,255))
         text_rect = text.get_rect(center=(450, 450))
         _value.screen.blit(text, text_rect)
-        text = _value.font.render("デザイン→", False, (0,0,0))
+        text = _value.font.render("デザイン→", False, (255,255,255))
         text_rect = text.get_rect(center=(470, 500))
         _value.screen.blit(text, text_rect)
-        if _value.ka3<10:
-            text = _value.font.render("発動", False, (0,0,0))
+        if _value.ka3<10 and _value.ka3%10!=8:
+            text = _value.font.render("発動", False, (255,255,255))
             text_rect = text.get_rect(center=(430, 550))
             _value.screen.blit(text, text_rect)
             if _value.wazatame[_value.ka3]==0:
-                text = _value.font.render("押した時", False, (0,0,0))
+                text = _value.font.render("押した時", False, (255,255,255))
             else:
                 text = _value.font.render("押した時", False, (100,100,100))
             text_rect = text.get_rect(center=(550, 550))
             _value.screen.blit(text, text_rect)
 
             if _value.wazatame[_value.ka3]==1:
-                text = _value.font.render("離した時", False, (0,0,0))
+                text = _value.font.render("離した時", False, (255,255,255))
             else:
                 text = _value.font.render("離した時", False, (100,100,100))
             text_rect = text.get_rect(center=(690, 550))
             _value.screen.blit(text, text_rect)
 
-        if _value.ka3>=10:
-            text = _value.font.render("溜め時間", False, (0,0,0))
+        if _value.ka3>=10 and _value.ka3%10!=8:
+            text = _value.font.render("溜め時間", False, (255,255,255))
             text_rect = text.get_rect(center=(470, 550))
             _value.screen.blit(text, text_rect)
-            text = _value.font.render(str(_value.wazatame[_value.ka3])+"00ms", False, (0,0,0))
+            text = _value.font.render(str(_value.wazatame[_value.ka3])+"00ms", False, (255,255,255))
             text_rect = text.get_rect(center=(670, 550))
             _value.screen.blit(text, text_rect)
 
@@ -550,7 +553,10 @@ def step4():
         # pygame.display.flip()
 
         _func.help(50,50,-1,"技の詳細設定をします")
-        _func.help(500,100,1,"技名を入力します。名前を入れないと技として反映されないので、気を付けてください。逆に名前だけを消すことで一時的に技を削除することもできます。")
+        if _value.ka3%10==8:
+            _func.help(500,100,1,"コマンドを設定します。w,a,s,d,右shift,] キーのみ入力することができ、w,a,s,dはDSやswitchにおける上左下右、shiftと] はBボタンとYボタンに当たります。")
+        else:
+            _func.help(500,100,1,"技名を入力します。名前を入れないと技として反映されないので、気を付けてください。逆に名前だけを消すことで一時的に技を削除することもできます。")
         _func.help(760,150,2,"技の種類を選択します")
         if _value.wazatype[_value.ka3]>0 :
             _func.help(760,200,3,"技の軌道と時間を設定します")

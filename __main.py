@@ -33,6 +33,7 @@ while True:
         _value.ky=_value.ground
         _value.ka=0
         _value.ka3=0
+        _value.sc=0
         _value.t=0
 
         _value.buki=0
@@ -48,6 +49,8 @@ while True:
         _value.ky0=[0]*(_value.tab+20)
         _value.kzi=[0]*(_value.tab+20)
         _value.kzi2=[1]*(_value.tab+20)
+        _value.kzi2[18]=0
+        _value.kzi2[28]=0
         _value.kad2=[0]*(_value.tab+20)
         _value.kws2=[0]*(_value.tab+20)
         _value.kad1=[0]*(_value.tab+20)
@@ -58,7 +61,7 @@ while True:
         _value.ky2h=[0]*(_value.tab+20)
         _value.ky1h=[0]*(_value.tab+20)
         _value.ky0h=[0]*(_value.tab+20)
-        _value.kzih=[0.1]*(_value.tab+20)
+        _value.kzih=[0]*(_value.tab+20)
         _value.kad2h=[0]*(_value.tab+20)
         _value.kws2h=[0]*(_value.tab+20)
         _value.kad1h=[0]*(_value.tab+20)
@@ -128,7 +131,7 @@ while True:
     if _value.step==4:
         _value.ka4=1
         _value.input_box = pygame.Rect(50, 80, 400, 40)
-        _value.color_inactive = pygame.Color(0,0,0)
+        _value.color_inactive = pygame.Color(255,255,255)
         _value.color_active = pygame.Color(150,50,50)
         _value.color = _value.color_inactive
         _value.active = False
@@ -145,6 +148,8 @@ while True:
         _value.running = True
         
         _value.tab4=9
+        if _value.ka3%10==8:
+            _value.tab4=8
 
 
     while _value.step==4:
@@ -211,9 +216,9 @@ while True:
         _value.kyv=_value.ky1[_value.ka3]
 
         if _value.wazatype[_value.ka3]==1:
-            _value.tab5=13
+            _value.tab5=12
         if _value.wazatype[_value.ka3]==2:
-            _value.tab5=11
+            _value.tab5=12
         if _value.wazatype[_value.ka3]==0:
             _value.tab5=5
     while _value.step==5:
@@ -301,8 +306,10 @@ while True:
             _name.name()
 
         if _value.savestep==2:
+            _value.fill=(0,0,0)
             if _value.nameload[_value.ka9]=="データなし":
                 _value.savestep=3
+                _value.fill=(255,255,255)
         
         if _value.savestep==2:
             _save.savebb()

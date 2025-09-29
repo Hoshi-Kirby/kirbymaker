@@ -12,7 +12,7 @@ import _value
 
 def step1():
         pygame.display.update()
-        _value.screen.blit(_value.pekin, (-60,0))
+        _value.screen.blit(_value.pekin1, (0,0))
         mouseX, mouseY = pygame.mouse.get_pos()
 
         
