@@ -256,6 +256,13 @@ def step7():
                 _value.kxtestv+=0.05
             else:
                 _value.kxtestv=0
+        if _value.kytestv<0 and _value.hob==1:
+            if _value.kxtestv>0.02:
+                _value.kxtestv-=0.02
+            elif _value.kxtestv<-0.02:
+                _value.kxtestv+=0.02
+            else:
+                _value.kxtestv=0
         
         if _value.kytest>=_value.ground and _value.kytestv>=0:
             _value.kytestv=0

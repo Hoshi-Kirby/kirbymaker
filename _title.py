@@ -193,6 +193,13 @@ def step1():
                 _value.kxv+=0.05
             else:
                 _value.kxv=0
+        if _value.kyv<0 and _value.hob==1:
+            if _value.kxv>0.02:
+                _value.kxv-=0.02
+            elif _value.kxv<-0.02:
+                _value.kxv+=0.02
+            else:
+                _value.kxv=0
         
         if _value.ky>=_value.ground and _value.kyv>=0:
             _value.kyv=0

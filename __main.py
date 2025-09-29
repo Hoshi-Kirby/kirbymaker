@@ -29,6 +29,7 @@ pygame.mixer.init()
 
 while True:
     if _value.step==1:
+        _value.ground=440
         _value.kx=225
         _value.ky=_value.ground
         _value.ka=0
@@ -262,7 +263,7 @@ while True:
         
     #テストプレイ
     if _value.step==7:
-
+        _value.ground=460
         _value.kxtest=225
         _value.kytest=_value.ground
         _value.t=-1

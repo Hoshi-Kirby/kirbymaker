@@ -15,9 +15,9 @@ import _value
 def step8():
         pygame.display.update()
         _value.screen.blit(_value.pekin3, (0,0))
-        rect_surface = pygame.Surface((120, 200), pygame.SRCALPHA)
+        rect_surface = pygame.Surface((200, 270), pygame.SRCALPHA)
         rect_surface.fill((0, 0, 0, 170))  # ← 透明　0<=A<=255 不透明
-        _value.screen.blit(rect_surface, (400,200))
+        _value.screen.blit(rect_surface, (400,180))
         mouseX, mouseY = pygame.mouse.get_pos()
         if _value.ka8==0:
             fill=255,255,255
