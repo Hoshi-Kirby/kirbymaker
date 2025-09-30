@@ -312,8 +312,8 @@ def step8():
                             fill = _func.bgr_to_rgb(bgr)
                             _value.cr,_value.cg,_value.cb=fill
                     if event.button == 2 and _value.step2>=1:
-                        if _value.back==(255,255,255):_value.back=(255,255,255)
-                        elif _value.back==(255,255,255):_value.back=(255,255,255)
+                        if _value.back==(255,255,255):_value.back=(0,0,0)
+                        elif _value.back==(0,0,0):_value.back=(255,255,255)
                 elif event.type == MOUSEBUTTONUP:
                     if event.button ==1 and _value.drag==1:
                         _value.drag = 0

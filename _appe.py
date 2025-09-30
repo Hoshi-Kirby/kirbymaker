@@ -239,20 +239,20 @@ def step2():
                             if x<mouseX<x+80 and y<mouseY<y+40:
                                 _value.esch=1
                                 _value.se_esc.play()
-                    if _value.step2==1:
+                    elif _value.step2==1:
                         if 350<mouseX<450 and 500<mouseY<600:
                             _value.flip=1-_value.flip
-                        if event.button == 1 and _value.step2==1:  # 左クリック
+                        elif event.button == 1 and _value.step2==1:  # 左クリック
                             _value.drag = 1
-                        if event.button == 3 and _value.step2==1:  # 左クリック
+                        elif event.button == 3 and _value.step2==1:  # 左クリック
                             _value.drag = 3
                             if _value.my>=0:
                                 bgr = tuple(int(c) for c in image[_value.my, _value.mx])
                                 fill = _func.bgr_to_rgb(bgr)
                                 _value.cr,_value.cg,_value.cb=fill
-                        if event.button == 2 and _value.step2==1:
-                            if _value.back==(255,255,255):_value.back=(255,255,255)
-                            elif _value.back==(255,255,255):_value.back=(255,255,255)
+                        elif event.button == 2 and _value.step2==1:
+                            if _value.back==(255,255,255):_value.back=(0,0,0)
+                            elif _value.back==(0,0,0):_value.back=(255,255,255)
                         
                         if x<mouseX<x+80 and y<mouseY<y+40:
                             _value.step2=0
