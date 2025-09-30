@@ -2,6 +2,7 @@ import sys, random
 import pygame, time
 import cv2
 import numpy as np
+import copy
 image = cv2.imread(r"C:\python\kirby\h.png")
 cv2.imwrite("buki.png", image)
 from pygame.locals import *
@@ -279,13 +280,11 @@ def step2():
                     for i in range(30):
                         cv2.imwrite(f"buki ({i}).png", image)
                         cv2.imwrite(f"buki2 ({i}).png", image)
-                    _value.image1 = image
-                    _value.image2 = image
+                    _value.image2 = copy.deepcopy(image)
                 if _value.flip==1:
                     cv2.imwrite("buki2.png", image)
                     for i in range(30):
                         cv2.imwrite(f"buki2 ({i}).png", image)
-                    _value.image2 = image
             if 650<mouseX<750 and 140<mouseY<160:
                 _value.cr=(mouseX-650)*2.55
             if 650<mouseX<750 and 190<mouseY<210:
@@ -298,8 +297,6 @@ def step2():
                 if _value.flip==0:
                     cv2.imwrite("buki.png", image)
                     cv2.imwrite("buki2.png", image)
-                    _value.image1 = image
-                    _value.image2 = image
+                    _value.image2 = copy.deepcopy(image)
                 if _value.flip==1:
                     cv2.imwrite("buki2.png", image)
-                    _value.image2 = image

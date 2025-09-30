@@ -2,6 +2,7 @@ import sys, random
 import pygame, time
 import cv2
 import numpy as np
+import copy
 image = cv2.imread(r"C:\python\kirby\h.png")
 cv2.imwrite("buki.png", image)
 from pygame.locals import *
@@ -334,20 +335,16 @@ def step8():
                     if _value.flip==0:
                         cv2.imwrite(f"buki ({_value.ka3}).png", image)
                         cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
-                        _value.image1 = image
-                        _value.image2 = image
+                        _value.image2 =  copy.deepcopy(image)
                     if _value.flip==1:
                         cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
-                        _value.image2 = image
                 if _value.step2==2:
                     if _value.flip==0:
                         cv2.imwrite(f"hado ({_value.ka3}).png", image)
                         cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
-                        _value.image3 = image
-                        _value.image4 = image
+                        _value.image4 =  copy.deepcopy(image)
                     if _value.flip==1:
                         cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
-                        _value.image4 = image
             if 650<mouseX<750 and 140<mouseY<160:
                 _value.cr=(mouseX-650)*2.55
             if 650<mouseX<750 and 190<mouseY<210:
@@ -370,20 +367,16 @@ def step8():
                     if _value.flip==0:
                         cv2.imwrite(f"buki ({_value.ka3}).png", image)
                         cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
-                        _value.image1 = image
-                        _value.image2 = image
+                        _value.image2 = copy.deepcopy(image)
                     if _value.flip==1:
                         cv2.imwrite(f"buki2 ({_value.ka3}).png", image)
-                        _value.image2 = image
                 if _value.step2==2:
                     if _value.flip==0:
                         cv2.imwrite(f"hado ({_value.ka3}).png", image)
                         cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
-                        _value.image3 = image
-                        _value.image4 = image
+                        _value.image4 = copy.deepcopy(image)
                     if _value.flip==1:
                         cv2.imwrite(f"hado2 ({_value.ka3}).png", image)
-                        _value.image4 = image
         _value.t+=1
         _value.t2+=1
         if _value.t>_value.kzi2[_value.ka3]*100:
